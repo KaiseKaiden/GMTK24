@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer myTrail;
     private Vector3 myLookDirection;
 
+    [SerializeField] Transform myRightLeg;
+
     private void Start()
     {
         myLookDirection = transform.forward;
@@ -84,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         myController.Move(myVelocity * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
         var position = transform.position;
-        position.z = -transform.position.y / 2;
+        position.z = GameManager.Instance.GetZFromY(transform.position.y);
         transform.position = position;
 
 
@@ -97,5 +99,15 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale *= .75f;
         }
 
+    }
+
+    public Transform GetRightLeg()
+    {
+        return myRightLeg;
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return myVelocity;
     }
 }
