@@ -26,10 +26,7 @@ public class Nest : MonoBehaviour
 
     private void Start()
     {
-        myEggHolder = new GameObject("EggHolder");
-        myEggHolder.transform.position = transform.position;
-        myNestCentre = myEggHolder.transform;
-
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
         int numOfEggs = 50;
         float spiralParameter = 0.1f;
         float distBetweenEggs = 0.65f;
