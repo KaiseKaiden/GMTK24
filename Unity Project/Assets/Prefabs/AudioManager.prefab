@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5505995809142441654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3492541097570720564}
+  - component: {fileID: 4151034275873538589}
+  - component: {fileID: 5218905027792456250}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3492541097570720564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505995809142441654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47010612, y: 1.0907884, z: -0.23561382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4151034275873538589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505995809142441654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf15a2f7dcef7499639161b24da2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5218905027792456250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505995809142441654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87211d7cb2772174fbd5492eff98e2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BirdWingFlapEvent>k__BackingField:
+    Guid:
+      Data1: -284900924
+      Data2: 1115847478
+      Data3: 2020145839
+      Data4: 744721407
+    Path: event:/Player/Bird_Wings
+  <MusicEvent>k__BackingField:
+    Guid:
+      Data1: -1222482744
+      Data2: 1311274553
+      Data3: -57535867
+      Data4: 8556085
+    Path: event:/Music
+  <AmbienceEvent>k__BackingField:
+    Guid:
+      Data1: 1430693420
+      Data2: 1082129882
+      Data3: -1486021964
+      Data4: -1231264262
+    Path: event:/Ambiance
+  <NestGrowEvent>k__BackingField:
+    Guid:
+      Data1: -828164293
+      Data2: 1192127990
+      Data3: -144257396
+      Data4: -1480659338
+    Path: event:/Nest_Grow
+  <GetNestMaterialEvent>k__BackingField:
+    Guid:
+      Data1: -618679442
+      Data2: 1284555179
+      Data3: -1025948008
+      Data4: 175540595
+    Path: event:/Player/Bird_GetNest
+  <GetFoodEvent>k__BackingField:
+    Guid:
+      Data1: -720016333
+      Data2: 1079323317
+      Data3: 1588456324
+      Data4: 1037045613
+    Path: event:/Player/Bird_GetFood

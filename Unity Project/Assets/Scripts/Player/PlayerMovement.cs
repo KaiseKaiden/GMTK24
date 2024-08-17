@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
             direction.Normalize();
 
             myVelocity = direction * myForce * transform.localScale.x;
+
+            AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
+
         }
 
         // Gravity
