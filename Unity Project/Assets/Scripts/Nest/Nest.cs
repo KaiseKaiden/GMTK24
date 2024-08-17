@@ -1,16 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using UnityEditor.Rendering;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Nest : MonoBehaviour
 {
-    [SerializeField] public int myEggCapacity = 2;
+    [SerializeField]
+    public int myEggCapacity = 2;
     private int myEggCount = 0;
-    [SerializeField] private float myEggInterval = 15f;
+    [SerializeField]
+    private float myEggInterval = 15f;
     private float myEggIntervalMultiplier = 1f;
     private float myEggTimer = 0f;
     private Transform myNestCentre;
@@ -19,17 +17,18 @@ public class Nest : MonoBehaviour
     private List<Vector3> myEggPoints = new();
     public GameObject myEggPrefab;
 
-    private Vector3[] myOffsets =
-    {
-        new(0, 0, 0), new(-1, 0, 0), new(1, 0, 0), new(-2, 0, 0), new(2, 0, 0),
-        new(-0.5f, 1, 0), new(0.5f, 1, 0), new(-1.5f, 1, 0), new(1.5f, 1, 0),
-        new(0, 2, 0), new(-1, 2, 0), new(1, 2, 0),
-        new(-0.5f, 3, 0), new(0.5f, 3, 0),
-        new(0, 4, 0)
-    };
+    public TextMeshProUGUI myEggCountText;
+
+    private Vector3[] myOffsets = { new(0, 0, 0),     new(-1, 0, 0),    new(1, 0, 0),    new(-2, 0, 0),
+                                    new(2, 0, 0),     new(-0.5f, 1, 0), new(0.5f, 1, 0), new(-1.5f, 1, 0),
+                                    new(1.5f, 1, 0),  new(0, 2, 0),     new(-1, 2, 0),   new(1, 2, 0),
+                                    new(-0.5f, 3, 0), new(0.5f, 3, 0),  new(0, 4, 0) };
 
     private void Start()
     {
+        myEggHolder = new GameObject("EggHolder");
+        myEggHolder.transform.position = transform.position;
+        myNestCentre = myEggHolder.transform;
 
         int numOfEggs = 50;
         float spiralParameter = 0.1f;
@@ -54,6 +53,7 @@ public class Nest : MonoBehaviour
         if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
         {
             SpawnEgg();
+
             myEggCount++;
             myEggTimer = 0f;
 
@@ -67,6 +67,8 @@ public class Nest : MonoBehaviour
         {
             Debug.Log("GAME OVER");
         }
+
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
     }
 
     private void SpawnEgg()
@@ -95,7 +97,6 @@ public class Nest : MonoBehaviour
     {
         return myEggPoints[anEggCount];
     }
-
 
     public void SetCurrentEggCount(int countToReach)
     {

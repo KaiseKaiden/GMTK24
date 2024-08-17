@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7239929097441177838}
-  m_Layer: 0
+  - component: {fileID: -577502755673432038}
+  m_Layer: 6
   m_Name: Cake
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 3705262786363824192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-577502755673432038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828923468485223979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2d4cf58b3e6ee4689d211783587af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myFillAmount: 1
+  myPickupDistance: 2
 --- !u!1001 &3810332953243680683
 PrefabInstance:
   m_ObjectHideFlags: 0
