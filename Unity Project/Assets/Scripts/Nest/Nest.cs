@@ -1,43 +1,56 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Nest : MonoBehaviour
 {
-    [SerializeField] private int myEggCapacity = 2;
+    [SerializeField]
+    public int myEggCapacity = 2;
     private int myEggCount = 0;
-    private int myPyramidCount = 1;
-    [SerializeField] private float myEggInterval = 15f;
+    [SerializeField]
+    private float myEggInterval = 15f;
     private float myEggIntervalMultiplier = 1f;
     private float myEggTimer = 0f;
-    [SerializeField] private float myEggDistance = 1f;
-    [SerializeField] private float myPyramidDistance = 15f;
-    private Vector3 myNestCentre;
+    private Transform myNestCentre;
+    private SpiralGenerator mySpiralGenerator = new();
 
+    private List<Vector3> myEggPoints = new();
     public GameObject myEggPrefab;
 
-    private Vector3[] myOffsets =
-    {
-        new Vector3(0, 0, 0), new Vector3(-1, 0, 0), new Vector3(1, 0, 0), new Vector3(-2, 0, 0), new Vector3(2, 0, 0),
-        new Vector3(-0.5f, 1, 0), new Vector3(0.5f, 1, 0), new Vector3(-1.5f, 1, 0), new Vector3(1.5f, 1, 0),
-        new Vector3(0, 2, 0), new Vector3(-1, 2, 0), new Vector3(1, 2, 0),
-        new Vector3(-0.5f, 3, 0), new Vector3(0.5f, 3, 0),
-        new Vector3(0, 4, 0)
-    };
+    public TextMeshProUGUI myEggCountText;
+
+    private Vector3[] myOffsets = { new(0, 0, 0),     new(-1, 0, 0),    new(1, 0, 0),    new(-2, 0, 0),
+                                    new(2, 0, 0),     new(-0.5f, 1, 0), new(0.5f, 1, 0), new(-1.5f, 1, 0),
+                                    new(1.5f, 1, 0),  new(0, 2, 0),     new(-1, 2, 0),   new(1, 2, 0),
+                                    new(-0.5f, 3, 0), new(0.5f, 3, 0),  new(0, 4, 0) };
 
     private void Start()
     {
-        myNestCentre = transform.position;
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
+        int numOfEggs = 50;
+        float spiralParameter = 0.1f;
+        float distBetweenEggs = 0.65f;
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 pos = transform.position;
+            pos.y += 0.65f * i;
+
+            myEggPoints.AddRange(mySpiralGenerator.GetSpiralPoints(pos, spiralParameter, distBetweenEggs, numOfEggs));
+
+            spiralParameter -= 0.025f;
+            distBetweenEggs -= 0.05f;
+            numOfEggs = (int)(numOfEggs * 0.75f);
+        }
     }
 
-    void Update()
+    private void Update()
     {
         myEggTimer += Time.deltaTime;
 
         if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
         {
             SpawnEgg();
+
             myEggCount++;
             myEggTimer = 0f;
 
@@ -51,16 +64,24 @@ public class Nest : MonoBehaviour
         {
             Debug.Log("GAME OVER");
         }
+
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
     }
 
-    void SpawnEgg()
+    private void SpawnEgg()
     {
-        Debug.Log("Spawned an egg");
-        Vector3 nextEggPos = GetEggPosition(myEggCount, myNestCentre);
-        Instantiate(myEggPrefab, nextEggPos, Quaternion.identity);
+        if (myEggCount >= myEggPoints.Count)
+        {
+            return;
+        }
+
+        Vector3 nextEggPos = GetEggPosition(myEggCount);
+
+        GameObject egg = Instantiate(myEggPrefab, transform);
+        egg.transform.position = nextEggPos;
     }
 
-    bool IsObjectOutsideCameraView()
+    private bool IsObjectOutsideCameraView()
     {
         Camera mainCamera = Camera.main;
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
@@ -69,42 +90,20 @@ public class Nest : MonoBehaviour
         return !GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 
-    public Vector3 GetEggPosition(int anEggCount, Vector3 aCenterPos)
+    public Vector3 GetEggPosition(int anEggCount)
     {
-        if (anEggCount >= 15)
+        return myEggPoints[anEggCount];
+    }
+
+    public void SetCurrentEggCount(int countToReach)
+    {
+        while (myEggCount < countToReach)
         {
-            anEggCount %= 15;
-
-            if (anEggCount == 0)
-            {
-                myPyramidCount++;
-                myNestCentre = GetPyramidPosition(myPyramidCount, aCenterPos);
-                aCenterPos = myNestCentre;
-            }
+            SpawnEgg();
+            myEggCount++;
+            myEggTimer = 0f;
         }
-
-        Vector3 eggPosition = new Vector3();
-
-        Vector3 eggOffset = myOffsets[anEggCount];
-
-        eggPosition.x = aCenterPos.x + (eggOffset.x * myEggDistance);
-        eggPosition.y = aCenterPos.y + (eggOffset.y * myEggDistance);
-
-        return eggPosition;
     }
-
-    public Vector3 GetPyramidPosition(int aPyramidCount, Vector3 aCenterPos)
-    {
-        Vector3 eggPosition = new Vector3();
-
-        Vector3 eggOffset = myOffsets[aPyramidCount];
-
-        eggPosition.x = aCenterPos.x + (eggOffset.x * myPyramidDistance);
-        eggPosition.y = aCenterPos.y + (eggOffset.y * myPyramidDistance);
-
-        return eggPosition;
-    }
-
     public int GetEggCount()
     {
         return myEggCount;
@@ -123,5 +122,16 @@ public class Nest : MonoBehaviour
     public void AddEggCapacity(int aCapacity)
     {
         myEggCapacity += aCapacity;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pickup")
+        {
+            Pickup pickup = other.GetComponent<Pickup>();
+
+            AddEggCapacity(pickup.GetCapacity());
+            Destroy(other.gameObject);
+        }
     }
 }
