@@ -99,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale *= .75f;
         }
 
+        // Change Skybox Material
+        RenderSettings.skybox.SetFloat("_TestHeight", transform.position.y);
     }
 
     public Transform GetRightLeg()
