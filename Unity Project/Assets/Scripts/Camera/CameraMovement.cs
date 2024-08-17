@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    Transform myPlayer;
-    Transform myNest;
+    private Transform myPlayer;
+    public Transform myNest;
 
-    [SerializeField] float myCameraSmooting;
-    [SerializeField] float myDeciredZDistance = 10.0f;
+    [SerializeField] private float myCameraSmooting;
+    [SerializeField] private float myDeciredZDistance = 10.0f;
 
-    void Start()
+    private void Start()
     {
         myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
-        myNest = GameObject.FindGameObjectWithTag("Nest").transform;
+        //myNest = GameObject.FindGameObjectWithTag("Nest").transform;
     }
 
-    void Update()
+    private void Update()
     {
+        myDeciredZDistance = (transform.position.y / 2) + 10;
         Vector3 myDirection = myPlayer.position - myNest.position;
         Vector3 myDeciredPosition = myNest.position + myDirection;
         myDeciredPosition.z = -myDeciredZDistance;
