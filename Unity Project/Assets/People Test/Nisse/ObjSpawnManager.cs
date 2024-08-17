@@ -14,10 +14,14 @@ public class ObjSpawnManager : MonoBehaviour
 
     private float myCurrentSpawnTime = 0.0f;
     private float myCurrentSpawnedObjectCount = 0;
+    private Transform myPlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+
         //for (int i = 0; i < mySpawnAmount; i++)
         //{
         //    TrySpawnMaterial();
@@ -74,9 +78,9 @@ public class ObjSpawnManager : MonoBehaviour
 
     Vector3 GetRndPosOutsideCamera()
     {
-        float zPos = Camera.main.nearClipPlane + 30;
+        float zPos = myPlayer.position.z;
         Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawnDistance, myMaxSpawnDistance);
-        Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos);
+        Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos) + myPlayer.position;
         Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
         return Rndpos;
     }
