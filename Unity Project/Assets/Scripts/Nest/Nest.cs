@@ -1,5 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,15 +11,18 @@ public class Nest : MonoBehaviour
 {
     [SerializeField] private int myEggCapacity = 2;
     private int myEggCount = 0;
-    private int myPyramidCount = 1;
     [SerializeField] private float myEggInterval = 15f;
     private float myEggIntervalMultiplier = 1f;
     private float myEggTimer = 0f;
-    [SerializeField] private float myEggDistance = 1f;
-    [SerializeField] private float myPyramidDistance = 15f;
-    private Vector3 myNestCentre;
+    private Transform myNestCentre;
 
+    SpiralGenerator mySpiralGenerator = new SpiralGenerator();
+
+    private List<Vector3> myEggPoints = new List<Vector3>();
     public GameObject myEggPrefab;
+    private GameObject myEggHolder;
+
+    public TextMeshProUGUI myEggCountText;
 
     private Vector3[] myOffsets =
     {
@@ -28,8 +35,28 @@ public class Nest : MonoBehaviour
 
     private void Start()
     {
-        myNestCentre = transform.position;
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
+        myEggHolder = new GameObject("EggHolder");
+        myEggHolder.transform.position = transform.position;
+        myNestCentre = myEggHolder.transform;
+
+        int numOfEggs = 50;
+        float spiralParameter = 0.1f;
+        float distBetweenEggs = 0.65f;
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 pos = myEggHolder.transform.position;
+            pos.y += 0.65f * i;
+
+            myEggPoints.AddRange(mySpiralGenerator.GetSpiralPoints(pos, spiralParameter, distBetweenEggs, numOfEggs));
+
+            spiralParameter -= 0.025f;
+            distBetweenEggs -= 0.05f;
+            numOfEggs = (int)(numOfEggs * 0.75f);
+        }
     }
+
+    
 
     void Update()
     {
@@ -38,6 +65,7 @@ public class Nest : MonoBehaviour
         if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
         {
             SpawnEgg();
+
             myEggCount++;
             myEggTimer = 0f;
 
@@ -51,13 +79,21 @@ public class Nest : MonoBehaviour
         {
             Debug.Log("GAME OVER");
         }
+
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
     }
 
     void SpawnEgg()
     {
-        Debug.Log("Spawned an egg");
-        Vector3 nextEggPos = GetEggPosition(myEggCount, myNestCentre);
-        Instantiate(myEggPrefab, nextEggPos, Quaternion.identity);
+        if (myEggCount >= myEggPoints.Count) 
+        {
+            return;
+        }
+
+        Vector3 nextEggPos = GetEggPosition(myEggCount);
+
+        GameObject egg = Instantiate(myEggPrefab, myEggHolder.transform);
+        egg.transform.position = nextEggPos;
     }
 
     bool IsObjectOutsideCameraView()
@@ -69,40 +105,9 @@ public class Nest : MonoBehaviour
         return !GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 
-    public Vector3 GetEggPosition(int anEggCount, Vector3 aCenterPos)
+    public Vector3 GetEggPosition(int anEggCount)
     {
-        if (anEggCount >= 15)
-        {
-            anEggCount %= 15;
-
-            if (anEggCount == 0)
-            {
-                myPyramidCount++;
-                myNestCentre = GetPyramidPosition(myPyramidCount, aCenterPos);
-                aCenterPos = myNestCentre;
-            }
-        }
-
-        Vector3 eggPosition = new Vector3();
-
-        Vector3 eggOffset = myOffsets[anEggCount];
-
-        eggPosition.x = aCenterPos.x + (eggOffset.x * myEggDistance);
-        eggPosition.y = aCenterPos.y + (eggOffset.y * myEggDistance);
-
-        return eggPosition;
-    }
-
-    public Vector3 GetPyramidPosition(int aPyramidCount, Vector3 aCenterPos)
-    {
-        Vector3 eggPosition = new Vector3();
-
-        Vector3 eggOffset = myOffsets[aPyramidCount];
-
-        eggPosition.x = aCenterPos.x + (eggOffset.x * myPyramidDistance);
-        eggPosition.y = aCenterPos.y + (eggOffset.y * myPyramidDistance);
-
-        return eggPosition;
+        return myEggPoints[anEggCount];
     }
 
     public int GetEggCount()
