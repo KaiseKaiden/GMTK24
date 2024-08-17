@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,6 +22,8 @@ public class Nest : MonoBehaviour
     public GameObject myEggPrefab;
     private GameObject myEggHolder;
 
+    public TextMeshProUGUI myEggCountText;
+
     private Vector3[] myOffsets =
     {
         new Vector3(0, 0, 0), new Vector3(-1, 0, 0), new Vector3(1, 0, 0), new Vector3(-2, 0, 0), new Vector3(2, 0, 0),
@@ -32,6 +35,7 @@ public class Nest : MonoBehaviour
 
     private void Start()
     {
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
         myEggHolder = new GameObject("EggHolder");
         myEggHolder.transform.position = transform.position;
         myNestCentre = myEggHolder.transform;
@@ -61,6 +65,7 @@ public class Nest : MonoBehaviour
         if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
         {
             SpawnEgg();
+
             myEggCount++;
             myEggTimer = 0f;
 
@@ -74,6 +79,8 @@ public class Nest : MonoBehaviour
         {
             Debug.Log("GAME OVER");
         }
+
+        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
     }
 
     void SpawnEgg()
