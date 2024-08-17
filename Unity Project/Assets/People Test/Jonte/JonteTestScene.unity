@@ -242,11 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4739118d0b7048d428d02bf3ada279b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEggCapacity: 300
+  myEggCapacity: 450
   myEggInterval: 0.5
-  myEggDistance: 0.5
-  myPyramidDistance: 3
-  myEggPrefab: {fileID: 5021140213394040320, guid: aa36ef2635764464388000a699df30a9,
+  myEggPrefab: {fileID: 919132149155446097, guid: 8ff62905c60650542b97a11545e594ec,
     type: 3}
 --- !u!1 &1314893959
 GameObject:
@@ -470,6 +468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 471620929738850911, guid: 7d283b1fead11ff4ea2b5e10ec948573,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 795279265645538530, guid: 7d283b1fead11ff4ea2b5e10ec948573,
         type: 3}
