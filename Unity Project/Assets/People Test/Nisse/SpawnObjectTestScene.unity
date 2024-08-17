@@ -151,14 +151,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77e0d2813f816041a6b07a783ac742c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpawnInterval: 1
+  mySpawnArea: 30
   mySpawnAmount: 10
+  mymaxSpawnedObjects: 1000
   myMaterialObjects:
-  - probability: 0.465
+  - probability: 0.094
     Prefab: {fileID: 1331150117}
-  - probability: 0.459
+  myFoodObjects:
+  - probability: 0.107
     Prefab: {fileID: 5497372632077178002, guid: 4724553301b1859419b36bb9c23db136,
       type: 3}
-  myFoodObjects: []
 --- !u!4 &279713942
 Transform:
   m_ObjectHideFlags: 0

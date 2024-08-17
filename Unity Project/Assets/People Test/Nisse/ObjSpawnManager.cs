@@ -17,10 +17,10 @@ public class ObjSpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < mySpawnAmount; i++)
-        {
-            TrySpawnMaterial();
-        }
+        //for (int i = 0; i < mySpawnAmount; i++)
+        //{
+        //    TrySpawnMaterial();
+        //}
     }
 
     // Update is called once per frame
@@ -42,18 +42,14 @@ public class ObjSpawnManager : MonoBehaviour
         if (myCurrentSpawnedObjectCount > mymaxSpawnedObjects)
             return;
 
-        for (int i = 0; i < mySpawnAmount; i++)
+        for (int j = 0; j < myMaterialObjects.Count; j++)
         {
-            for (int j = 0; j < myMaterialObjects.Count; j++)
+            if (Random.Range(0.0f, 1.0f) <= myMaterialObjects[j].probability)
             {
-                if (Random.Range(0.0f, 1.0f) <= myMaterialObjects[j].probability)
-                {
-                    Vector3 rndPos = Random.insideUnitSphere * mySpawnArea;
-                    rndPos.z = 0;
-                    Instantiate(myMaterialObjects[j].Prefab, rndPos, Quaternion.identity);
-                    myCurrentSpawnedObjectCount++;
-                    return;
-                }
+                Vector3 worldRndPos = GetRndPosOutsideCamera();
+                Instantiate(myMaterialObjects[j].Prefab, worldRndPos, Quaternion.identity);
+                myCurrentSpawnedObjectCount++;
+                return;
             }
         }
     }
@@ -65,15 +61,32 @@ public class ObjSpawnManager : MonoBehaviour
 
         for (int j = 0; j < myFoodObjects.Count; j++)
         {
-            if (Random.Range(0.0f, 1.0f) <= myMaterialObjects[j].probability)
+            if (Random.Range(0.0f, 1.0f) <= myFoodObjects[j].probability)
             {
-                Vector3 rndPos = Random.insideUnitSphere * mySpawnArea;
-                rndPos.z = 0;
-                Instantiate(myMaterialObjects[j].Prefab, rndPos, Quaternion.identity);
+                Vector3 worldRndPos = GetRndPosOutsideCamera();
+                Instantiate(myFoodObjects[j].Prefab, worldRndPos, Quaternion.identity);
                 myCurrentSpawnedObjectCount++;
                 return;
             }
         }
     }
 
+    Vector3 GetRndPosOutsideCamera()
+    {
+        float x = Random.Range(-0.5f, 0.5f);
+        float y = Random.Range(-0.5f, 0.5f);
+        if (x >= 0) x += 1;
+        if (y >= 0) y += 1;
+        Vector3 Rndpos = new Vector3(x, y, Camera.main.nearClipPlane + 11);
+
+        Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
+        //worldRndPos *= mySpawnArea;
+        return worldRndPos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, mySpawnArea);
+    }
 }
