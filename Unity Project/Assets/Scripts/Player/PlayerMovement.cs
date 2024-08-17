@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
             direction.z = 0.0f;
             direction.Normalize();
 
-            myVelocity = direction * myForce;
+            myVelocity = direction * myForce * transform.localScale.x;
         }
 
         // Gravity

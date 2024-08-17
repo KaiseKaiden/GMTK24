@@ -8,9 +8,10 @@ public class Pickup : MonoBehaviour
     Transform myPlayer;
     Rigidbody myRigidbody;
 
-    bool myIsDragging;
-
     [SerializeField] int myNestCapacity;
+    [SerializeField] float myPickupDistance = 2.0f;
+
+    bool myIsDragging;
 
     private void Start()
     {
@@ -20,29 +21,21 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1) && Vector3.Distance(transform.position, myPlayer.position) < myPickupDistance)
         {
-            Vector3 myDirection = myPlayer.position - transform.position;
-            myRigidbody.AddForceAtPosition(myDirection, myPickupPoint.position);
-        }
-
-        /*if (Input.GetMouseButtonDown(1))
-        {
-            myRigidbody.centerOfMass = -myPickupPoint.localPosition;
             myIsDragging = true;
         }
 
         if (Input.GetMouseButtonUp(1))
         {
-            myRigidbody.ResetCenterOfMass();
             myIsDragging = false;
         }
 
         if (myIsDragging)
         {
             Vector3 myDirection = myPlayer.position - transform.position;
-            myRigidbody.velocity = myDirection; /*myDirection - myPickupPoint.position
-        }*/
+            myRigidbody.AddForceAtPosition(myDirection, myPickupPoint.position);
+        }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
     }

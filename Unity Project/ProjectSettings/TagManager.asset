@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Nest
   - Pickup
+  - Food
   layers:
   - Default
   - TransparentFX
