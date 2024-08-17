@@ -122,4 +122,15 @@ public class Nest : MonoBehaviour
     {
         myEggCapacity += aCapacity;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pickup")
+        {
+            Pickup pickup = other.GetComponent<Pickup>();
+
+            AddEggCapacity(pickup.GetCapacity());
+            Destroy(other.gameObject);
+        }
+    }
 }

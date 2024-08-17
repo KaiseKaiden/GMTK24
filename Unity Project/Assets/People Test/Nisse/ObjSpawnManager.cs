@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObjSpawnManager : MonoBehaviour
 {
     public float mySpawnInterval = 1.0f;
-    public float mySpawnArea = 30.0f;
+    public float myMaxSpawnDistance = 30.0f;
+    public float myMinSpawnDistance = 10.0f;
     public int mySpawnAmount = 10; //Debugging
     public int mymaxSpawnedObjects = 1000;
     public List<SpawnObj> myMaterialObjects;
@@ -28,7 +29,7 @@ public class ObjSpawnManager : MonoBehaviour
     {
         myCurrentSpawnTime -= Time.deltaTime;
 
-        if(myCurrentSpawnTime <= 0.0f)
+        if (myCurrentSpawnTime <= 0.0f)
         {
             myCurrentSpawnTime = mySpawnInterval;
 
@@ -73,20 +74,19 @@ public class ObjSpawnManager : MonoBehaviour
 
     Vector3 GetRndPosOutsideCamera()
     {
-        float x = Random.Range(-0.5f, 0.5f);
-        float y = Random.Range(-0.5f, 0.5f);
-        if (x >= 0) x += 1;
-        if (y >= 0) y += 1;
-        Vector3 Rndpos = new Vector3(x, y, Camera.main.nearClipPlane + 11);
-
+        float zPos = Camera.main.nearClipPlane + 30;
+        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawnDistance, myMaxSpawnDistance);
+        Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos);
         Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
-        //worldRndPos *= mySpawnArea;
-        return worldRndPos;
+        return Rndpos;
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, myMinSpawnDistance);
+
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, mySpawnArea);
+        Gizmos.DrawWireSphere(transform.position, myMaxSpawnDistance);
     }
 }

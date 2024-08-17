@@ -118,3 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4739118d0b7048d428d02bf3ada279b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myEggCapacity: 2
+  myEggInterval: 15
+  myEggDistance: 1
+  myPyramidDistance: 15
+  myEggPrefab: {fileID: 0}
+  myPickupLayer:
+    serializedVersion: 2
+    m_Bits: 64
