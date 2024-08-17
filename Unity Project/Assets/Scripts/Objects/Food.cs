@@ -26,5 +26,9 @@ public class Food : MonoBehaviour
             myPlayerLevel.AddXp(myFillAmount);
             Destroy(gameObject);
         }
+
+        var position = transform.position;
+        position.z = GameManager.Instance.GetZFromY(transform.position.y);
+        transform.position = position;
     }
 }
