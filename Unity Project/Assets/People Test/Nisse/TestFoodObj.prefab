@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7101343637876384509}
   - component: {fileID: 4311828505749654216}
   m_Layer: 0
-  m_Name: TestSpawnObj 1
+  m_Name: TestFoodObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
