@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerLevel : MonoBehaviour
 {
-    [SerializeField] int myThicknessLevel;
     [SerializeField] float myXp;
     [SerializeField] float myMaxXp;
     [SerializeField] float myXpExpo;
@@ -13,7 +12,7 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] Image myHungerbarUI;
     [SerializeField] RectTransform myHungerbarTransform;
 
-    int myCurrentLevel;
+    int myCurrentLevel = 1;
 
     void Update()
     {

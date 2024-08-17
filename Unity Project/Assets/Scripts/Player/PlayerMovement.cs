@@ -56,8 +56,8 @@ public class PlayerMovement : MonoBehaviour
                 if (directionX < 0) directionX = -1.0f;
                 if (directionX > 0) directionX = 1.0f;
 
-                myVelocity.x += directionX * myForce * 2.0f * Time.deltaTime;
-                myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce, myForce);
+                myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
+                myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
 
                 myTrail.emitting = true;
             }

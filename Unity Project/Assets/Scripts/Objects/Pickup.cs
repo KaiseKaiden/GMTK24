@@ -6,24 +6,30 @@ public class Pickup : MonoBehaviour
 {
     [SerializeField] Transform myPickupPoint;
     Transform myPlayer;
+    PlayerLevel myPlayerLevel;
     Rigidbody myRigidbody;
 
     [SerializeField] int myNestCapacity;
+    [SerializeField] int myLevelRequred;
     [SerializeField] float myPickupDistance = 2.0f;
 
     bool myIsDragging;
 
     private void Start()
     {
-        myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        myPlayer = player.transform;
+        myPlayerLevel = player.GetComponent<PlayerLevel>();
+
         myRigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && Vector3.Distance(transform.position, myPlayer.position) < myPickupDistance)
+        if (Input.GetMouseButtonDown(1) && Vector3.Distance(transform.position, myPlayer.position) < myPickupDistance && myPlayerLevel.GetCurrentLevel() >= myLevelRequred)
         {
             myIsDragging = true;
+            myRigidbody.isKinematic = false;
         }
 
         if (Input.GetMouseButtonUp(1))
