@@ -45,13 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySpawnInterval: 0.01
-  myMaxSpawnDistance: 43.3
-  myMinSpawnDistance: 31.4
+  myMaxSpawnDistance: 36.1
+  myMinSpawnDistance: 15
   mySpawnAmount: 292
   mymaxSpawnedObjects: 1415
   myMaterialObjects:
   - probability: 1
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 5497372632077178002, guid: d47927b07fed9fb43809ba0c3acf5bc2,
+      type: 3}
   myFoodObjects:
   - probability: 1
     Prefab: {fileID: 5497372632077178002, guid: 4724553301b1859419b36bb9c23db136,
