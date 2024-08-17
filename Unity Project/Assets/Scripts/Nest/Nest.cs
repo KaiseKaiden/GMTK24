@@ -8,40 +8,35 @@ using UnityEngine.UIElements;
 
 public class Nest : MonoBehaviour
 {
-    [SerializeField] private int myEggCapacity = 2;
+    [SerializeField] public int myEggCapacity = 2;
     private int myEggCount = 0;
     [SerializeField] private float myEggInterval = 15f;
     private float myEggIntervalMultiplier = 1f;
     private float myEggTimer = 0f;
     private Transform myNestCentre;
+    private SpiralGenerator mySpiralGenerator = new();
 
-    SpiralGenerator mySpiralGenerator = new SpiralGenerator();
-
-    private List<Vector3> myEggPoints = new List<Vector3>();
+    private List<Vector3> myEggPoints = new();
     public GameObject myEggPrefab;
-    private GameObject myEggHolder;
 
     private Vector3[] myOffsets =
     {
-        new Vector3(0, 0, 0), new Vector3(-1, 0, 0), new Vector3(1, 0, 0), new Vector3(-2, 0, 0), new Vector3(2, 0, 0),
-        new Vector3(-0.5f, 1, 0), new Vector3(0.5f, 1, 0), new Vector3(-1.5f, 1, 0), new Vector3(1.5f, 1, 0),
-        new Vector3(0, 2, 0), new Vector3(-1, 2, 0), new Vector3(1, 2, 0),
-        new Vector3(-0.5f, 3, 0), new Vector3(0.5f, 3, 0),
-        new Vector3(0, 4, 0)
+        new(0, 0, 0), new(-1, 0, 0), new(1, 0, 0), new(-2, 0, 0), new(2, 0, 0),
+        new(-0.5f, 1, 0), new(0.5f, 1, 0), new(-1.5f, 1, 0), new(1.5f, 1, 0),
+        new(0, 2, 0), new(-1, 2, 0), new(1, 2, 0),
+        new(-0.5f, 3, 0), new(0.5f, 3, 0),
+        new(0, 4, 0)
     };
 
     private void Start()
     {
-        myEggHolder = new GameObject("EggHolder");
-        myEggHolder.transform.position = transform.position;
-        myNestCentre = myEggHolder.transform;
 
         int numOfEggs = 50;
         float spiralParameter = 0.1f;
         float distBetweenEggs = 0.65f;
         for (int i = 0; i < 5; i++)
         {
-            Vector3 pos = myEggHolder.transform.position;
+            Vector3 pos = transform.position;
             pos.y += 0.65f * i;
 
             myEggPoints.AddRange(mySpiralGenerator.GetSpiralPoints(pos, spiralParameter, distBetweenEggs, numOfEggs));
@@ -52,9 +47,7 @@ public class Nest : MonoBehaviour
         }
     }
 
-    
-
-    void Update()
+    private void Update()
     {
         myEggTimer += Time.deltaTime;
 
@@ -76,20 +69,20 @@ public class Nest : MonoBehaviour
         }
     }
 
-    void SpawnEgg()
+    private void SpawnEgg()
     {
-        if (myEggCount >= myEggPoints.Count) 
+        if (myEggCount >= myEggPoints.Count)
         {
             return;
         }
 
         Vector3 nextEggPos = GetEggPosition(myEggCount);
 
-        GameObject egg = Instantiate(myEggPrefab, myEggHolder.transform);
+        GameObject egg = Instantiate(myEggPrefab, transform);
         egg.transform.position = nextEggPos;
     }
 
-    bool IsObjectOutsideCameraView()
+    private bool IsObjectOutsideCameraView()
     {
         Camera mainCamera = Camera.main;
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
@@ -103,6 +96,16 @@ public class Nest : MonoBehaviour
         return myEggPoints[anEggCount];
     }
 
+
+    public void SetCurrentEggCount(int countToReach)
+    {
+        while (myEggCount < countToReach)
+        {
+            SpawnEgg();
+            myEggCount++;
+            myEggTimer = 0f;
+        }
+    }
     public int GetEggCount()
     {
         return myEggCount;

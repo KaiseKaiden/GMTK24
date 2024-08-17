@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float myForce;
-    [SerializeField] float myGravity;
+    [SerializeField] private float myForce;
+    [SerializeField] private float myGravity;
 
-    [SerializeField] float myMaxFallSpeed;
-    [SerializeField] float myMaxGlideSpeed;
-    [SerializeField] float myRotationSmooting;
+    [SerializeField] private float myMaxFallSpeed;
+    [SerializeField] private float myMaxGlideSpeed;
+    [SerializeField] private float myRotationSmooting;
+    private Vector3 myVelocity;
+    private CharacterController myController;
 
-    Vector3 myVelocity;
-    CharacterController myController;
+    [SerializeField] private TrailRenderer myTrail;
+    private Vector3 myLookDirection;
 
-    [SerializeField] TrailRenderer myTrail;
-
-    Vector3 myLookDirection;
-
-    void Start()
+    private void Start()
     {
         myLookDirection = transform.forward;
 
@@ -30,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         // Flap
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 direction = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position));
+            Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             direction.z = 0.0f;
             direction.Normalize();
 
@@ -52,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
                 myVelocity.y = -myMaxGlideSpeed;
 
                 // Add Glide Speed
-                float directionX = (Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x);
+                float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
                 if (directionX < 0) directionX = -1.0f;
                 if (directionX > 0) directionX = 1.0f;
 
@@ -85,5 +83,19 @@ public class PlayerMovement : MonoBehaviour
 
         myController.Move(myVelocity * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
+        var position = transform.position;
+        position.z = -transform.position.y / 2;
+        transform.position = position;
+
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.localScale *= 1.25f;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            transform.localScale *= .75f;
+        }
+
     }
 }
