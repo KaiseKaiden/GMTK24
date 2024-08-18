@@ -19,16 +19,16 @@ public class Hat : Behaviour
         myRigidbody.velocity = new Vector3(0.0f, -0.25f, 0.0f);
     }
 
-    void Update()
+    public override void Move()
     {
         myRotation += Time.deltaTime * 60.0f;
 
         myNoiseX += Time.deltaTime;
         myNoiseY += Time.deltaTime;
 
-        //Vector3 position = myStartPosition + new Vector3((Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset)) * Mathf.Clamp01(myTime), ((Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime), 0);
-        //position.z = GameManager.Instance.GetZFromY(position.y);
-        //transform.position = position;
+        Vector3 position = transform.position;
+        position.z = GameManager.Instance.GetZFromY(position.y);
+        transform.position = position;
 
         transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset, myRotation, Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset);
     }
