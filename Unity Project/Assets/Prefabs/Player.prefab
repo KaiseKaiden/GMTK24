@@ -200,6 +200,7 @@ MonoBehaviour:
   myRotationSmooting: 5
   myTrail: {fileID: 7234583409284902851}
   myRightLeg: {fileID: 4758587497238194390}
+  myXPositionLimit: 29
 --- !u!114 &7028464140850424250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aad7e7ca62ec2ef469e45e2e7521bc2c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aad7e7ca62ec2ef469e45e2e7521bc2c,
         type: 3}
@@ -976,7 +977,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &883581082374801797 stripped
 GameObject:
