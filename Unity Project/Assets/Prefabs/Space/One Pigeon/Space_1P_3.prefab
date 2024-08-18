@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 531201222943919361}
   - component: {fileID: 5793078494797324239}
   - component: {fileID: 5826835564444905549}
+  - component: {fileID: 2798971809035237169}
   m_Layer: 0
   m_Name: Space_1P_3
   m_TagString: Untagged
@@ -107,3 +108,15 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2798971809035237169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362007242990043039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ead01559c71241a5e21f0b5581637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

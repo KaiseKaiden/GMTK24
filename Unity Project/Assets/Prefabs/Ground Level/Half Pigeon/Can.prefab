@@ -99,7 +99,6 @@ MonoBehaviour:
   myPickupPoint: {fileID: 6693143190244985764}
   myNestCapacity: 1
   myLevelRequred: 1
-  myPickupDistance: 2
 --- !u!1 &8047262121339589577
 GameObject:
   m_ObjectHideFlags: 0
