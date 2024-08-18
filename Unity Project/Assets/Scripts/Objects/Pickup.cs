@@ -87,7 +87,9 @@ public class Pickup : MonoBehaviour
         if (myBehaviour != null)
         {
             myBehaviour.Picked();
+
         }
+        AudioManager.instance.PlayOneshot(FMODEvents.instance.GetNestMaterialEvent, transform.position);
     }
 
     public void Drop()

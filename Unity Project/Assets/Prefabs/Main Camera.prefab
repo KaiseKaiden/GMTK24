@@ -148,7 +148,7 @@ MonoBehaviour:
   myNest: {fileID: 0}
   myCameraSmooting: 5
   myDeciredZDistance: 10
-  myXPositionLimit: 29
+  myXPositionLimit: 26
 --- !u!114 &-8037339880470583848
 MonoBehaviour:
   m_ObjectHideFlags: 0
