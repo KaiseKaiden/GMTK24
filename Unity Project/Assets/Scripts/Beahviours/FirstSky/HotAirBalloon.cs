@@ -44,11 +44,15 @@ public class HotAirBalloon : Behaviour
 
     public override void Picked()
     {
+        myIsBeingPicked = true;
+
         myRigidbody.velocity = Vector3.one;
     }
 
     public override void Dropped()
     {
+        myIsBeingPicked = false;
+
         myTime = 0.0f;
         myPartIsActive = true;
         myStartPosition = transform.position;

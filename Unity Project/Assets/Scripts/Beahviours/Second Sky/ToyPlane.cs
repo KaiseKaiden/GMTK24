@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperPlane : Behaviour
+public class ToyPlane : Behaviour
 {
     float myTime;
     Vector3 myStartPosition;
     Vector3 myLastPosition;
 
-    float myNoiseX;
-    float myNoiseY;
-
-    [SerializeField] float myNoiseOffset;
+    [SerializeField] float myLoopRadius;
     [SerializeField] TrailRenderer[] myTrails;
-
     Rigidbody myRigidbody;
 
     void Start()
@@ -26,15 +22,14 @@ public class PaperPlane : Behaviour
     {
         myTime += Time.deltaTime;
 
-        myNoiseX += Time.deltaTime;
-        myNoiseY += Time.deltaTime;
-
-        Vector3 position = myStartPosition + new Vector3((Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset)) * Mathf.Clamp01(myTime), ((Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime), 0);
+        Vector3 position = myStartPosition + new Vector3(Mathf.Cos(myTime) * Mathf.Clamp01(myTime) * myLoopRadius, Mathf.Sin(myTime) * Mathf.Clamp01(myTime) * myLoopRadius, 0);
         position.z = GameManager.Instance.GetZFromY(position.y);
         transform.position = position;
 
-        Vector3 direction = (position - myLastPosition).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);
+        Vector3 direction = (position - myLastPosition);
+        direction.z = 0.0f;
+        direction.Normalize();
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), 5.0f * Time.deltaTime);
 
         myLastPosition = position;
     }
@@ -46,7 +41,7 @@ public class PaperPlane : Behaviour
         myStartPosition = transform.position;
         myLastPosition = transform.position;
 
-        foreach(TrailRenderer t in myTrails)
+        foreach (TrailRenderer t in myTrails)
         {
             t.emitting = false;
         }
