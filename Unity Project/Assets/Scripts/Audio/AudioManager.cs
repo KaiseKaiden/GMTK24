@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> myEventInstances;
 
     private EventInstance musicEventInstance;
+    private EventInstance ambienceEventInstance;
 
     private void Awake()
     {
@@ -25,9 +26,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicEventInstance = CreateEventInstance(FMODEvents.instance.AmbienceEvent);
+        musicEventInstance = CreateEventInstance(FMODEvents.instance.MusicEvent);
         musicEventInstance.start();
-        musicEventInstance.setVolume(0.5f); //temp
+
+        ambienceEventInstance = CreateEventInstance(FMODEvents.instance.AmbienceEvent);
+        ambienceEventInstance.start();
+
     }
 
     public void PlayOneshot(EventReference aEventref, Vector3 worldPos)

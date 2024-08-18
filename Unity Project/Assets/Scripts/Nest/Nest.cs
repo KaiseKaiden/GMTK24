@@ -47,6 +47,8 @@ public class Nest : MonoBehaviour
             distBetweenEggs -= 0.05f;
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
+
+        Camera.main.GetComponent<CameraMovement>().SetNest(transform);
     }
 
     private void Update()
