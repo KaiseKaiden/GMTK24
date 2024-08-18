@@ -25,5 +25,7 @@ public class Food : MonoBehaviour
         Destroy(gameObject);
 
         Instantiate(myBreadCrumbPart, transform.position, Quaternion.identity);
+        AudioManager.instance.PlayOneshot(FMODEvents.instance.GetFoodEvent, transform.position);
+
     }
 }
