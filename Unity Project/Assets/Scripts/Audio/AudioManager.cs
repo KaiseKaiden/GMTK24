@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> myEventInstances;
 
     private EventInstance musicEventInstance;
+    private EventInstance ambienceEventInstance;
 
     private void Awake()
     {
@@ -25,9 +26,13 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicEventInstance = CreateEventInstance(FMODEvents.instance.AmbienceEvent);
-        musicEventInstance.start();
-        musicEventInstance.setVolume(0.5f); //temp
+        InitLoopAudio();
+    }
+
+    private void Update()
+    {
+        float audioParameterValue = transform.position.y * 0.01f; //TODO change to corrently adjust so the adui is right at the right height
+        SetWorldParameter("air_level", audioParameterValue);
     }
 
     public void PlayOneshot(EventReference aEventref, Vector3 worldPos)
@@ -46,7 +51,21 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    void CleanUp()
+    public void SetWorldParameter(string aParameterName, float aParameterValue)
+    {
+        RuntimeManager.StudioSystem.setParameterByName(aParameterName, aParameterValue);
+    }
+
+    private void InitLoopAudio()
+    {
+        musicEventInstance = CreateEventInstance(FMODEvents.instance.MusicEvent);
+        musicEventInstance.start();
+
+        ambienceEventInstance = CreateEventInstance(FMODEvents.instance.AmbienceEvent);
+        ambienceEventInstance.start();
+    }
+
+    private void CleanUp()
     {
         foreach (EventInstance eventInstance in myEventInstances)
         {

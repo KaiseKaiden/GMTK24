@@ -13,12 +13,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 myVelocity;
     private CharacterController myController;
 
-    [SerializeField] private TrailRenderer myTrail;
+    [SerializeField] private TrailRenderer[] myTrails;
     private Vector3 myLookDirection;
 
     [SerializeField] Transform myRightLeg;
 
     [SerializeField] float myXPositionLimit = 29.0f;
+
+    [SerializeField] ParticleSystem myWingFlapPart;
 
     private void Start()
     {
@@ -38,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
             myVelocity = direction * myForce * transform.localScale.x;
 
-            //AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
+            myWingFlapPart.Play();
+
+            AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
 
         }
 
@@ -64,13 +68,19 @@ public class PlayerMovement : MonoBehaviour
                 myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
                 myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
 
-                myTrail.emitting = true;
+                foreach(TrailRenderer t in myTrails)
+                {
+                    t.emitting = true;
+                }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            myTrail.emitting = false;
+            foreach (TrailRenderer t in myTrails)
+            {
+                t.emitting = false;
+            }
         }
 
         if (myController.isGrounded)
