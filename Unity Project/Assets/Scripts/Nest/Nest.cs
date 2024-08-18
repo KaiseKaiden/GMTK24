@@ -13,6 +13,7 @@ public class Nest : MonoBehaviour
     private float myEggTimer = 0f;
     private Transform myNestCentre;
     private SpiralGenerator mySpiralGenerator = new();
+    public Transform myDoveTransform;
 
     private List<Vector3> myEggPoints = new();
     public GameObject myEggPrefab;
