@@ -26,7 +26,7 @@ public class PaperPlane : Behaviour
         myNoiseX += Time.deltaTime;
         myNoiseY += Time.deltaTime;
 
-        Vector3 position = myStartPosition + new Vector3(Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset * Mathf.Clamp01(myTime)), (Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset * Mathf.Clamp01(myTime), 0);
+        Vector3 position = myStartPosition + new Vector3((Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset)) * Mathf.Clamp01(myTime), ((Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime), 0);
         position.z = GameManager.Instance.GetZFromY(position.y);
         transform.position = position;
 
