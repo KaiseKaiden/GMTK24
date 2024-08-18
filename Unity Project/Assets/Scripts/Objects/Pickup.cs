@@ -48,7 +48,7 @@ public class Pickup : MonoBehaviour
         {
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
-            transform.position = position;
+            transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
         }
     }
 

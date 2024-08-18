@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 myVelocity;
     private CharacterController myController;
 
-    [SerializeField] private TrailRenderer myTrail;
+    [SerializeField] private TrailRenderer[] myTrails;
     private Vector3 myLookDirection;
 
     [SerializeField] Transform myRightLeg;
@@ -64,13 +64,19 @@ public class PlayerMovement : MonoBehaviour
                 myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
                 myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
 
-                myTrail.emitting = true;
+                foreach(TrailRenderer t in myTrails)
+                {
+                    t.emitting = true;
+                }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            myTrail.emitting = false;
+            foreach (TrailRenderer t in myTrails)
+            {
+                t.emitting = false;
+            }
         }
 
         if (myController.isGrounded)
