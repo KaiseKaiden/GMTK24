@@ -117,7 +117,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638595930959727730
+  lastModified: 638595801393558507
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -228,7 +228,7 @@ MonoBehaviour:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638595930959727730
+  cacheTime: 638595801393593565
   cacheVersion: 131619
 --- !u!114 &315901797394802154
 MonoBehaviour:
@@ -250,14 +250,14 @@ MonoBehaviour:
     Data4: 8556085
   Banks:
   - {fileID: -4272793046980997562}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: -7596793295643051874}
   MinDistance: 1
   MaxDistance: 20
-  Length: 78921
+  Length: 0
 --- !u!114 &6572875409597909903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638595404099780740
+  lastModified: 638595801393593565
   FileSizes:
   - Name: 
     Value: 1076
