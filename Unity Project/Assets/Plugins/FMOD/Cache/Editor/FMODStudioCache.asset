@@ -1,5 +1,107 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8769951444657923327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Nest_Grow
+  m_EditorClassIdentifier: 
+  Path: event:/Nest_Grow
+  Guid:
+    Data1: -828164293
+    Data2: 1192127990
+    Data3: -144257396
+    Data4: -1480659338
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7596793295643051874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/air_level
+  m_EditorClassIdentifier: 
+  Name: air_level
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 432791248
+    data2: 3812300817
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-7271644928475487489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Bird_GetNest
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Bird_GetNest
+  Guid:
+    Data1: -618679442
+    Data2: 1284555179
+    Data3: -1025948008
+    Data4: 175540595
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2289
+--- !u!114 &-6566667485185146232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/air_level
+  m_EditorClassIdentifier: 
+  Name: air_level
+  StudioPath: parameter:/air_level
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 432791248
+    data2: 3812300817
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-4272793046980997562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,8 +117,87 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638595203230294897
+  lastModified: 638595801393558507
   FileSizes: []
+  Exists: 1
+--- !u!114 &-3670768681294218461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance
+  Guid:
+    Data1: 1430693420
+    Data2: 1082129882
+    Data3: -1486021964
+    Data4: -1231264262
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -439436418825045079}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 30000
+--- !u!114 &-830009185184637764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Bird_GetFood
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Bird_GetFood
+  Guid:
+    Data1: -720016333
+    Data2: 1079323317
+    Data3: 1588456324
+    Data4: 1037045613
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-439436418825045079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambiance/air_level
+  m_EditorClassIdentifier: 
+  Name: air_level
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 432791248
+    data2: 3812300817
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -33,14 +214,104 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 8754526099722757888}
   - {fileID: -4272793046980997562}
-  EditorEvents: []
-  EditorParameters: []
+  EditorEvents:
+  - {fileID: -3670768681294218461}
+  - {fileID: 8625211199582853454}
+  - {fileID: 315901797394802154}
+  - {fileID: -830009185184637764}
+  - {fileID: -8769951444657923327}
+  - {fileID: -7271644928475487489}
+  - {fileID: 6572875409597909903}
+  EditorParameters:
+  - {fileID: -6566667485185146232}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638595203230354881
+  cacheTime: 638595801393593565
   cacheVersion: 131619
+--- !u!114 &315901797394802154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  Guid:
+    Data1: -1222482744
+    Data2: 1311274553
+    Data3: -57535867
+    Data4: 8556085
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -7596793295643051874}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6572875409597909903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Bird_Rest
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Bird_Rest
+  Guid:
+    Data1: 84478444
+    Data2: 1151625286
+    Data3: 1501113479
+    Data4: -1887947322
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10040
+--- !u!114 &8625211199582853454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Bird_Wings
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Bird_Wings
+  Guid:
+    Data1: -284900924
+    Data2: 1115847478
+    Data3: 2020145839
+    Data4: 744721407
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1744
 --- !u!114 &8754526099722757888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,8 +327,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638595203230354881
+  lastModified: 638595801393593565
   FileSizes:
   - Name: 
-    Value: 712
+    Value: 1076
   Exists: 1

@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
             direction.Normalize();
 
             myVelocity = direction * myForce * transform.localScale.x;
+
+            AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
+
         }
 
         // Gravity
@@ -99,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale *= .75f;
         }
 
+        // Change Skybox Material
+        RenderSettings.skybox.SetFloat("_TestHeight", transform.position.y);
     }
 
     public Transform GetRightLeg()
