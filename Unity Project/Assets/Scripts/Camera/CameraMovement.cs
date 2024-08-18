@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private float myCameraSmooting;
     [SerializeField] private float myDeciredZDistance = 10.0f;
+    [SerializeField] private float myXPositionLimit = 29.0f;
 
     private void Start()
     {
@@ -18,10 +19,11 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        myDeciredZDistance = (transform.position.y / 2) + 10;
         Vector3 myDirection = myPlayer.position - myNest.position;
         Vector3 myDeciredPosition = myNest.position + myDirection;
-        myDeciredPosition.z = -myDeciredZDistance;
+        myDeciredPosition.z = GameManager.Instance.GetZFromY(transform.position.y) - myDeciredZDistance; ;
+
+        myDeciredPosition.x = Mathf.Clamp(myDeciredPosition.x, -myXPositionLimit, myXPositionLimit);
 
         transform.position = Vector3.Lerp(transform.position, myDeciredPosition, myCameraSmooting * Time.deltaTime);
     }
