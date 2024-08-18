@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float myXPositionLimit = 29.0f;
 
+    [SerializeField] ParticleSystem myWingFlapPart;
+
     private void Start()
     {
         myLookDirection = transform.forward;
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
             direction.Normalize();
 
             myVelocity = direction * myForce * transform.localScale.x;
+
+            myWingFlapPart.Play();
 
             AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
 
