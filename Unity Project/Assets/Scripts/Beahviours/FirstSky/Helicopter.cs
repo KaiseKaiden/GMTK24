@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperPlane : Behaviour
+public class Helicopter : Behaviour
 {
     float myTime;
     Vector3 myStartPosition;
     Vector3 myLastPosition;
 
-    float myNoiseX;
-    float myNoiseY;
-
-    [SerializeField] float myNoiseOffset;
+    [SerializeField] float myMapWidth;
+    [SerializeField] float myAngularTilt;
     [SerializeField] TrailRenderer[] myTrails;
-
     Rigidbody myRigidbody;
 
     void Start()
@@ -24,17 +21,19 @@ public class PaperPlane : Behaviour
 
     public override void Move()
     {
-        myTime += Time.deltaTime;
+        myTime += Time.deltaTime * 0.25f;
 
-        myNoiseX += Time.deltaTime;
-        myNoiseY += Time.deltaTime;
+        float dir = Mathf.Sin(myTime);
 
-        Vector3 position = myStartPosition + new Vector3((Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset)) * Mathf.Clamp01(myTime), ((Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime), 0);
+        Vector3 position = new Vector3(dir * Mathf.Clamp01(myTime) * myMapWidth, myStartPosition.y, 0.0f);
         position.z = GameManager.Instance.GetZFromY(position.y);
         transform.position = position;
 
-        Vector3 direction = (position - myLastPosition).normalized;
-        transform.rotation = Quaternion.LookRotation(direction);
+        Vector3 direction = (position - myLastPosition);
+        direction.z = 0.0f;
+        direction.Normalize();
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), 5.0f * Time.deltaTime);
+        transform.eulerAngles = new Vector3(Mathf.Sin(myTime * 10.0f) * -myAngularTilt, transform.eulerAngles.y, transform.eulerAngles.z);
 
         myLastPosition = position;
     }
@@ -46,7 +45,7 @@ public class PaperPlane : Behaviour
         myStartPosition = transform.position;
         myLastPosition = transform.position;
 
-        foreach(TrailRenderer t in myTrails)
+        foreach (TrailRenderer t in myTrails)
         {
             t.emitting = false;
         }

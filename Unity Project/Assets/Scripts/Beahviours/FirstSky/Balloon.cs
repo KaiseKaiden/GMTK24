@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Balloon : Behaviour
 {
+    float mySwayTime;
     float myTime;
     Vector3 myStartPosition;
     [SerializeField] float mySwayLength;
+    [SerializeField] LineRenderer myLineRenderer;
 
     Rigidbody myRigidbody;
 
@@ -20,23 +22,29 @@ public class Balloon : Behaviour
 
     public override void Move()
     {
-        myTime += Time.deltaTime;
+        mySwayTime += Time.deltaTime;
 
         Vector3 position = transform.position;
-        position.x = myStartPosition.x + (Mathf.Sin(myTime) * mySwayLength);
+        position.x = myStartPosition.x + (Mathf.Sin(mySwayTime) * mySwayLength);
         position.z = GameManager.Instance.GetZFromY(position.y);
         transform.position = position;
 
-        transform.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Sin(myTime) * mySwayLength * 10.0f);
+        transform.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Sin(mySwayTime) * mySwayLength * 10.0f);
+
+        myLineRenderer.SetPosition(1, new Vector3(-Mathf.Sin(mySwayTime), -3.0f, 0.0f));
     }
 
     public override void Picked()
     {
+        myIsBeingPicked = true;
+
         myRigidbody.velocity = Vector3.one;
     }
 
     public override void Dropped()
     {
+        myIsBeingPicked = false;
+
         myStartPosition = transform.position;
 
         myRigidbody.velocity = new Vector3(0.0f, 0.25f, 0.0f);
