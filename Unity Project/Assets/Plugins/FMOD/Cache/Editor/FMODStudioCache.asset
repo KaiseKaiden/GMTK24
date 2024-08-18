@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8899759006836784078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Creddits
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Creddits
+  Guid:
+    Data1: 805168088
+    Data2: 1149253434
+    Data3: -314713672
+    Data4: -1092053628
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &-8769951444657923327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,6 +78,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-7466970749174533720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Settings
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Settings
+  Guid:
+    Data1: 1099770899
+    Data2: 1139794019
+    Data3: -571976002
+    Data4: -244823424
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &-7271644928475487489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +156,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-6403691296781681439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Leaderbord
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Leaderbord
+  Guid:
+    Data1: -777939680
+    Data2: 1163138290
+    Data3: 2085563021
+    Data4: 1381490206
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1011
 --- !u!114 &-4272793046980997562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +198,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638595992564624027
+  lastModified: 638596101312145312
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -175,6 +256,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 594
+--- !u!114 &-716987664148965130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Egg_Spawn
+  m_EditorClassIdentifier: 
+  Path: event:/Egg_Spawn
+  Guid:
+    Data1: -334716583
+    Data2: 1174660174
+    Data3: -1203241318
+    Data4: 234111018
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 819
 --- !u!114 &-439436418825045079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,14 +330,47 @@ MonoBehaviour:
   - {fileID: -8769951444657923327}
   - {fileID: -7271644928475487489}
   - {fileID: 6572875409597909903}
+  - {fileID: -7466970749174533720}
+  - {fileID: -6403691296781681439}
+  - {fileID: 1165668572083640186}
+  - {fileID: -716987664148965130}
+  - {fileID: 223333109847498145}
+  - {fileID: -8899759006836784078}
   EditorParameters:
   - {fileID: -6566667485185146232}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638595992564624027
+  cacheTime: 638596101312215283
   cacheVersion: 131619
+--- !u!114 &223333109847498145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Start-Main
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Start-Main
+  Guid:
+    Data1: 686222773
+    Data2: 1313561035
+    Data3: -2104091731
+    Data4: -989875610
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1186
 --- !u!114 &315901797394802154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +399,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 78921
+--- !u!114 &1165668572083640186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Quit
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Quit
+  Guid:
+    Data1: -2107028656
+    Data2: 1311554263
+    Data3: 2066998403
+    Data4: -855234737
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 667
 --- !u!114 &6572875409597909903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,8 +495,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638595404099780740
+  lastModified: 638596101312215283
   FileSizes:
   - Name: 
-    Value: 1076
+    Value: 1338
   Exists: 1
