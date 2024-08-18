@@ -79,14 +79,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Clouds_Drift_Variable: 20
+    - _Clouds_Drift_Variable: 2.1
     - _Clouds_movement: 0.12
-    - _DeepSpacePosition: 60
-    - _HigherupSkyPosition: 20
+    - _DeepSpacePosition: 65
+    - _HigherupSkyPosition: 45
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SpacePosition: 35
-    - _TestHeight: 0.58000004
+    - _SpacePosition: 55
+    - _TestHeight: 50.475777
     m_Colors:
     - _Close_to_ground: {r: 0.38207546, g: 0.43237004, b: 1, a: 0}
     - _Deep_Space: {r: 0, g: 0, b: 0, a: 0}
