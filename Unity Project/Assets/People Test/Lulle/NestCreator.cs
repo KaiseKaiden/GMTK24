@@ -21,6 +21,8 @@ public class NestCreator : MonoBehaviour
     public float objectScale = 1.0f;
     public float woodScale = 1.0f;
 
+    public Transform spawnPosition;
+
     private int previousEggCount = 0;
     private Nest nestBase;
     private GameObject parentController;
@@ -79,8 +81,8 @@ public class NestCreator : MonoBehaviour
             DestroyImmediate(parentController);
         }
 
-        parentController = new GameObject("Empty");
-        ;
+        Vector3 positionOffset = spawnPosition.position;
+        parentController = new GameObject("NestBase");
 
         if (listOfPileAssets.Length > 0)
         {
@@ -88,7 +90,7 @@ public class NestCreator : MonoBehaviour
             {
                 GameObject central = Instantiate(centerMesh, parentController.transform);
                 central.name = "Tier " + tier;
-                central.transform.position = new Vector3(0, tier, 0);
+                central.transform.position = new Vector3(0, tier, 0) + positionOffset;
                 central.transform.localScale *= tier * centerScale * globalScale;
                 central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
@@ -98,7 +100,7 @@ public class NestCreator : MonoBehaviour
                     var v2 = Random.insideUnitCircle * tier * bredthMdf;
                     v2.y *= aspectRatio;
                     var obj = Instantiate(GetRandomAsset(), central.transform);
-                    obj.transform.position = new Vector3(v2.x, tier, v2.y);
+                    obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
                     obj.transform.rotation = Random.rotation;
                     obj.transform.localScale *= objectScale;
                     obCount++;
@@ -113,7 +115,7 @@ public class NestCreator : MonoBehaviour
 
                     var obj = Instantiate(GetRandomStickAsset(), central.transform);
                     obj.transform.SetPositionAndRotation(
-                        new Vector3(x, Random.Range(tier - 1.0f, tier), z),
+                        new Vector3(x, Random.Range(tier - 1.0f, tier), z) + positionOffset,
                         Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
 
                     var scale = obj.transform.localScale;
@@ -125,7 +127,7 @@ public class NestCreator : MonoBehaviour
             }
 
             GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-            nestObj.transform.position = Vector3.up * (maxTier);
+            nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
             nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
             nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
             nestBase = nestObj.GetComponent<Nest>();
