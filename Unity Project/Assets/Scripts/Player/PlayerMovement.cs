@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Change Skybox Material
         RenderSettings.skybox.SetFloat("_TestHeight", transform.position.y);
+        //RenderSettings.fogColor = RenderSettings.skybox.GetColor("_");
     }
 
     public Transform GetRightLeg()
