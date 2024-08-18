@@ -844,6 +844,7 @@ MonoBehaviour:
   - {fileID: 2366282715431698761}
   myRightLeg: {fileID: 1357664126479014630}
   myXPositionLimit: 27
+  myYPositionLimit: 150
   myWingFlapPart: {fileID: 4559962309562297309}
 --- !u!114 &7028464140850424250
 MonoBehaviour:
@@ -859,7 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myXp: 0
   myMaxXp: 10
-  myXpExpo: 1.8
+  myXpExpo: 1.1
   myHungerbarUI: {fileID: 0}
   myHungerbarTransform: {fileID: 0}
 --- !u!143 &4290324040061091801
@@ -902,7 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPickupLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   myPickupRadius: 2
 --- !u!1 &3257953685613783279
 GameObject:

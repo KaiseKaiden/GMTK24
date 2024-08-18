@@ -17,19 +17,24 @@ public class PlayerLevel : MonoBehaviour
     void Update()
     {
         myHungerbarTransform.localScale = Vector3.Lerp(myHungerbarTransform.localScale, Vector3.one, 5.0f * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            AddXp(myMaxXp - myXp);
+        }
     }
 
     public void AddXp(float aXp)
     {
         myXp += aXp;
-        if (myXp > myMaxXp)
+        if (myXp >= myMaxXp)
         {
             myCurrentLevel++;
             myXp -= myMaxXp;
 
             myMaxXp = Mathf.Pow(myMaxXp, myXpExpo);
 
-            transform.localScale += transform.localScale;
+            transform.localScale += Vector3.one;
         }
 
         myHungerbarUI.fillAmount = (myXp / myMaxXp);

@@ -28,7 +28,7 @@ public class PlayerPickup : MonoBehaviour
             bool isFood = false;
             bool foundSomething = false;
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius, myPickupLayer);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius * transform.localScale.x, myPickupLayer);
             foreach (Collider c in colliders)
             {
                 float distance = (c.transform.position - transform.position).magnitude;
@@ -38,6 +38,7 @@ public class PlayerPickup : MonoBehaviour
                 {
                     if (distance < closestDistance)
                     {
+
                         closestDistance = distance;
                         myHeldPickup = pickup;
 
@@ -68,6 +69,13 @@ public class PlayerPickup : MonoBehaviour
                     myHeldPickup.Pick();
 
                     myHeldPickup.transform.SetParent(myPlayerMovement.GetRightLeg());
+
+                    if (myHeldPickup.gameObject.tag == "Moon")
+                    {
+                        myPlayerMovement.enabled = false;
+                        myPlayerLevel.enabled = false;
+                        this.enabled = false;
+                    }
                 }
             }
         }
