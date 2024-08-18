@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Behaviour : MonoBehaviour
 {
     float myTimeAlive = 0f;
-    protected float myKillTime = 15f;
-    protected float myMoveSpeed = 5f;
+    protected float myKillTime = 6f;
+    protected float myMoveSpeed = 0f;
 
     bool myIsBeingPicked = false;
+    bool myUseDeathShader = false;
 
     protected Vector2 myVelocity = Vector2.zero;
 
@@ -59,6 +61,31 @@ public class Behaviour : MonoBehaviour
         if (!myIsBeingPicked)
         {
             myTimeAlive += Time.deltaTime;
+
+
+            if (myKillTime - myTimeAlive < 5f)
+            {
+                if (!myUseDeathShader) 
+                {
+                    if(GetComponent<MeshRenderer>())
+                    {
+                        GetComponent<MeshRenderer>().material = new Material(Resources.Load<Material>("PickUp"));
+                        GetComponent<MeshRenderer>().material.EnableKeyword("_ISABOUTTODIE");
+                    }
+                    else if (GetComponent<SkinnedMeshRenderer>()) 
+                    {
+                        GetComponent<SkinnedMeshRenderer>().material = new Material(Resources.Load<Material>("PickUp"));
+                        GetComponent<SkinnedMeshRenderer>().material.EnableKeyword("_ISABOUTTODIE");
+                    }
+                    myUseDeathShader = true;
+                }
+
+                float range01 = 1 - ((myKillTime - myTimeAlive) / 5);
+
+                Debug.Log(range01);
+
+                GetComponent<MeshRenderer>().material.SetFloat("_TimeUntilDeath", range01);
+            }
 
             if (myTimeAlive >= myKillTime)
             {
