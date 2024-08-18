@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Transform myRightLeg;
 
+    [SerializeField] float myXPositionLimit = 29.0f;
+
     private void Start()
     {
         myLookDirection = transform.forward;
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
             myVelocity = direction * myForce * transform.localScale.x;
 
-            AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
+            //AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
 
         }
 
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         myController.Move(myVelocity * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
         var position = transform.position;
+        position.x = Mathf.Clamp(position.x, -myXPositionLimit, myXPositionLimit);
         position.z = GameManager.Instance.GetZFromY(transform.position.y);
         transform.position = position;
 
