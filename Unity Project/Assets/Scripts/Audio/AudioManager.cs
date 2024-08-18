@@ -32,7 +32,6 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
         float audioParameterValue = transform.position.y * 0.01f; //TODO change to corrently adjust so the adui is right at the right height
-        Debug.Log("Zvalue to paremter :" + audioParameterValue);
         SetWorldParameter("air_level", audioParameterValue);
     }
 
