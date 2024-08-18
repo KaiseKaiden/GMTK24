@@ -19,7 +19,7 @@ public class PaperPlane : Behaviour
         myStartPosition = transform.position;
     }
 
-    void Update()
+    public override void Move()
     {
         myTime += Time.deltaTime;
 
