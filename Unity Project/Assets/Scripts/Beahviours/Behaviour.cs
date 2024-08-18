@@ -8,7 +8,7 @@ public class Behaviour : MonoBehaviour
     protected float myKillTime = 15f;
     protected float myMoveSpeed = 5f;
 
-    bool myIsBeingPicked = false;
+    protected bool myIsBeingPicked = false;
 
     protected Vector2 myVelocity = Vector2.zero;
 
