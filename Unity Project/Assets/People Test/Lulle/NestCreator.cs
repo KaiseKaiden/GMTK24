@@ -4,6 +4,8 @@ using Random = UnityEngine.Random;
 
 public class NestCreator : MonoBehaviour
 {
+    public static NestCreator myNestCreator;
+
     public GameObject nestPrefab;
     public GameObject centerMesh;
     public GameObject[] listOfPileAssets;
@@ -39,30 +41,48 @@ public class NestCreator : MonoBehaviour
         return listOfStickAssets[Random.Range(0, listOfStickAssets.Length)];
     }
 
-    private void OnValidate()
+    public void Awake()
     {
-        EditorApplication.update += DelayedBuildObject;
+        myNestCreator = this;
     }
 
-    private void DelayedBuildObject()
+    private void OnValidate()
     {
-        EditorApplication.update -= DelayedBuildObject;
-        BuildObject();
+        if (Application.isPlaying)
+        {
+            return;
+        }
+        DelayedBuildObject();
+    }
+
+    public void DelayedBuildObject()
+    {
+        EditorApplication.delayCall += BuildObject;
+    }
+
+    public void Decrement()
+    {
+        maxTier--;
+        maxTier = Mathf.Clamp(maxTier, 1, 25);
+        DelayedBuildObject();
+    }
+
+    public void Increment()
+    {
+        maxTier++;
+        maxTier = Mathf.Clamp(maxTier, 1, 25);
+        DelayedBuildObject();
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            maxTier++;
-            maxTier = Mathf.Clamp(maxTier, 1, 25);
-            DelayedBuildObject();
+            Increment();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            maxTier--;
-            maxTier = Mathf.Clamp(maxTier, 1, 25);
-            DelayedBuildObject();
+            Decrement();
         }
     }
 
@@ -76,76 +96,74 @@ public class NestCreator : MonoBehaviour
             eggCount = nest.GetEggCount();
         }
 
-        if (parentController != null)
+        foreach (var item in GameObject.FindGameObjectsWithTag("EditorNestDestructionTag"))
         {
-            DestroyImmediate(parentController);
+            DestroyImmediate(item);
         }
 
         Vector3 positionOffset = spawnPosition.position;
         parentController = new GameObject("NestBase");
-
-        if (listOfPileAssets.Length > 0)
+        parentController.tag = "EditorNestDestructionTag";
+        parentController.transform.position = positionOffset;
+        for (float tier = startTier; tier < maxTier; tier += tierHeight)
         {
-            for (float tier = startTier; tier < maxTier; tier += tierHeight)
+            GameObject central = Instantiate(centerMesh, parentController.transform);
+            central.name = "Tier " + tier;
+            central.transform.position = new Vector3(0, tier, 0) + positionOffset;
+            central.transform.localScale *= tier * centerScale * globalScale;
+            central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+            var bredth = Mathf.Log(tier * obPerTier);
+            for (int i = 0; i < bredth; i++)
             {
-                GameObject central = Instantiate(centerMesh, parentController.transform);
-                central.name = "Tier " + tier;
-                central.transform.position = new Vector3(0, tier, 0) + positionOffset;
-                central.transform.localScale *= tier * centerScale * globalScale;
-                central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-
-                var bredth = Mathf.Log(tier * obPerTier);
-                for (int i = 0; i < bredth; i++)
-                {
-                    var v2 = Random.insideUnitCircle * tier * bredthMdf;
-                    v2.y *= aspectRatio;
-                    var obj = Instantiate(GetRandomAsset(), central.transform);
-                    obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
-                    obj.transform.rotation = Random.rotation;
-                    obj.transform.localScale *= objectScale;
-                    obCount++;
-                }
-
-                for (int i = 0; i < bredth * 5; i++)
-                {
-                    float angle = Random.Range(0, 360);
-                    float x = Mathf.Cos(angle * Mathf.Deg2Rad) * tier * bredthMdf;
-                    float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
-                    z *= aspectRatio;
-
-                    var obj = Instantiate(GetRandomStickAsset(), central.transform);
-                    obj.transform.SetPositionAndRotation(
-                        new Vector3(x, Random.Range(tier - 1.0f, tier), z) + positionOffset,
-                        Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
-
-                    var scale = obj.transform.localScale;
-                    scale.x *= Random.Range(1.0f, 10.0f);
-                    scale.y *= Random.Range(1.0f, 10.0f);
-                    obj.transform.localScale = scale * woodScale;
-                    obCount++;
-                }
+                var v2 = Random.insideUnitCircle * tier * bredthMdf;
+                v2.y *= aspectRatio;
+                var obj = Instantiate(GetRandomAsset(), central.transform);
+                obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
+                obj.transform.rotation = Random.rotation;
+                obj.transform.localScale *= objectScale;
+                obCount++;
             }
 
-            GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-            nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
-            nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
-            nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
-            nestBase = nestObj.GetComponent<Nest>();
+            for (int i = 0; i < bredth * 5; i++)
+            {
+                float angle = Random.Range(0, 360);
+                float x = Mathf.Cos(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                z *= aspectRatio;
+
+                var obj = Instantiate(GetRandomStickAsset(), central.transform);
+                obj.transform.SetPositionAndRotation(
+                    new Vector3(x, Random.Range(tier - 1.0f, tier), z) + positionOffset,
+                    Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
+
+                var scale = obj.transform.localScale;
+                scale.x *= Random.Range(1.0f, 10.0f);
+                scale.y *= Random.Range(1.0f, 10.0f);
+                obj.transform.localScale = scale * woodScale;
+                obCount++;
+            }
         }
+
+        GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
+        nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
+        nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
+        nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
+        nestBase = nestObj.GetComponent<Nest>();
     }
+}
 
-    [CustomEditor(typeof(NestCreator))]
-    public class PileControllerTestEditor : Editor
+[CustomEditor(typeof(NestCreator))]
+public class PileControllerTestEditor : Editor
+{
+    public override void OnInspectorGUI()
     {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
+        DrawDefaultInspector();
 
-            NestCreator myScript = (NestCreator)target;
-            if (GUILayout.Button("Build Object"))
-            {
-                EditorApplication.update += myScript.DelayedBuildObject;
-            }
+        NestCreator myScript = (NestCreator)target;
+        if (GUILayout.Button("Build Object"))
+        {
+            myScript.DelayedBuildObject();
         }
     }
 }

@@ -26,7 +26,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2427
 --- !u!114 &-7596793295643051874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2289
+  Length: 1125
 --- !u!114 &-6566667485185146232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638595945144729898
+  lastModified: 638595992564624027
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -174,7 +174,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 594
 --- !u!114 &-439436418825045079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638595945144729898
+  cacheTime: 638595992564624027
   cacheVersion: 131619
 --- !u!114 &315901797394802154
 MonoBehaviour:
@@ -327,7 +327,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638595801393593565
+  lastModified: 638595404099780740
   FileSizes:
   - Name: 
     Value: 1076
