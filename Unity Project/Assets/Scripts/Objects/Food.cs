@@ -3,6 +3,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField] float myFillAmount = 1.0f;
+    [SerializeField] GameObject myBreadCrumbPart;
 
     PlayerLevel myPlayerLevel;
 
@@ -22,5 +23,7 @@ public class Food : MonoBehaviour
     {
         myPlayerLevel.AddXp(myFillAmount);
         Destroy(gameObject);
+
+        Instantiate(myBreadCrumbPart, transform.position, Quaternion.identity);
     }
 }
