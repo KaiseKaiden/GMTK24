@@ -5,12 +5,12 @@ using UnityEngine;
 public class Behaviour : MonoBehaviour
 {
     float myTimeAlive = 0f;
-    float myKillTime = 15f;
-    float myMoveSpeed = 5f;
+    protected float myKillTime = 15f;
+    protected float myMoveSpeed = 5f;
 
     bool myIsBeingPicked = false;
 
-    Vector2 myVelocity = Vector2.zero;
+    protected Vector2 myVelocity = Vector2.zero;
 
     Rigidbody myRigidBody;
 
