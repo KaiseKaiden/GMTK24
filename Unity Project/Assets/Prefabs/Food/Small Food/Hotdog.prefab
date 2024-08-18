@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFillAmount: 3
+  myBreadCrumbPart: {fileID: 7030234758272527360, guid: d6db9aef95a07eb4f9aaef2139bae048,
+    type: 3}
 --- !u!65 &7213250607750071348
 BoxCollider:
   m_ObjectHideFlags: 0

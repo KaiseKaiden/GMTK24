@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFillAmount: 1
-  myPickupDistance: 2
+  myBreadCrumbPart: {fileID: 7030234758272527360, guid: d6db9aef95a07eb4f9aaef2139bae048,
+    type: 3}
 --- !u!1001 &4578430194071670520
 PrefabInstance:
   m_ObjectHideFlags: 0
