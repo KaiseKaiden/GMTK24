@@ -819,6 +819,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbodyHead: {fileID: 6523364479363043680}
+  myRigidbodyWindL: {fileID: 7909361501343136676}
+  myRigidbodyWindR: {fileID: 1287242845859445968}
+  myFlapForce: 100
 --- !u!114 &2185482414961363740
 MonoBehaviour:
   m_ObjectHideFlags: 0
