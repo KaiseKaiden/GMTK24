@@ -24,9 +24,15 @@ public class Nest : MonoBehaviour
                                     new(1.5f, 1, 0),  new(0, 2, 0),     new(-1, 2, 0),   new(1, 2, 0),
                                     new(-0.5f, 3, 0), new(0.5f, 3, 0),  new(0, 4, 0) };
 
+    private void ChangeText(string text)
+    {
+        if (myEggCountText != null)
+            myEggCountText.text = text;
+    }
+
     private void Start()
     {
-        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
+        ChangeText(myEggCount.ToString() + "/" + myEggCapacity.ToString());
         int numOfEggs = 50;
         float spiralParameter = 0.1f;
         float distBetweenEggs = 0.65f;
@@ -41,6 +47,8 @@ public class Nest : MonoBehaviour
             distBetweenEggs -= 0.05f;
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
+
+        Camera.main.GetComponent<CameraMovement>().SetNest(transform);
     }
 
     private void Update()
@@ -65,7 +73,7 @@ public class Nest : MonoBehaviour
             Debug.Log("GAME OVER");
         }
 
-        myEggCountText.text = myEggCount.ToString() + "/" + myEggCapacity.ToString();
+        ChangeText(myEggCount.ToString() + "/" + myEggCapacity.ToString());
     }
 
     private void SpawnEgg()

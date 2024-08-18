@@ -1,18 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
 
-public class PileControllerTest : MonoBehaviour
+public class NestCreator : MonoBehaviour
 {
-    private GameObject parentController;
     public GameObject nestPrefab;
+    public GameObject centerMesh;
     public GameObject[] listOfPileAssets;
     public GameObject[] listOfStickAssets;
 
@@ -21,11 +14,18 @@ public class PileControllerTest : MonoBehaviour
     public float obPerTier = 10;
     public float aspectRatio = 1 / 10;
     public int startTier = 0;
+    public float tierHeight = .5f;
+
     public float globalScale = 1.0f;
+    public float centerScale = 1.0f;
+    public float objectScale = 1.0f;
+    public float woodScale = 1.0f;
+
+    public Transform spawnPosition;
 
     private int previousEggCount = 0;
     private Nest nestBase;
-
+    private GameObject parentController;
 
     [SerializeField]
     private int obCount = 0;
@@ -50,7 +50,6 @@ public class PileControllerTest : MonoBehaviour
         BuildObject();
     }
 
-
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -70,30 +69,42 @@ public class PileControllerTest : MonoBehaviour
     public void BuildObject()
     {
         obCount = 0;
+        var eggCount = 0;
+        Nest nest = null;
+        if (nestBase != null && nestBase.TryGetComponent(out nest))
+        {
+            eggCount = nest.GetEggCount();
+        }
 
         if (parentController != null)
         {
             DestroyImmediate(parentController);
         }
 
-        parentController = new GameObject("Empty"); ;
+        Vector3 positionOffset = spawnPosition.position;
+        parentController = new GameObject("NestBase");
 
         if (listOfPileAssets.Length > 0)
         {
-            for (int tier = startTier; tier < maxTier; tier++)
+            for (float tier = startTier; tier < maxTier; tier += tierHeight)
             {
-                var bredth = tier * obPerTier;
+                GameObject central = Instantiate(centerMesh, parentController.transform);
+                central.name = "Tier " + tier;
+                central.transform.position = new Vector3(0, tier, 0) + positionOffset;
+                central.transform.localScale *= tier * centerScale * globalScale;
+                central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+                var bredth = Mathf.Log(tier * obPerTier);
                 for (int i = 0; i < bredth; i++)
                 {
                     var v2 = Random.insideUnitCircle * tier * bredthMdf;
                     v2.y *= aspectRatio;
-                    var obj = Instantiate(GetRandomAsset(), parentController.transform) as GameObject;
-                    obj.transform.position = new Vector3(v2.x, tier, v2.y);
+                    var obj = Instantiate(GetRandomAsset(), central.transform);
+                    obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
                     obj.transform.rotation = Random.rotation;
-                    obj.transform.localScale *= 0.1f * tier * globalScale;
+                    obj.transform.localScale *= objectScale;
                     obCount++;
                 }
-
 
                 for (int i = 0; i < bredth * 5; i++)
                 {
@@ -102,47 +113,35 @@ public class PileControllerTest : MonoBehaviour
                     float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
                     z *= aspectRatio;
 
-
-
-
-                    var obj = Instantiate(GetRandomStickAsset(), parentController.transform) as GameObject;
-                    //obj.transform.position = new Vector3(x, tier, z);
-                    obj.transform.SetPositionAndRotation(new Vector3(x, Random.Range(tier - 1.0f, tier), z), Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
+                    var obj = Instantiate(GetRandomStickAsset(), central.transform);
+                    obj.transform.SetPositionAndRotation(
+                        new Vector3(x, Random.Range(tier - 1.0f, tier), z) + positionOffset,
+                        Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
 
                     var scale = obj.transform.localScale;
-                    scale.x *= Random.Range(0.5f, 7.0f);
-                    scale.y *= Random.Range(0.5f, 7.0f);
-                    obj.transform.localScale = scale * globalScale;
-                    //obj.transform.rotation = Random.rotation;
+                    scale.x *= Random.Range(1.0f, 10.0f);
+                    scale.y *= Random.Range(1.0f, 10.0f);
+                    obj.transform.localScale = scale * woodScale;
                     obCount++;
                 }
-
             }
 
             GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-
-            if (nestBase != null)
-            {
-                nestObj.transform.position = Vector3.up * (maxTier - 1);
-                nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
-                nestObj.GetComponent<Nest>().SetCurrentEggCount(nestBase.GetEggCount());
-                nestBase = nestObj.GetComponent<Nest>();
-            }
+            nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
+            nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
+            nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
+            nestBase = nestObj.GetComponent<Nest>();
         }
-
-
-
     }
 
-
-    [CustomEditor(typeof(PileControllerTest))]
+    [CustomEditor(typeof(NestCreator))]
     public class PileControllerTestEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            PileControllerTest myScript = (PileControllerTest)target;
+            NestCreator myScript = (NestCreator)target;
             if (GUILayout.Button("Build Object"))
             {
                 EditorApplication.update += myScript.DelayedBuildObject;

@@ -5,15 +5,11 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] Transform myPickupPoint;
-    Transform myPlayer;
-    PlayerLevel myPlayerLevel;
     PlayerMovement myPlayerMovement;
     Rigidbody myRigidbody;
-    Collider myCollider;
 
     [SerializeField] int myNestCapacity;
     [SerializeField] int myLevelRequred;
-    [SerializeField] float myPickupDistance = 2.0f;
 
     bool myIsDragging;
     float myDraggingLerpTime;
@@ -26,42 +22,13 @@ public class Pickup : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        myPlayer = player.transform;
-        myPlayerLevel = player.GetComponent<PlayerLevel>();
-        myPlayerMovement = player.GetComponent<PlayerMovement>();
+        myPlayerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         myRigidbody = GetComponent<Rigidbody>();
-        myCollider = GetComponent<Collider>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && Vector3.Distance(transform.position, myPlayer.position) < myPickupDistance && myPlayerLevel.GetCurrentLevel() >= myLevelRequred)
-        {
-            myIsDragging = true;
-            myRigidbody.isKinematic = true;
-            myRigidbody.useGravity = false;
-            //myCollider.enabled = false;
-
-            myStartPosition = transform.position;
-            myStartRotation = transform.rotation;
-
-            transform.SetParent(myPlayerMovement.GetRightLeg());
-
-            myDraggingLerpTime = 0.0f;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            myIsDragging = false;
-            myRigidbody.isKinematic = false;
-            myRigidbody.useGravity = true;
-            //myCollider.enabled = true;
-
-            transform.SetParent(null);
-        }
-
         if (myIsDragging)
         {
             myPerlinX += Time.deltaTime;
@@ -73,20 +40,49 @@ public class Pickup : MonoBehaviour
             Vector3 diffrence = (myPlayerMovement.GetRightLeg().position - myPickupPoint.position);
 
 
-            myDraggingLerpTime += Time.deltaTime * 0.5f;
-            transform.position = Vector3.Lerp(myStartPosition, transform.position + diffrence, Mathf.Clamp01(myDraggingLerpTime));
-            transform.rotation = Quaternion.Lerp(myStartRotation, transform.rotation, Mathf.Clamp01(myDraggingLerpTime));
+            myDraggingLerpTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(myStartPosition, transform.position + diffrence, EaseOutCirc(Mathf.Clamp01(myDraggingLerpTime)));
+            transform.rotation = Quaternion.Lerp(myStartRotation, transform.rotation, EaseOutCirc(Mathf.Clamp01(myDraggingLerpTime)));
         }
         else
         {
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
-            transform.position = position;
+            transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
         }
+    }
+
+    public void Pick()
+    {
+        myIsDragging = true;
+        myRigidbody.isKinematic = true;
+        myRigidbody.useGravity = false;
+
+        myStartPosition = transform.position;
+        myStartRotation = transform.rotation;
+
+        myDraggingLerpTime = 0.0f;
+    }
+
+    public void Drop()
+    {
+        myIsDragging = false;
+        myRigidbody.isKinematic = false;
+        myRigidbody.useGravity = true;
     }
 
     public int GetCapacity()
     {
         return myNestCapacity;
+    }
+
+    public int GetLevelRequired()
+    {
+        return myLevelRequred;
+    }
+
+    float EaseOutCirc(float aValue)
+    {
+        return Mathf.Sqrt(1.0f - Mathf.Pow(aValue - 1.0f, 2.0f));
     }
 }
