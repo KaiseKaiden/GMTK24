@@ -74,7 +74,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SpacePosition: 35
-    - _TestHeight: 0.58000505
+    - _TestHeight: 3.1090865
     m_Colors:
     - _Close_to_ground: {r: 0.38207546, g: 0.43237004, b: 1, a: 0}
     - _Deep_Space: {r: 0, g: 0, b: 0, a: 0}

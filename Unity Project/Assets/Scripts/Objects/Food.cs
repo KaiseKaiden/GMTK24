@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] float myFillAmount = 1.0f;
+    [SerializeField]
+    float myFillAmount = 1.0f;
 
     Transform myPlayer;
     PlayerLevel myPlayerLevel;
 
-    [SerializeField] float myPickupDistance = 2.0f;
+    [SerializeField]
+    float myPickupDistance = 2.0f;
 
     private void Start()
     {
