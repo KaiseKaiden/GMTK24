@@ -34,24 +34,46 @@ public class PlayerPickup : MonoBehaviour
                 float distance = (c.transform.position - transform.position).magnitude;
                 Pickup pickup = c.GetComponent<Pickup>();
 
-                if (distance < closestDistance)
+                if (pickup != null && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
                 {
-                    if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                    if (distance < closestDistance)
                     {
                         closestDistance = distance;
                         myHeldPickup = pickup;
 
                         isFood = false;
+                        foundSomething = true;
                     }
-                    else
+                }
+                else
+                {
+                    if (distance < closestDistance && c.tag == "Food")
                     {
                         food = c.GetComponent<Food>();
 
                         isFood = true;
+                        foundSomething = true;
                     }
-
-                    foundSomething = true;
                 }
+
+                //if (distance < closestDistance)
+                //{
+                //    if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                //    {
+                //        closestDistance = distance;
+                //        myHeldPickup = pickup;
+
+                //        isFood = false;
+                //    }
+                //    else
+                //    {
+                //        food = c.GetComponent<Food>();
+
+                //        isFood = true;
+                //    }
+
+                //    foundSomething = true;
+                //}
             }
 
             if (foundSomething)

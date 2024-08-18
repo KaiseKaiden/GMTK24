@@ -14,7 +14,11 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
-        //myNest = GameObject.FindGameObjectWithTag("Nest").transform;
+    }
+
+    public void SetNest(Transform aNestTransform)
+    {
+        myNest = aNestTransform;
     }
 
     private void Update()

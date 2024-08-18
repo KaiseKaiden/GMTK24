@@ -22,11 +22,14 @@ public class Pickup : MonoBehaviour
     Vector3 myStartPosition;
     Quaternion myStartRotation;
 
+    Behaviour myBehaviour;
+
     private void Start()
     {
         myPlayerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         myRigidbody = GetComponent<Rigidbody>();
+        myBehaviour = GetComponent<Behaviour>();
     }
     public IEnumerator MoveTowardPoint(Vector3 point)
     {
@@ -66,7 +69,7 @@ public class Pickup : MonoBehaviour
         {
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
-            transform.position = position;
+            transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
         }
     }
 
@@ -80,6 +83,11 @@ public class Pickup : MonoBehaviour
         myStartRotation = transform.rotation;
 
         myDraggingLerpTime = 0.0f;
+
+        if (myBehaviour != null)
+        {
+            myBehaviour.Picked();
+        }
     }
 
     public void Drop()
@@ -87,6 +95,11 @@ public class Pickup : MonoBehaviour
         myIsDragging = false;
         myRigidbody.isKinematic = false;
         myRigidbody.useGravity = true;
+
+        if (myBehaviour != null)
+        {
+            myBehaviour.Dropped();
+        }
     }
 
     public int GetCapacity()

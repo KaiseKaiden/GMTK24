@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4498349742550751686}
   - component: {fileID: -8037339880470583848}
   - component: {fileID: 7380510676311881208}
+  - component: {fileID: 3690240872233573602}
+  - component: {fileID: 7019638275957098192}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -146,6 +148,7 @@ MonoBehaviour:
   myNest: {fileID: 0}
   myCameraSmooting: 5
   myDeciredZDistance: 10
+  myXPositionLimit: 29
 --- !u!114 &-8037339880470583848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,5 +172,71 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1384a3d138e230468a96319103e8d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3690240872233573602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729254310680110855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87211d7cb2772174fbd5492eff98e2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BirdWingFlapEvent>k__BackingField:
+    Guid:
+      Data1: -284900924
+      Data2: 1115847478
+      Data3: 2020145839
+      Data4: 744721407
+    Path: event:/Player/Bird_Wings
+  <MusicEvent>k__BackingField:
+    Guid:
+      Data1: -1222482744
+      Data2: 1311274553
+      Data3: -57535867
+      Data4: 8556085
+    Path: event:/Music
+  <AmbienceEvent>k__BackingField:
+    Guid:
+      Data1: 1430693420
+      Data2: 1082129882
+      Data3: -1486021964
+      Data4: -1231264262
+    Path: event:/Ambiance
+  <NestGrowEvent>k__BackingField:
+    Guid:
+      Data1: -828164293
+      Data2: 1192127990
+      Data3: -144257396
+      Data4: -1480659338
+    Path: event:/Nest_Grow
+  <GetNestMaterialEvent>k__BackingField:
+    Guid:
+      Data1: -618679442
+      Data2: 1284555179
+      Data3: -1025948008
+      Data4: 175540595
+    Path: event:/Player/Bird_GetNest
+  <GetFoodEvent>k__BackingField:
+    Guid:
+      Data1: -720016333
+      Data2: 1079323317
+      Data3: 1588456324
+      Data4: 1037045613
+    Path: event:/Player/Bird_GetFood
+--- !u!114 &7019638275957098192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729254310680110855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf15a2f7dcef7499639161b24da2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
