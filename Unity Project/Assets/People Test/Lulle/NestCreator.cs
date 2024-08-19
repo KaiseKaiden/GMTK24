@@ -116,6 +116,8 @@ public class NestCreator : MonoBehaviour
 
     public void IncrementObject(GameObject NestNodeParent)
     {
+        AudioManager.instance.PlayOneshot(FMODEvents.instance.NestGrowEvent, transform.position);
+
         Vector3 positionOffset = spawnPosition.position;
         var currentNodeCount = NestNodeParent.transform.childCount;
         Transform nestObj = NestNodeParent.transform.GetChild(currentNodeCount - 1);

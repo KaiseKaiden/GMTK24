@@ -90,6 +90,16 @@ public class Pickup : MonoBehaviour
     public void Pick()
     {
         myIsDragging = true;
+
+        if (myRigidbody.isKinematic == true)
+        {
+            Lamppost lamppost = GetComponent<Lamppost>();
+            if (lamppost != null)
+            {
+                lamppost.Break();
+            }
+        }
+
         myRigidbody.isKinematic = true;
         myRigidbody.useGravity = false;
 

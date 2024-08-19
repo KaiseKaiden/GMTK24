@@ -4921,6 +4921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481701093158651797}
+  - component: {fileID: 2449367373563450623}
   m_Layer: 0
   m_Name: WindTrailSwirl
   m_TagString: Untagged
@@ -4944,3 +4945,15 @@ Transform:
   - {fileID: 8202306889009995428}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2449367373563450623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599558239442800069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2057dae2082ab2c45acfa8cfba6755eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
