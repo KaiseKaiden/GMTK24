@@ -38,7 +38,8 @@ public class CameraMovement : MonoBehaviour
         //myDeciredPosition.z = GameManager.Instance.GetZFromY(myPosition.y) - (myDeciredZDistance + myPlayerLevel.GetCurrentLevel());
         myDeciredPosition.z = GameManager.Instance.GetZFromY(myPosition.y) - (GameManager.Instance.GetCamDistanceFromY(myDeciredPosition.y) + myDeciredZDistance + myPlayerLevel.GetCurrentLevel());
 
-        myDeciredPosition.x = Mathf.Clamp(myDeciredPosition.x, -myXPositionLimit, myXPositionLimit);
+        float widthLimit = GameManager.Instance.GetXLimitFromY(myDeciredPosition.y);
+        myDeciredPosition.x = Mathf.Clamp(myDeciredPosition.x, -widthLimit, widthLimit);
         myDeciredPosition.y = Mathf.Clamp(myDeciredPosition.y, 0.0f, myYPositionLimit);
 
         myPosition = Vector3.Lerp(myPosition, myDeciredPosition, myCameraSmooting * Time.deltaTime);
