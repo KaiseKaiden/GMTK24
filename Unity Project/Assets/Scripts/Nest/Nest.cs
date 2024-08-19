@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Nest : MonoBehaviour
 {
+
+    public ParticleSystem UpgradeEffect;
     [SerializeField]
     public int myEggCapacity = 2;
     private int myEggCount = 0;
@@ -51,7 +52,10 @@ public class Nest : MonoBehaviour
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
 
-        myEggCountText = GameObject.Find("Canvas").transform.Find("EggTracker").transform.Find("EggCountText").GetComponent<TextMeshProUGUI>();
+        myEggCountText = GameObject.Find("Canvas")
+                             .transform.Find("EggTracker")
+                             .transform.Find("EggCountText")
+                             .GetComponent<TextMeshProUGUI>();
 
         // if (Camera.main.GetComponent<CameraMovement>())
         //{
@@ -114,6 +118,10 @@ public class Nest : MonoBehaviour
     public Vector3 GetEggPosition(int anEggCount)
     {
         return myEggPoints[anEggCount];
+    }
+    public void PlayParticleEffect()
+    {
+        UpgradeEffect.Play();
     }
 
     public void SetCurrentEggCount(int countToReach)

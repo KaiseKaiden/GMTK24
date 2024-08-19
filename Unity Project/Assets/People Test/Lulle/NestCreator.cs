@@ -78,7 +78,7 @@ public class NestCreator : MonoBehaviour
     public void Decrement()
     {
         maxTier--;
-        maxTier = Mathf.Clamp(maxTier, 1, 25);
+        maxTier = Mathf.Clamp(maxTier, 1, 100);
         DelayedBuildObject();
     }
 
@@ -89,7 +89,7 @@ public class NestCreator : MonoBehaviour
             listOfPileAssets.Add(mesh);
         }
         maxTier++;
-        maxTier = Mathf.Clamp(maxTier, 1, 25);
+        maxTier = Mathf.Clamp(maxTier, 1, 100);
 
         var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
         if (obj != null)
@@ -175,6 +175,7 @@ public class NestCreator : MonoBehaviour
         if (nestObj.TryGetComponent(out Nest nest))
         {
             nest.myEggCapacity = maxTier * 2;
+            nest.PlayParticleEffect();
         }
         nestObj.SetSiblingIndex(NestNodeParent.transform.childCount - 1);
     }
@@ -258,7 +259,7 @@ public class NestCreator : MonoBehaviour
 }
 
 //[CustomEditor(typeof(NestCreator))]
-//public class PileControllerTestEditor : Editor
+// public class PileControllerTestEditor : Editor
 //{
 //    public override void OnInspectorGUI()
 //    {
