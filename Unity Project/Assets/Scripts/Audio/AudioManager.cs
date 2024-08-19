@@ -43,6 +43,15 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(aEventref,worldPos);
     }
 
+    public void PlayOneshotNoLocation(EventReference aEventref)
+    {
+        if (aEventref.IsNull)
+            return;
+
+        RuntimeManager.PlayOneShot(aEventref, transform.position);
+    }
+
+
     public EventInstance CreateEventInstance(EventReference aEventref)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(aEventref);

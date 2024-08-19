@@ -23,7 +23,7 @@ public class UIHandler : MonoBehaviour
         {
 
         }
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.MusicEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.MusicEvent);
     }
 
     private void Update()
@@ -56,49 +56,49 @@ public class UIHandler : MonoBehaviour
 
     public void StartGame()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.StartMainButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
         SceneManager.LoadScene("MainLevel");
     }
 
     public void Settings()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.SettingsButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.SettingsButtonEvent);
         SceneManager.LoadScene("Settings");
     }
 
     public void SettingsPauseMenuToggle()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.SettingsButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.SettingsButtonEvent);
         mySettingsMenu.SetActive(!mySettingsMenu.activeSelf);
     }
 
     public void Leaderboard()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.LeaderBoardButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.LeaderBoardButtonEvent);
         SceneManager.LoadScene("Leaderboard");
     }
 
     public void QuitGame()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.QuitButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.QuitButtonEvent);
         Application.Quit();
     }
 
     public void MainMenu()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.StartMainButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Credits()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.CreditButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.CreditButtonEvent);
         SceneManager.LoadScene("Credits");
     }
 
     public void Continue()
     {
-        AudioManager.instance.PlayOneshot(FMODEvents.instance.StartMainButtonEvent, transform.position);
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
         myPauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
