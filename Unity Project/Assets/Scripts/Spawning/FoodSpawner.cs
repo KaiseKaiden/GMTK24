@@ -4,39 +4,23 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-    float mySky1Level = 0f;
-    float mySky2Level = 0f;
-    float mySpaceLevel = 0f;
+    private float mySky1Level = 0f;
+    private float mySky2Level = 0f;
+    private float mySpaceLevel = 0f;
+    private Transform myPlayerTransform;
 
-    [SerializeField] float mySpawningInterval = 3f;
+    private float mySpawningTimer = 0f;
+
+
+    [SerializeField, Range(0.01f, 10.0f)] float mySpawningInterval = 3f;
     [SerializeField] float myMinSpawningDistance = 10f;
     [SerializeField] float myMaxSpawningDistance = 30f;
 
     public Material mySkyBoxMaterial;
-    private Transform myPlayerTransform;
-
-    float mySpawningTimer = 0f;
-
-
-    [Header("Ground Objects")]
-    public List<GameObject> mySmallGroundLevelPrefabs;
-    public List<GameObject> myMediumGroundLevelPrefabs;
-    public List<GameObject> myLargeGroundLevelPrefabs;
-
-    [Header("Sky1 Objects")]
-    public List<GameObject> mySmallSky1LevelPrefabs;
-    public List<GameObject> myMediumSky1LevelPrefabs;
-    public List<GameObject> myLargeSky1LevelPrefabs;
-
-    [Header("Sky2 Objects")]
-    public List<GameObject> mySmallSky2LevelPrefabs;
-    public List<GameObject> myMediumSky2LevelPrefabs;
-    public List<GameObject> myLargeSky2LevelPrefabs;
-
-    [Header("Space Objects")]
-    public List<GameObject> mySmallSpaceLevelPrefabs;
-    public List<GameObject> myMediumSpaceLevelPrefabs;
-    public List<GameObject> myLargeSpaceLevelPrefabs;
+    [Header("Food")]
+    public List<GameObject> mySmallPrefabs;
+    public List<GameObject> myMediumPrefabs;
+    public List<GameObject> myLargePrefabs;
 
 
     private void Awake()
@@ -59,120 +43,47 @@ public class FoodSpawner : MonoBehaviour
         {
             if (myPlayerTransform.position.y <= mySky1Level)
             {
-                SpawnGroundLevelMaterials();
-                Debug.Log("Ground Level");
-
+                SpawnFood(1);
             }
             else if (myPlayerTransform.position.y <= mySky2Level)
             {
-                SpawnSkyLevel1Materials();
-                Debug.Log("Sky1 Level");
+                SpawnFood(2);
             }
             else if (myPlayerTransform.position.y <= mySpaceLevel)
             {
-                SpawnSkyLevel2Materials();
-                Debug.Log("Sky2 Level");
+                SpawnFood(3);
+
             }
             else if (myPlayerTransform.position.y > mySpaceLevel)
             {
-                SpawnSpaceLevelMaterials();
-                Debug.Log("Space Level");
+                SpawnFood(4);
             }
-
             mySpawningTimer = 0;
         }
     }
 
-    void SpawnGroundLevelMaterials()
-    {
-        //Vector3 worldRndPos = GetRndPosOutsideCamera();
-
-        //int random = Random.Range(0, 3);
-        //int randomObj = Random.Range(0, 5);
-
-        //if (random == 0) //Smol
-        //{
-        //    Instantiate(mySmallGroundLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-        //}
-        //else if (random == 1) //Normal
-        //{
-        //    Instantiate(myMediumGroundLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-        //}
-        //else if (random == 2) //Big
-        //{
-        //    Instantiate(myLargeGroundLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-        //}
-    }
-
-    void SpawnSkyLevel1Materials()
+    void SpawnFood(float someNewScale)
     {
         Vector3 worldRndPos = GetRndPosOutsideCamera();
-
         int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
 
         if (random == 0) //Smol
         {
-            Instantiate(mySmallSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Small Sky1 Level");
+            int randomObj = Random.Range(0, mySmallPrefabs.Count);
+            GameObject newObject = Instantiate(mySmallPrefabs[randomObj], worldRndPos, Quaternion.identity);
+            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
         }
         else if (random == 1) //Normal
         {
-            Instantiate(myMediumSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Medium Sky1 Level");
+            int randomObj = Random.Range(0, myMediumPrefabs.Count);
+            GameObject newObject = Instantiate(myMediumPrefabs[randomObj], worldRndPos, Quaternion.identity);
+            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
         }
         else if (random == 2) //Big
         {
-            Instantiate(myLargeSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Large Sky1 Level");
-        }
-    }
-
-    void SpawnSkyLevel2Materials()
-    {
-        Vector3 worldRndPos = GetRndPosOutsideCamera();
-
-        int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
-
-        if (random == 0) //Smol
-        {
-            Instantiate(mySmallSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Small Sky2 Level");
-        }
-        else if (random == 1) //Normal
-        {
-            Instantiate(myMediumSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Medium Sky2 Level");
-        }
-        else if (random == 2) //Big
-        {
-            Instantiate(myLargeSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Large Sky2 Level");
-        }
-    }
-
-    void SpawnSpaceLevelMaterials()
-    {
-        Vector3 worldRndPos = GetRndPosOutsideCamera();
-
-        int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
-
-        if (random == 0) //Smol
-        {
-            Instantiate(mySmallSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Small Space Level");
-        }
-        else if (random == 1) //Normal
-        {
-            Instantiate(myMediumSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Medium Space Level");
-        }
-        else if (random == 2) //Big
-        {
-            Instantiate(myLargeSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            Debug.Log("Large Space Level");
+            int randomObj = Random.Range(0, myLargePrefabs.Count);
+            GameObject newObject = Instantiate(myLargePrefabs[randomObj], worldRndPos, Quaternion.identity);
+            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
         }
     }
 

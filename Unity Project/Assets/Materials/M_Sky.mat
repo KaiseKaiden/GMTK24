@@ -86,10 +86,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SpacePosition: 55
-    - _TestHeight: 0.58
+    - _TestHeight: 8.91877
     m_Colors:
-    - _Close_to_ground: {r: 0.38207546, g: 0.43237004, b: 1, a: 0}
-    - _Deep_Space: {r: 0, g: 0, b: 0, a: 0}
-    - _Higher_up_sky: {r: 0.031839263, g: 0.012771457, b: 0.38679248, a: 0}
-    - _Space: {r: 0.24504936, g: 0.045656823, b: 0.3584906, a: 0}
+    - _Close_to_ground: {r: 0.3137255, g: 0.6901961, b: 0.882353, a: 0}
+    - _Deep_Space: {r: 0.14465404, g: 0.07050746, b: 0.13566658, a: 1}
+    - _Higher_up_sky: {r: 0.19757913, g: 0.25243577, b: 0.46540874, a: 0}
+    - _Space: {r: 0.49056602, g: 0.2946481, b: 0.44026276, a: 1}
   m_BuildTextureStacks: []

@@ -120,6 +120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEggCapacity: 2
   myEggInterval: 2
+  myDoveTransform: {fileID: 0}
   myEggPrefab: {fileID: 919132149155446097, guid: 8ff62905c60650542b97a11545e594ec,
+    type: 3}
+  myDovePrefab: {fileID: 7728625529966441295, guid: 64764a3f0a9c89f44a2377e1e8727981,
     type: 3}
   myEggCountText: {fileID: 0}
