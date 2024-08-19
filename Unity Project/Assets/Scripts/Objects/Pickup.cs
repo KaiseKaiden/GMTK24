@@ -38,8 +38,8 @@ public class Pickup : MonoBehaviour
         myRigidbody.isKinematic = true;
         GetComponent<Pickup>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
-
-        while ((point - transform.position).magnitude > .5f)
+        float maxTime = Time.time + 10;
+        while ((point - transform.position).magnitude > .5f && maxTime > Time.time)
         {
             transform.Translate(Time.deltaTime * (point - transform.position));
             yield return null;
