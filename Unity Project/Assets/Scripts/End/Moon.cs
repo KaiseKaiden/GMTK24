@@ -7,12 +7,13 @@ public class Moon : MonoBehaviour
     [SerializeField] float mySpinnSpeed;
     bool myHasDestroyedEarth = false;
 
-    [SerializeField] Animator myGameOverAnimator;
     [SerializeField] Material myEffectMaterial;
     [SerializeField] GameObject myEffectObject;
     float myIntensity = 0.0f;
 
     CameraMovement myCameraMovement;
+
+    [SerializeField] GameObject myFadeCanvas;
 
     void Start()
     {
@@ -36,8 +37,7 @@ public class Moon : MonoBehaviour
 
         if (transform.position.y < 40.0f && !myHasDestroyedEarth)
         {
-            Debug.Log("End Game");
-            myGameOverAnimator.SetTrigger("FadeIn");
+            Instantiate(myFadeCanvas);
             myHasDestroyedEarth = true;
         }
     }
