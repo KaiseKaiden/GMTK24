@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform myRightLeg;
 
     [SerializeField] float myXPositionLimit = 29.0f;
-    [SerializeField] float myYPositionLimit = 150.0f;
+    [SerializeField] float myYPositionLimit = 300.0f;
 
     [SerializeField] ParticleSystem myWingFlapPart;
 

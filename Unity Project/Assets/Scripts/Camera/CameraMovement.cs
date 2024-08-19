@@ -16,6 +16,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float myXPositionLimit = 29.0f;
     [SerializeField] private float myYPositionLimit = 150.0f;
 
+
     private void Start()
     {
         myPosition = transform.position;

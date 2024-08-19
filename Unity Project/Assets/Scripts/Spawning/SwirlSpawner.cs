@@ -29,7 +29,7 @@ public class SwirlSpawner : MonoBehaviour
             {
                 int rand = Random.Range(0, 2);
 
-                Vector3 pos = new Vector3(Random.Range(-27, 28), Camera.main.transform.position.y, -1);
+                Vector3 pos = new Vector3(Random.Range(-60, 60), Camera.main.transform.position.y, -1);
 
                 if (rand == 0)
                 {

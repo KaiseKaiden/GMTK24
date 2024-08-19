@@ -21,7 +21,7 @@ public class PlayerLevel : MonoBehaviour
 
     void Update()
     {
-        myHungerbarTransform.localScale = Vector3.Lerp(myHungerbarTransform.localScale, Vector3.one, 5.0f * Time.deltaTime);
+        myHungerbarTransform.localScale = Vector3.Lerp(myHungerbarTransform.localScale, Vector3.one, 3.0f * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -43,7 +43,7 @@ public class PlayerLevel : MonoBehaviour
         }
 
         myHungerbarUI.fillAmount = 1.0f - (myXp / myMaxXp);
-        myHungerbarTransform.localScale = Vector3.one * 1.5f;
+        myHungerbarTransform.localScale = Vector3.one * 1.25f;
     }
 
     public int GetCurrentLevel()
