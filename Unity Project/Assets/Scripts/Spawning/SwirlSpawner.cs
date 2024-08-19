@@ -13,6 +13,9 @@ public class SwirlSpawner : MonoBehaviour
     float myMaxSpawnHeight = 0;
     public Material mySkyMaterial;
 
+    public bool myOverrideSpawnRotation = false;
+    public float mySpawnRotation = 0f;
+
     private void Start()
     {
         myMaxSpawnHeight = mySkyMaterial.GetFloat("_DeepSpacePosition");
@@ -31,13 +34,20 @@ public class SwirlSpawner : MonoBehaviour
 
                 Vector3 pos = new Vector3(Random.Range(-60, 60), Camera.main.transform.position.y, -1);
 
+                Quaternion rot = Quaternion.identity;
+
+                if (myOverrideSpawnRotation)
+                {
+                    rot = Quaternion.Euler(0, mySpawnRotation, 0);
+                }
+
                 if (rand == 0)
                 {
-                    Instantiate(myWindSwirlObject, pos, Quaternion.identity);
+                    Instantiate(myWindSwirlObject, pos, rot);
                 }
                 else if (rand == 1)
                 {
-                    Instantiate(myWindSwirlObject2, pos, Quaternion.identity);
+                    Instantiate(myWindSwirlObject2, pos, rot);
                 }
 
                 myWindSwirlTimer = 0;

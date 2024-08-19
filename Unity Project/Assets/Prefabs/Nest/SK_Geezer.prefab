@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3054771922918970435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.84, z: 0}
+  m_LocalPosition: {x: 0, y: 1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,11 +137,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b39b995299be9f142b65b64c5001be19,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8539162348648409524}
+      addedObject: {fileID: 1064035067439733376}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b39b995299be9f142b65b64c5001be19,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1064035067439733376}
+      addedObject: {fileID: 2693674580488314168}
   m_SourcePrefab: {fileID: 100100000, guid: b39b995299be9f142b65b64c5001be19, type: 3}
 --- !u!1 &5135383127477233948 stripped
 GameObject:
@@ -209,8 +209,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &8539162348648409524
-CapsuleCollider:
+--- !u!114 &1064035067439733376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135383127477233948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79987ea52d311a14e95a11093953834e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPickupPoint: {fileID: 6028818738249768850}
+  myNestCapacity: 20
+  myLevelRequred: 3
+--- !u!65 &2693674580488314168
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -227,26 +242,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.38
-  m_Height: 1.18
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.61, z: 0.08}
---- !u!114 &1064035067439733376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5135383127477233948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79987ea52d311a14e95a11093953834e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPickupPoint: {fileID: 6028818738249768850}
-  myNestCapacity: 20
-  myLevelRequred: 3
+  serializedVersion: 3
+  m_Size: {x: 0.67, y: 1.03, z: 0.56}
+  m_Center: {x: 0, y: 0.54, z: 0.06}
 --- !u!4 &5480699406017688486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b39b995299be9f142b65b64c5001be19,
