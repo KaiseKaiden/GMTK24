@@ -50,18 +50,22 @@ public class Pickup : MonoBehaviour
     {
         if (myIsDragging)
         {
-            myPerlinX += Time.deltaTime;
-            myPerlinY += Time.deltaTime;
+            if (tag != "Moon")
+            {
+                myPerlinX += Time.deltaTime;
+                myPerlinY += Time.deltaTime;
 
-            transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myPerlinX, 0.0f) * 50.0f,
-                                                Mathf.PerlinNoise(0.0f, myPerlinY) * 50.0f, 0.0f);
-            transform.eulerAngles = transform.eulerAngles + new Vector3(-myPlayerMovement.GetVelocity().x, 0.0f, 0.0f);
+                transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myPerlinX, 0.0f) * 50.0f,
+                                                    Mathf.PerlinNoise(0.0f, myPerlinY) * 50.0f, 0.0f);
+                transform.eulerAngles = transform.eulerAngles + new Vector3(-myPlayerMovement.GetVelocity().x, 0.0f, 0.0f);
+            }
 
             Vector3 diffrence = (myPlayerMovement.GetRightLeg().position - myPickupPoint.position);
 
             myDraggingLerpTime += Time.deltaTime;
             transform.position = Vector3.Lerp(myStartPosition, transform.position + diffrence,
                                               EaseOutCirc(Mathf.Clamp01(myDraggingLerpTime)));
+
             transform.rotation =
                 Quaternion.Lerp(myStartRotation, transform.rotation, EaseOutCirc(Mathf.Clamp01(myDraggingLerpTime)));
         }

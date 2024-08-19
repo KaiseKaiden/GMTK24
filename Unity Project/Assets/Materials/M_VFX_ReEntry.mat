@@ -41,6 +41,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: ac5d375d996dafb4597e468ca6e082af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_670bdc7021c541e38722bef12e8d0a08_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ac5d375d996dafb4597e468ca6e082af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_683f1e22791b4421ab2b2137aa16e422_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ac5d375d996dafb4597e468ca6e082af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_72a1c743a57941a78766b0bacaf07632_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: ac5d375d996dafb4597e468ca6e082af, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -63,6 +71,7 @@ Material:
     - _AnimationSpeed1: 3.33
     - _AnimationSpeedT2: 0.71
     - _GradientPower: 0.37
+    - _Intensity: 1
     - _PowerAlpha: 1.92
     - _PowerGradient: 0.156
     - _PowerT1: 2.07
