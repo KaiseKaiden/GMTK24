@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,15 +9,29 @@ public class NestCreator : MonoBehaviour
 
     public GameObject nestPrefab;
     public GameObject centerMesh;
-    public GameObject[] listOfPileAssets;
-    public GameObject[] listOfStickAssets;
+    public List<GameObject> listOfPileAssets;
+    public List<GameObject> listOfStickAssets;
 
     public int maxTier = 25;
     public float bredthMdf = 10;
     public float obPerTier = 10;
-    public float aspectRatio = 1 / 10;
-    public int startTier = 0;
-    public float tierHeight = .5f;
+    public float aspectRatio = 1;
+
+    public int StartTier = 0;
+    private int startTier
+    {
+        get {
+            return Mathf.Clamp(StartTier, 0, 10);
+        }
+    }
+
+    public float TierHeight = 0.1f;
+    public float tierHeight
+    {
+        get {
+            return Mathf.Clamp(TierHeight, 0.1f, 10.0f);
+        }
+    }
 
     public float globalScale = 1.0f;
     public float centerScale = 1.0f;
@@ -34,11 +49,11 @@ public class NestCreator : MonoBehaviour
 
     private GameObject GetRandomAsset()
     {
-        return listOfPileAssets[Random.Range(0, listOfPileAssets.Length)];
+        return listOfPileAssets[Random.Range(0, listOfPileAssets.Count)];
     }
     private GameObject GetRandomStickAsset()
     {
-        return listOfStickAssets[Random.Range(0, listOfStickAssets.Length)];
+        return listOfStickAssets[Random.Range(0, listOfStickAssets.Count)];
     }
 
     public void Awake()
@@ -67,8 +82,12 @@ public class NestCreator : MonoBehaviour
         DelayedBuildObject();
     }
 
-    public void Increment()
+    public void Increment(GameObject mesh = null)
     {
+        if (mesh != null)
+        {
+            listOfPileAssets.Add(mesh);
+        }
         maxTier++;
         maxTier = Mathf.Clamp(maxTier, 1, 25);
         DelayedBuildObject();
@@ -78,12 +97,84 @@ public class NestCreator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Increment();
+            var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
+            if (obj != null)
+            {
+                IncrementObject(obj);
+            }
+            else
+            {
+                Increment();
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Decrement();
+            var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
+            if (obj != null)
+            {
+                // IncrementObject(obj);
+            }
+            else
+            {
+                Decrement();
+            }
         }
+    }
+
+    public void IncrementObject(GameObject NestNodeParent)
+    {
+        Vector3 positionOffset = spawnPosition.position;
+        var currentNodeCount = NestNodeParent.transform.childCount;
+        Transform nestObj = NestNodeParent.transform.GetChild(currentNodeCount);
+        maxTier++;
+
+        GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
+        central.name = "Tier " + maxTier;
+        central.transform.position = new Vector3(0, maxTier, 0) + positionOffset;
+        central.transform.localScale *= maxTier * centerScale * globalScale;
+        central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+
+        var bredth = Mathf.Log(maxTier * obPerTier);
+        for (int i = 0; i < bredth; i++)
+        {
+            var v2 = Random.insideUnitCircle * maxTier * bredthMdf;
+            v2.y *= aspectRatio;
+            var obj = Instantiate(GetRandomAsset(), central.transform);
+
+            var components = obj.GetComponents(typeof(UnityEngine.Component));
+            foreach (var comp in components)
+            {
+                if (comp is not MeshFilter && comp is not MeshRenderer)
+                {
+                    Destroy(comp);
+                }
+            }
+
+            obj.transform.position = new Vector3(v2.x, maxTier, v2.y) + positionOffset;
+            obj.transform.rotation = Random.rotation;
+            obj.transform.localScale *= objectScale;
+            obCount++;
+        }
+
+        for (int i = 0; i < bredth * 5; i++)
+        {
+            float angle = Random.Range(0, 360);
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * maxTier * bredthMdf;
+            float z = Mathf.Sin(angle * Mathf.Deg2Rad) * maxTier * bredthMdf;
+            z *= aspectRatio;
+
+            var obj = Instantiate(GetRandomStickAsset(), central.transform);
+            obj.transform.SetPositionAndRotation(
+                new Vector3(x, Random.Range(maxTier - 1.0f, maxTier), z) + positionOffset,
+                Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
+
+            var scale = obj.transform.localScale;
+            scale.x *= Random.Range(1.0f, 10.0f);
+            scale.y *= Random.Range(1.0f, 10.0f);
+            obj.transform.localScale = scale * woodScale;
+            obCount++;
+        }
+        nestObj.SetSiblingIndex(NestNodeParent.transform.childCount);
     }
 
     public void BuildObject()
@@ -119,6 +210,17 @@ public class NestCreator : MonoBehaviour
                 var v2 = Random.insideUnitCircle * tier * bredthMdf;
                 v2.y *= aspectRatio;
                 var obj = Instantiate(GetRandomAsset(), central.transform);
+
+                var components = obj.GetComponents(typeof(UnityEngine.Component));
+                foreach (var comp in components)
+                {
+                    if (comp is MeshFilter || comp is MeshRenderer || comp is Transform)
+                    {
+                        continue;
+                    }
+                    Destroy(comp);
+                }
+
                 obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
                 obj.transform.rotation = Random.rotation;
                 obj.transform.localScale *= objectScale;

@@ -96,7 +96,6 @@ public class Nest : MonoBehaviour
         GameObject egg = Instantiate(myEggPrefab, transform);
         egg.transform.position = nextEggPos;
         AudioManager.instance.PlayOneshot(FMODEvents.instance.SpawnEggEvent, transform.position);
-
     }
 
     private bool IsObjectOutsideCameraView()

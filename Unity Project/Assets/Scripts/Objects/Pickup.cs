@@ -44,7 +44,7 @@ public class Pickup : MonoBehaviour
             transform.Translate(Time.deltaTime * (point - transform.position));
             yield return null;
         }
-        NestCreator.myNestCreator.Increment();
+        NestCreator.myNestCreator.Increment(gameObject);
     }
     private void Update()
     {
@@ -67,6 +67,20 @@ public class Pickup : MonoBehaviour
         }
         else
         {
+            if (myRigidbody.velocity.sqrMagnitude > .1f)
+            {
+                Ray ray = new Ray(transform.position, Vector3.forward);
+                var arg = Physics.RaycastAll(ray, 1000.0f);
+                foreach (var hit in arg)
+                {
+                    if (hit.transform.CompareTag("NestDropPoint"))
+                    {
+                        StartCoroutine(MoveTowardPoint(hit.point));
+                        break;
+                    }
+                }
+            }
+
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
@@ -87,7 +101,6 @@ public class Pickup : MonoBehaviour
         if (myBehaviour != null)
         {
             myBehaviour.Picked();
-
         }
         AudioManager.instance.PlayOneshot(FMODEvents.instance.GetNestMaterialEvent, transform.position);
     }
@@ -97,6 +110,11 @@ public class Pickup : MonoBehaviour
         myIsDragging = false;
         myRigidbody.isKinematic = false;
         myRigidbody.useGravity = true;
+        CharacterController CC;
+        if (myPlayerMovement.TryGetComponent(out CC))
+        {
+            myRigidbody.velocity = CC.velocity;
+        }
 
         if (myBehaviour != null)
         {

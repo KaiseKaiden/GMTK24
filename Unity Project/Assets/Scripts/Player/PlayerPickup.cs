@@ -55,6 +55,25 @@ public class PlayerPickup : MonoBehaviour
                         foundSomething = true;
                     }
                 }
+
+                // if (distance < closestDistance)
+                //{
+                //     if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                //     {
+                //         closestDistance = distance;
+                //         myHeldPickup = pickup;
+
+                //        isFood = false;
+                //    }
+                //    else
+                //    {
+                //        food = c.GetComponent<Food>();
+
+                //        isFood = true;
+                //    }
+
+                //    foundSomething = true;
+                //}
             }
 
             if (foundSomething)
@@ -85,19 +104,6 @@ public class PlayerPickup : MonoBehaviour
             if (myHeldPickup != null)
             {
                 myHeldPickup.Drop();
-
-                Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(myHeldPickup.transform.position));
-
-                var arg = Physics.RaycastAll(ray, 1000.0f);
-                foreach (var hit in arg)
-                {
-                    if (hit.transform.CompareTag("NestDropPoint"))
-                    {
-                        Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red, 100.0f, true);
-                        myHeldPickup.StartCoroutine(myHeldPickup.MoveTowardPoint(hit.point));
-                        break;
-                    }
-                }
 
                 myHeldPickup.transform.SetParent(null);
                 myHeldPickup = null;
