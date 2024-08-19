@@ -93,8 +93,11 @@ public class PlayerPickup : MonoBehaviour
                     {
                         myHeldPickup.GetComponent<SphereCollider>().enabled = false;
                         myPlayerMovement.DeactivateMovement();
+                        GameManager.Instance.MoonCollected();
                         myPlayerLevel.enabled = false;
                         this.enabled = false;
+
+                        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.MoonCrashEvent);
                     }
                 }
             }

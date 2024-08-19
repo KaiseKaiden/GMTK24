@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float myBottomLimit;
     [SerializeField] float myLimitIncrease;
 
+    bool myMoonCollected;
+    float myCurrentDistance;
+
     void Start()
     {
         GameManager.Instance = this;
@@ -26,6 +29,17 @@ public class GameManager : MonoBehaviour
 
     public float GetCamDistanceFromY(float aY)
     {
-        return aY * myLimitIncrease;
+        if (myMoonCollected)
+        {
+            return myCurrentDistance;
+        }
+
+        myCurrentDistance = aY * myLimitIncrease * 0.5f;
+        return myCurrentDistance;
+    }
+
+    public void MoonCollected()
+    {
+        myMoonCollected = true;
     }
 }
