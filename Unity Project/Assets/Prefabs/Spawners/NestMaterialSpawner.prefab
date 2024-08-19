@@ -47,16 +47,14 @@ MonoBehaviour:
   mySpawningInterval: 3
   myMinSpawningDistance: 10
   myMaxSpawningDistance: 30
+  mySkyBoxMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}
   mySmallGroundLevelPrefabs:
   - {fileID: 5347644642657282937, guid: 2f0b06659a4d23446aa7e4636007ff24, type: 3}
-  - {fileID: 1237539450151121935, guid: 352d642be5498a54f843a6355f39c25e, type: 3}
   - {fileID: 9062348064116509293, guid: 5f2fc355084c30d499fd4ade958aad71, type: 3}
-  - {fileID: 9084223378573697796, guid: 06b87eaca2604444a9d1dee633b5cf55, type: 3}
-  - {fileID: 8796610301267172325, guid: 8199cde531d122442b897910d175f452, type: 3}
+  - {fileID: 9062348064116509293, guid: 5f2fc355084c30d499fd4ade958aad71, type: 3}
   myMediumGroundLevelPrefabs:
   - {fileID: 6158348054140083019, guid: d92c5e5a1d296484eb6eb94ea321c897, type: 3}
   - {fileID: 5625019369353703357, guid: b2a4e788dac05a34fbdd0c8e46704095, type: 3}
-  - {fileID: 8552323836561569760, guid: 549bb309656eefe4aab258b11e77fbe0, type: 3}
   - {fileID: 6892596344504699624, guid: b8ae2aaa2c6e592439d61730e56e0af1, type: 3}
   - {fileID: 2683934664903180986, guid: c6f444b1937b80c44b236b22bc89bba8, type: 3}
   myLargeGroundLevelPrefabs:
@@ -119,5 +117,3 @@ MonoBehaviour:
   - {fileID: 3850768718518844503, guid: 2a38e6c21efdd9b45b8edd62b8ab195d, type: 3}
   - {fileID: 8274854451100168800, guid: 7fae2f593e7a535438ba32951dadfe6b, type: 3}
   - {fileID: 600966971637020347, guid: 931ca20c9fde01e449b576764dd0d208, type: 3}
-  myPlayerTransform: {fileID: 0}
-  mySkyBoxMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}
