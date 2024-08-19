@@ -9,6 +9,7 @@ TagManager:
   - Food
   - NestDropPoint
   - EditorNestDestructionTag
+  - Moon
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Pickup
   - InternalRigid
-  - 
-  - 
+  - Moon
+  - Nest
   - 
   - 
   - 

@@ -7,6 +7,7 @@ public class Hat : Behaviour
     float myRotation;
     float myNoiseX;
     float myNoiseY;
+    float myTime;
 
     [SerializeField] float myNoiseOffset;
     [SerializeField] TrailRenderer[] myTrails;
@@ -19,22 +20,25 @@ public class Hat : Behaviour
         myRigidbody.velocity = new Vector3(0.0f, -0.25f, 0.0f);
     }
 
-    void Update()
+    public override void Move()
     {
+        myTime += Time.deltaTime;
         myRotation += Time.deltaTime * 60.0f;
 
         myNoiseX += Time.deltaTime;
         myNoiseY += Time.deltaTime;
 
-        //Vector3 position = myStartPosition + new Vector3((Mathf.Cos(myTime * 0.5f) + (Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset)) * Mathf.Clamp01(myTime), ((Mathf.Sin(myTime) * 2.0f) + Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime), 0);
-        //position.z = GameManager.Instance.GetZFromY(position.y);
-        //transform.position = position;
+        Vector3 position = transform.position;
+        position.z = GameManager.Instance.GetZFromY(position.y);
+        transform.position = position;
 
-        transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset, myRotation, Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset);
+        transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myNoiseX, 0.0f) * myNoiseOffset, myRotation, Mathf.PerlinNoise(0.0f, myNoiseY) * myNoiseOffset) * Mathf.Clamp01(myTime);
     }
 
     public override void Picked()
     {
+        myIsBeingPicked = true;
+
         foreach (TrailRenderer t in myTrails)
         {
             t.emitting = false;
@@ -45,6 +49,9 @@ public class Hat : Behaviour
 
     public override void Dropped()
     {
+        myTime = 0.0f;
+        myIsBeingPicked = false;
+
         foreach (TrailRenderer t in myTrails)
         {
             t.emitting = true;

@@ -49,7 +49,12 @@ public class Nest : MonoBehaviour
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
 
-        Camera.main.GetComponent<CameraMovement>().SetNest(transform);
+        if (Camera.main.GetComponent<CameraMovement>())
+        {
+            Camera.main.GetComponent<CameraMovement>().SetNest(transform);
+        }
+
+        myDoveTransform.position = transform.position;
     }
 
     private void Update()
@@ -86,10 +91,11 @@ public class Nest : MonoBehaviour
 
         Vector3 nextEggPos = GetEggPosition(myEggCount);
 
+        myDoveTransform.position = nextEggPos;
+
         GameObject egg = Instantiate(myEggPrefab, transform);
         egg.transform.position = nextEggPos;
         AudioManager.instance.PlayOneshot(FMODEvents.instance.SpawnEggEvent, transform.position);
-
     }
 
     private bool IsObjectOutsideCameraView()

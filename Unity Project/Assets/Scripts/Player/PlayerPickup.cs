@@ -28,7 +28,7 @@ public class PlayerPickup : MonoBehaviour
             bool isFood = false;
             bool foundSomething = false;
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius, myPickupLayer);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius * transform.localScale.x, myPickupLayer);
             foreach (Collider c in colliders)
             {
                 float distance = (c.transform.position - transform.position).magnitude;
@@ -56,12 +56,12 @@ public class PlayerPickup : MonoBehaviour
                     }
                 }
 
-                //if (distance < closestDistance)
+                // if (distance < closestDistance)
                 //{
-                //    if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
-                //    {
-                //        closestDistance = distance;
-                //        myHeldPickup = pickup;
+                //     if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                //     {
+                //         closestDistance = distance;
+                //         myHeldPickup = pickup;
 
                 //        isFood = false;
                 //    }
@@ -87,28 +87,27 @@ public class PlayerPickup : MonoBehaviour
                     myHeldPickup.Pick();
 
                     myHeldPickup.transform.SetParent(myPlayerMovement.GetRightLeg());
+
+                    if (myHeldPickup.gameObject.tag == "Moon")
+                    {
+                        myHeldPickup.GetComponent<SphereCollider>().enabled = false;
+                        myPlayerMovement.DeactivateMovement();
+                        myPlayerLevel.enabled = false;
+                        this.enabled = false;
+                    }
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(1))
         {
-            myHeldPickup.Drop();
-
-            Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(myHeldPickup.transform.position));
-
-            var arg = Physics.RaycastAll(ray, 1000.0f);
-            foreach (var hit in arg)
+            if (myHeldPickup != null)
             {
-                if (hit.transform.CompareTag("NestDropPoint"))
-                {
-                    Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red, 100.0f, true);
-                    myHeldPickup.StartCoroutine(myHeldPickup.MoveTowardPoint(hit.point));
-                    break;
-                }
+                myHeldPickup.Drop();
+
+                myHeldPickup.transform.SetParent(null);
+                myHeldPickup = null;
             }
-            myHeldPickup.transform.SetParent(null);
-            myHeldPickup = null;
         }
     }
 }

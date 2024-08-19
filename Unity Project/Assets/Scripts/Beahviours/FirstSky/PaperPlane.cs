@@ -14,12 +14,15 @@ public class PaperPlane : Behaviour
     [SerializeField] float myNoiseOffset;
     [SerializeField] TrailRenderer[] myTrails;
 
+    Rigidbody myRigidbody;
+
     void Start()
     {
         myStartPosition = transform.position;
+        myRigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    public override void Move()
     {
         myTime += Time.deltaTime;
 
@@ -38,6 +41,8 @@ public class PaperPlane : Behaviour
 
     public override void Picked()
     {
+        myIsBeingPicked = true;
+
         myStartPosition = transform.position;
         myLastPosition = transform.position;
 
@@ -49,10 +54,13 @@ public class PaperPlane : Behaviour
 
     public override void Dropped()
     {
+        myIsBeingPicked = false;
+
         myStartPosition = transform.position;
         myLastPosition = transform.position;
 
         myTime = 0.0f;
+        myRigidbody.useGravity = false;
 
         foreach (TrailRenderer t in myTrails)
         {

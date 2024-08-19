@@ -13,7 +13,7 @@ public class PlayersRigidbody : MonoBehaviour
     {
         // Head
         Vector3 headVelocity = myRigidbodyHead.velocity;
-        headVelocity.y = 10.0f;
+        headVelocity.y = 10.0f * transform.localScale.x;
         myRigidbodyHead.velocity = headVelocity;
     }
 
