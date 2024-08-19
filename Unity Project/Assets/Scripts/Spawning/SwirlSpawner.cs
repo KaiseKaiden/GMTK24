@@ -10,27 +10,38 @@ public class SwirlSpawner : MonoBehaviour
     float myWindSwirlTimer = 0;
     float myWindSwirlInterval = 2;
 
+    float myMaxSpawnHeight = 0;
+    public Material mySkyMaterial;
+
+    private void Start()
+    {
+        myMaxSpawnHeight = mySkyMaterial.GetFloat("_DeepSpacePosition");
+    }
+
     // Update is called once per frame
     void Update()
     {
-        myWindSwirlTimer += Time.deltaTime;
-
-        if (myWindSwirlTimer > myWindSwirlInterval)
+        if (Camera.main.transform.position.y < myMaxSpawnHeight)
         {
-            int rand = Random.Range(0, 2);
+            myWindSwirlTimer += Time.deltaTime;
 
-            Vector3 pos = new Vector3(Random.Range(-27, 28), Camera.main.transform.position.y, -1);
-
-            if (rand == 0)
+            if (myWindSwirlTimer > myWindSwirlInterval)
             {
-                Instantiate(myWindSwirlObject, pos, Quaternion.identity);
-            }
-            else if (rand == 1)
-            {
-                Instantiate(myWindSwirlObject2, pos, Quaternion.identity);
-            }
+                int rand = Random.Range(0, 2);
 
-            myWindSwirlTimer = 0;
+                Vector3 pos = new Vector3(Random.Range(-60, 60), Camera.main.transform.position.y, -1);
+
+                if (rand == 0)
+                {
+                    Instantiate(myWindSwirlObject, pos, Quaternion.identity);
+                }
+                else if (rand == 1)
+                {
+                    Instantiate(myWindSwirlObject2, pos, Quaternion.identity);
+                }
+
+                myWindSwirlTimer = 0;
+            }
         }
     }
 }

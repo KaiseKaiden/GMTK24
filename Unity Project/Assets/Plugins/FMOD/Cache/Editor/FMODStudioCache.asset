@@ -51,8 +51,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 2427
 --- !u!114 &-7596793295643051874
 MonoBehaviour:
@@ -129,8 +129,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 1125
 --- !u!114 &-6566667485185146232
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638596099407895939
+  lastModified: 638596983872832368
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -229,6 +229,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 30000
+--- !u!114 &-3342353636193116951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Moon_Fall
+  m_EditorClassIdentifier: 
+  Path: event:/Moon_Fall
+  Guid:
+    Data1: -1642482733
+    Data2: 1089544795
+    Data3: 870965907
+    Data4: 1147751007
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11574
 --- !u!114 &-830009185184637764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,8 +280,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 700
   Length: 594
 --- !u!114 &-716987664148965130
 MonoBehaviour:
@@ -280,8 +307,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 819
 --- !u!114 &-439436418825045079
 MonoBehaviour:
@@ -336,13 +363,15 @@ MonoBehaviour:
   - {fileID: -716987664148965130}
   - {fileID: 223333109847498145}
   - {fileID: -8899759006836784078}
+  - {fileID: 4624970488975099686}
+  - {fileID: -3342353636193116951}
   EditorParameters:
   - {fileID: -6566667485185146232}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638596099407937820
+  cacheTime: 638596983872832368
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -426,6 +455,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 667
+--- !u!114 &4624970488975099686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Earth_Explode
+  m_EditorClassIdentifier: 
+  Path: event:/Earth_Explode
+  Guid:
+    Data1: 426231426
+    Data2: 1235356347
+    Data3: -409951558
+    Data4: -2080575661
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9407
 --- !u!114 &6572875409597909903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,8 +506,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 10040
 --- !u!114 &8625211199582853454
 MonoBehaviour:
@@ -477,8 +533,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 1744
 --- !u!114 &8754526099722757888
 MonoBehaviour:
@@ -495,8 +551,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638596099407937820
+  lastModified: 638596966067756106
   FileSizes:
   - Name: 
-    Value: 1338
+    Value: 1444
   Exists: 1

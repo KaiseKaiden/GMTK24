@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform myRightLeg;
 
     [SerializeField] float myXPositionLimit = 29.0f;
-    [SerializeField] float myYPositionLimit = 150.0f;
+    [SerializeField] float myYPositionLimit = 300.0f;
 
     [SerializeField] ParticleSystem myWingFlapPart;
 
@@ -111,7 +111,10 @@ public class PlayerMovement : MonoBehaviour
         myController.Move(myVelocity * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
         var position = transform.position;
-        position.x = Mathf.Clamp(position.x, -myXPositionLimit, myXPositionLimit);
+
+        float widthLimit = GameManager.Instance.GetXLimitFromY(position.y);
+        position.x = Mathf.Clamp(position.x, -widthLimit, widthLimit);
+
         position.y = Mathf.Clamp(position.y, 0.0f, myYPositionLimit);
 
         if (position.y >= myYPositionLimit)

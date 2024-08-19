@@ -47,77 +47,53 @@ MonoBehaviour:
   mySpawningInterval: 3
   myMinSpawningDistance: 10
   myMaxSpawningDistance: 30
+  mySkyBoxMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}
   mySmallGroundLevelPrefabs:
   - {fileID: 5347644642657282937, guid: 2f0b06659a4d23446aa7e4636007ff24, type: 3}
   - {fileID: 1237539450151121935, guid: 352d642be5498a54f843a6355f39c25e, type: 3}
   - {fileID: 9062348064116509293, guid: 5f2fc355084c30d499fd4ade958aad71, type: 3}
-  - {fileID: 9084223378573697796, guid: 06b87eaca2604444a9d1dee633b5cf55, type: 3}
-  - {fileID: 8796610301267172325, guid: 8199cde531d122442b897910d175f452, type: 3}
   myMediumGroundLevelPrefabs:
   - {fileID: 6158348054140083019, guid: d92c5e5a1d296484eb6eb94ea321c897, type: 3}
   - {fileID: 5625019369353703357, guid: b2a4e788dac05a34fbdd0c8e46704095, type: 3}
-  - {fileID: 8552323836561569760, guid: 549bb309656eefe4aab258b11e77fbe0, type: 3}
   - {fileID: 6892596344504699624, guid: b8ae2aaa2c6e592439d61730e56e0af1, type: 3}
   - {fileID: 2683934664903180986, guid: c6f444b1937b80c44b236b22bc89bba8, type: 3}
   myLargeGroundLevelPrefabs:
   - {fileID: 4043348627211995852, guid: 8301d842aa8faf34eaa96c4034fc292b, type: 3}
   - {fileID: 3901349475708658668, guid: db0c2066821da2d4c92b78260a912138, type: 3}
-  - {fileID: 6198535301513404418, guid: 0859b89322643c740a5aaa1e1d2883c6, type: 3}
-  - {fileID: 3802230485327402150, guid: f24335f6d5cd2cd43ac57ace6cbe8277, type: 3}
   - {fileID: 3356222771767733703, guid: 11b11d425744c2549890782cc032aac8, type: 3}
   mySmallSky1LevelPrefabs:
   - {fileID: 7003656308195808597, guid: 2db4c2c28a83d3542b0e6a89af97ca8e, type: 3}
   - {fileID: 7631056701316048915, guid: 4fbb2aa7810e7a943973a769ec88330f, type: 3}
-  - {fileID: 6343231305795932886, guid: 315efb49c090f6f4e94d2d1e005f2e85, type: 3}
   - {fileID: 7978634875827598552, guid: de1f8a0202560f446be94f316b343bfb, type: 3}
   - {fileID: 3779873062874403957, guid: 0bb56bd2a767b204c8606d80514566d2, type: 3}
   myMediumSky1LevelPrefabs:
   - {fileID: 345311030208800430, guid: a03ab2a6776a83041909f2056be11c06, type: 3}
   - {fileID: 2435271569393255008, guid: 5ca45559469a4df4086c148784cd5717, type: 3}
   - {fileID: 2064387496327229408, guid: 71cdb170c7db762468834820ed2b1438, type: 3}
-  - {fileID: 3891899846576023934, guid: 2e04b313ed4ddf048888cd96bb6e1e4f, type: 3}
-  - {fileID: 6098575601126695821, guid: 8109b933bcf4e294caf4f792a581838e, type: 3}
+  - {fileID: 5341977051476412914, guid: dd72cbc31b106e14db187cfde7476e1c, type: 3}
   myLargeSky1LevelPrefabs:
-  - {fileID: 4700543232639754488, guid: 15537a569a0444f4e9abec1f913fa87a, type: 3}
-  - {fileID: 6493156795324114308, guid: 93ce57dc3c2462440b7b5218518e698c, type: 3}
-  - {fileID: 59731920661920214, guid: ca30b35aba2cb6541aa2ba0820bea07e, type: 3}
-  - {fileID: 4959607240591707738, guid: 4151c78b56549f544ada49e6df7cf90f, type: 3}
   - {fileID: 1295308245934185329, guid: 2cfb1ebe0d6a50548a332ff1c0e22f18, type: 3}
   mySmallSky2LevelPrefabs:
   - {fileID: 411206083849269544, guid: 5bb9dbc61ad4f25418be02a88333dcec, type: 3}
   - {fileID: 5721087237060149433, guid: fef0d5334ce6aa64a85f2c89dfba15df, type: 3}
-  - {fileID: 3727196301178834571, guid: 87c5516fed43bce4a9a6757f4ae27bd7, type: 3}
-  - {fileID: 8434841969860028203, guid: c7f6904ce7dbb86458026a9f65be61e3, type: 3}
   - {fileID: 8976558558266242815, guid: 4dba928b85396844199fc1d2aedd9d38, type: 3}
   myMediumSky2LevelPrefabs:
   - {fileID: 7466520606125735909, guid: cd7c5b2d82654e54b91fd270adf1073b, type: 3}
   - {fileID: 578730570603238531, guid: 38ac473c6b7601f4088e04e782653e2e, type: 3}
   - {fileID: 4132330280571024359, guid: a989f83354f15944eb777c86148046b6, type: 3}
-  - {fileID: 5849107290948318865, guid: 46b62a83355a85749b2f36aeb0f563c2, type: 3}
-  - {fileID: 7308022108862048825, guid: ff0aa6a16f1008f4fbad0cc20cb270aa, type: 3}
   myLargeSky2LevelPrefabs:
   - {fileID: 282447041567295346, guid: 6c9101bdb57d6d748be392f81691b4a5, type: 3}
   - {fileID: 6329195971788437583, guid: 3a19b448183d96b4895e8cc379bdd3bb, type: 3}
   - {fileID: 202261498004272787, guid: 88e1b246176d8404fbb1e2cc122690eb, type: 3}
-  - {fileID: 2119114799937338687, guid: 944e56edf9141b8429da187580fff661, type: 3}
-  - {fileID: 1924394552092324473, guid: 7b5e1f0ad31f71144a092db14c8ff492, type: 3}
   mySmallSpaceLevelPrefabs:
   - {fileID: 1949391278026860291, guid: 3b7065b7355ed9b42827ab2696b817b8, type: 3}
   - {fileID: 41123218776947857, guid: ec3fc96aaf440d94b84018589d5ebd83, type: 3}
-  - {fileID: 7080582411458528126, guid: 643ee30345b524448a29a37b3889b5c5, type: 3}
-  - {fileID: 7308776883905966533, guid: e5df8459ea4cbda438dffc13f1eea718, type: 3}
-  - {fileID: 8576288881653517585, guid: f5d0ac92a369f3244aba5bbc35072ee2, type: 3}
   myMediumSpaceLevelPrefabs:
   - {fileID: 7000556365987666734, guid: bee003ba3dc72004a80bd6346c8114ad, type: 3}
   - {fileID: 7263668419176239255, guid: 1629ba5a75e8f764790a0501999deb0a, type: 3}
   - {fileID: 7489089842790943255, guid: 4c12b3630f131f14299b6988039d2921, type: 3}
-  - {fileID: 2362007242990043039, guid: 2ecd9e4d966369f4ab5dc8bd1de027b3, type: 3}
   - {fileID: 7832108352133677693, guid: 108f75ea8ef898a429e30c6c370132ac, type: 3}
   myLargeSpaceLevelPrefabs:
   - {fileID: 1993428099128879335, guid: 3a4fb5f99e38b904dad4b3a40a531438, type: 3}
   - {fileID: 7817972901566718711, guid: efc14a41ebf4a924095452d69e6a2e6b, type: 3}
   - {fileID: 3850768718518844503, guid: 2a38e6c21efdd9b45b8edd62b8ab195d, type: 3}
-  - {fileID: 8274854451100168800, guid: 7fae2f593e7a535438ba32951dadfe6b, type: 3}
-  - {fileID: 600966971637020347, guid: 931ca20c9fde01e449b576764dd0d208, type: 3}
-  myPlayerTransform: {fileID: 0}
-  mySkyBoxMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}
