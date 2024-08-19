@@ -81,12 +81,12 @@ Material:
     m_Floats:
     - _Clouds_Drift_Variable: 2.1
     - _Clouds_movement: 0.12
-    - _DeepSpacePosition: 165
+    - _DeepSpacePosition: 65
     - _HigherupSkyPosition: 45
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SpacePosition: 100
-    - _TestHeight: 8.778019
+    - _SpacePosition: 55
+    - _TestHeight: 16.573486
     m_Colors:
     - _Close_to_ground: {r: 0.3137255, g: 0.6901961, b: 0.882353, a: 0}
     - _Deep_Space: {r: 0.14465404, g: 0.07050746, b: 0.13566658, a: 1}
