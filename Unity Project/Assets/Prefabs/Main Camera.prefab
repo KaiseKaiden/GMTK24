@@ -149,6 +149,7 @@ MonoBehaviour:
   myCameraSmooting: 5
   myDeciredZDistance: 8
   myXPositionLimit: 26
+  myYPositionLimit: 150
 --- !u!114 &-8037339880470583848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1384a3d138e230468a96319103e8d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myBottomLimit: 0
+  myLimitIncrease: 0
 --- !u!114 &3690240872233573602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +238,20 @@ MonoBehaviour:
       Data3: -1203241318
       Data4: 234111018
     Path: event:/Egg_Spawn
+  <MoonCrashEvent>k__BackingField:
+    Guid:
+      Data1: -1642482733
+      Data2: 1089544795
+      Data3: 870965907
+      Data4: 1147751007
+    Path: event:/Moon_Fall
+  <WorldEndEvent>k__BackingField:
+    Guid:
+      Data1: 426231426
+      Data2: 1235356347
+      Data3: -409951558
+      Data4: -2080575661
+    Path: event:/Earth_Explode
   <CreditButtonEvent>k__BackingField:
     Guid:
       Data1: 805168088
