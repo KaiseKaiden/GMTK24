@@ -31,7 +31,7 @@ public class PlayerPickup : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius * transform.localScale.x, myPickupLayer);
             foreach (Collider c in colliders)
             {
-                float distance = (c.transform.position - transform.position).magnitude;
+                float distance = (c.ClosestPoint(transform.position) - transform.position).magnitude;//(c.transform.position - transform.position).magnitude;
                 Pickup pickup = c.GetComponent<Pickup>();
 
                 if (pickup != null && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
@@ -49,6 +49,7 @@ public class PlayerPickup : MonoBehaviour
                 {
                     if (distance < closestDistance && c.tag == "Food")
                     {
+                        closestDistance = distance;
                         food = c.GetComponent<Food>();
 
                         isFood = true;

@@ -14,6 +14,11 @@ public class PlayerLevel : MonoBehaviour
 
     int myCurrentLevel = 1;
 
+    void Start()
+    {
+        AddXp(0.0f);
+    }
+
     void Update()
     {
         myHungerbarTransform.localScale = Vector3.Lerp(myHungerbarTransform.localScale, Vector3.one, 5.0f * Time.deltaTime);
@@ -37,7 +42,7 @@ public class PlayerLevel : MonoBehaviour
             transform.localScale += Vector3.one;
         }
 
-        myHungerbarUI.fillAmount = (myXp / myMaxXp);
+        myHungerbarUI.fillAmount = 1.0f - (myXp / myMaxXp);
         myHungerbarTransform.localScale = Vector3.one * 1.5f;
     }
 
