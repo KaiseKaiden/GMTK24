@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        float audioParameterValue = transform.position.y * 0.01f; //TODO change to corrently adjust so the adui is right at the right height
+        float audioParameterValue = (transform.position.y / 300.0f) * 10.0f; //TODO change to corrently adjust so the adui is right at the right height
         SetWorldParameter("air_level", audioParameterValue);
     }
 

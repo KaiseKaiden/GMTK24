@@ -50,6 +50,8 @@ MonoBehaviour:
   myFillAmount: 1
   myBreadCrumbPart: {fileID: 7030234758272527360, guid: d6db9aef95a07eb4f9aaef2139bae048,
     type: 3}
+  myFoodBalloonPrefab: {fileID: 9105545709714813276, guid: 08d2033acdb4f0f459f9b8754ca4698a,
+    type: 3}
 --- !u!54 &1598034583709250320
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73,7 +75,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -106,6 +108,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1852327276717352038}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8cdb833ddcc77534896dfcf7c179089f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cdb833ddcc77534896dfcf7c179089f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cdb833ddcc77534896dfcf7c179089f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdb833ddcc77534896dfcf7c179089f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -156,6 +173,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8cdb833ddcc77534896dfcf7c179089f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe6809c289bf924429e700dd1accfd92, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 8cdb833ddcc77534896dfcf7c179089f,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1992909462318458739, guid: 87f09eca73bafbc4392ec05f59842734,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 8cdb833ddcc77534896dfcf7c179089f,
         type: 3}
       propertyPath: m_Name
