@@ -22,7 +22,7 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainGame")
+        if (SceneManager.GetActiveScene().name == "MainLevel")
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -50,7 +50,7 @@ public class UIHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("MainLevel");
     }
 
     public void Settings()
