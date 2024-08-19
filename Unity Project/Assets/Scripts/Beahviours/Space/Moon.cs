@@ -9,9 +9,21 @@ public class Moon : MonoBehaviour
 
     [SerializeField] Animator myGameOverAnimator;
 
+    CameraMovement myCameraMovement;
+
+    void Start()
+    {
+        myCameraMovement = Camera.main.GetComponent<CameraMovement>();
+    }
+
     void Update()
     {
         transform.eulerAngles += new Vector3(0.0f, mySpinnSpeed, 0.0f) * Time.deltaTime;
+
+        if (transform.position.y < 100.0f)
+        {
+            myCameraMovement.SetShakeIntencity(1.5f);
+        }
 
         if (transform.position.y < 40.0f && !myHasDestroyedEarth)
         {
