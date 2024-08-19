@@ -8,7 +8,7 @@ public class SwirlSpawner : MonoBehaviour
     public GameObject myWindSwirlObject2;
 
     float myWindSwirlTimer = 0;
-    float myWindSwirlInterval = 4;
+    float myWindSwirlInterval = 2;
 
     // Update is called once per frame
     void Update()
