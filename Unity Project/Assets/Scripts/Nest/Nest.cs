@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Nest : MonoBehaviour
@@ -49,6 +50,8 @@ public class Nest : MonoBehaviour
             distBetweenEggs -= 0.05f;
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
+
+        myEggCountText = GameObject.Find("Canvas").transform.Find("EggTracker").transform.Find("EggCountText").GetComponent<TextMeshProUGUI>();
 
         // if (Camera.main.GetComponent<CameraMovement>())
         //{
