@@ -108,20 +108,22 @@ public class NestMaterialSpawner : MonoBehaviour
         Vector3 worldRndPos = GetRndPosOutsideCamera();
 
         int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
 
         if (random == 0) //Smol
         {
+            int randomObj = Random.Range(0, mySmallSky1LevelPrefabs.Count);
             Instantiate(mySmallSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Small Sky1 Level");
         }
         else if(random == 1) //Normal
         {
+            int randomObj = Random.Range(0, myMediumSky1LevelPrefabs.Count);
             Instantiate(myMediumSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Medium Sky1 Level");
         }
         else if (random == 2) //Big
         {
+            int randomObj = Random.Range(0, myLargeSky1LevelPrefabs.Count);
             Instantiate(myLargeSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Large Sky1 Level");
         }
@@ -132,20 +134,22 @@ public class NestMaterialSpawner : MonoBehaviour
         Vector3 worldRndPos = GetRndPosOutsideCamera();
 
         int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
 
         if (random == 0) //Smol
         {
+            int randomObj = Random.Range(0, mySmallSky2LevelPrefabs.Count);
             Instantiate(mySmallSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Small Sky2 Level");
         }
         else if (random == 1) //Normal
         {
+            int randomObj = Random.Range(0, myMediumSky2LevelPrefabs.Count);
             Instantiate(myMediumSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Medium Sky2 Level");
         }
         else if (random == 2) //Big
         {
+            int randomObj = Random.Range(0, myLargeSky2LevelPrefabs.Count);
             Instantiate(myLargeSky2LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Large Sky2 Level");
         }
@@ -156,20 +160,23 @@ public class NestMaterialSpawner : MonoBehaviour
         Vector3 worldRndPos = GetRndPosOutsideCamera();
 
         int random = Random.Range(0, 3);
-        int randomObj = Random.Range(0, 5);
 
         if (random == 0) //Smol
         {
+
+            int randomObj = Random.Range(0, mySmallSpaceLevelPrefabs.Count);
             Instantiate(mySmallSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Small Space Level");
         }
         else if (random == 1) //Normal
         {
+            int randomObj = Random.Range(0, myMediumSpaceLevelPrefabs.Count);
             Instantiate(myMediumSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Medium Space Level");
         }
         else if (random == 2) //Big
         {
+            int randomObj = Random.Range(0, myLargeSpaceLevelPrefabs.Count);
             Instantiate(myLargeSpaceLevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Large Space Level");
         }
