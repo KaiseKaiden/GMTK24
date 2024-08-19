@@ -50,26 +50,24 @@ MonoBehaviour:
   centerMesh: {fileID: 8761859998591495871, guid: 40113bb1ffc6ecf4586440c3f08fa254,
     type: 3}
   listOfPileAssets:
-  - {fileID: 2698486926838533712, guid: eea7b3f0fce0b0a43ab185013192f6ec, type: 3}
-  - {fileID: 6828923468485223979, guid: 9be895b71c6559248a98086ecdd9f002, type: 3}
-  - {fileID: 2435271569393255008, guid: 5ca45559469a4df4086c148784cd5717, type: 3}
+  - {fileID: 9038443731084631868, guid: 139820f45f9e99641b48cdd46ae8727e, type: 3}
   listOfStickAssets:
   - {fileID: 1120513957817468194, guid: 1764d86e0d9289a48ae06539238748fb, type: 3}
   - {fileID: 1120513957817468194, guid: 1764d86e0d9289a48ae06539238748fb, type: 3}
   - {fileID: 1120513957817468194, guid: ff483a4aa7450d44b9ae7f84395953bd, type: 3}
   - {fileID: 1120513957817468194, guid: a699092407605c043b659ce3e966019a, type: 3}
-  maxTier: 7
+  maxTier: 3
   bredthMdf: 0.4
   obPerTier: 4.97
   aspectRatio: 1
-  startTier: 2
-  tierHeight: 1
+  StartTier: 0
+  TierHeight: 0.1
   globalScale: 0.55
   centerScale: 0.39
   objectScale: 0.5
   woodScale: 0.8
   spawnPosition: {fileID: 8190045946773233922}
-  obCount: 92
+  obCount: 354
 --- !u!1 &8826880926685839420
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 8826880926685839420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 3.244, z: 3.81}
+  m_LocalPosition: {x: 2.87, y: 2.652, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
