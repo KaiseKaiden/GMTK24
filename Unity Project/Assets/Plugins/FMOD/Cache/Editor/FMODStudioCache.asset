@@ -51,8 +51,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 2427
 --- !u!114 &-7596793295643051874
 MonoBehaviour:
@@ -129,8 +129,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 1125
 --- !u!114 &-6566667485185146232
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638596978141928923
+  lastModified: 638596983872832368
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -280,8 +280,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 700
   Length: 594
 --- !u!114 &-716987664148965130
 MonoBehaviour:
@@ -307,8 +307,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 819
 --- !u!114 &-439436418825045079
 MonoBehaviour:
@@ -371,7 +371,7 @@ MonoBehaviour:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638596978141928923
+  cacheTime: 638596983872832368
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -506,8 +506,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 10040
 --- !u!114 &8625211199582853454
 MonoBehaviour:
@@ -533,8 +533,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 10
+  MaxDistance: 1000
   Length: 1744
 --- !u!114 &8754526099722757888
 MonoBehaviour:
