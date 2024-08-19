@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NestMaterialSpawner : MonoBehaviour
+public class FoodSpawner : MonoBehaviour
 {
     float mySky1Level = 0f;
     float mySky2Level = 0f;
@@ -115,7 +116,7 @@ public class NestMaterialSpawner : MonoBehaviour
             Instantiate(mySmallSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Small Sky1 Level");
         }
-        else if(random == 1) //Normal
+        else if (random == 1) //Normal
         {
             Instantiate(myMediumSky1LevelPrefabs[randomObj], worldRndPos, Quaternion.identity);
             Debug.Log("Medium Sky1 Level");
