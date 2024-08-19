@@ -31,7 +31,7 @@ public class Balloon : Behaviour
 
         transform.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Sin(mySwayTime) * mySwayLength * 10.0f);
 
-        myLineRenderer.SetPosition(1, new Vector3(-Mathf.Sin(mySwayTime), -3.0f, 0.0f));
+        myLineRenderer.SetPosition(1, new Vector3(-Mathf.Sin(mySwayTime), -2.0f, 0.0f));
     }
 
     public override void Picked()
