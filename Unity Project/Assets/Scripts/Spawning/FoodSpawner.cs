@@ -41,23 +41,7 @@ public class FoodSpawner : MonoBehaviour
 
         if (mySpawningTimer >= mySpawningInterval)
         {
-            if (myPlayerTransform.position.y <= mySky1Level)
-            {
-                SpawnFood(1);
-            }
-            else if (myPlayerTransform.position.y <= mySky2Level)
-            {
-                SpawnFood(2);
-            }
-            else if (myPlayerTransform.position.y <= mySpaceLevel)
-            {
-                SpawnFood(3);
-
-            }
-            else if (myPlayerTransform.position.y > mySpaceLevel)
-            {
-                SpawnFood(4);
-            }
+            SpawnFood(myPlayerTransform.localScale.x);
             mySpawningTimer = 0;
         }
     }
