@@ -9,17 +9,21 @@ public class Lamppost : MonoBehaviour
         IdleStable,
         IdleFlicker,
         IdleBroken,
-        Broken
+        Broken,
+
+        Null
     };
 
-    [SerializeField] Material myUnlitMat;
-    [SerializeField] Material myLitMat;
+    [SerializeField] Animator myAnimator;
 
     public State myState = State.IdleStable;
+    State myPreviousState = State.Null;
+
+
 
     void Update()
     {
-        switch(myState)
+        switch (myState)
         {
             case State.IdleStable:
                 {
@@ -28,12 +32,12 @@ public class Lamppost : MonoBehaviour
                 }
             case State.IdleFlicker:
                 {
-                    IdleStable();
+                    IdleFlicker();
                     break;
                 }
             case State.IdleBroken:
                 {
-                    IdleFlicker();
+                    IdleBroken();
                     break;
                 }
             case State.Broken:
@@ -44,28 +48,57 @@ public class Lamppost : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        myPreviousState = myState;
+    }
+
     public void Break()
     {
         myState = State.Broken;
     }
 
-    void IdleStable()
+    bool IdleStable()
     {
+        if (myPreviousState != myState)
+        {
+            myAnimator.SetTrigger("IdleStable");
+            return true;
+        }
 
+        return false;
     }
 
-    void IdleFlicker()
+    bool IdleFlicker()
     {
+        if (myPreviousState != myState)
+        {
+            myAnimator.SetTrigger("IdleFlicker");
+            return true;
+        }
 
+        return false;
     }
 
-    void IdleBroken()
+    bool IdleBroken()
     {
+        if (myPreviousState != myState)
+        {
+            myAnimator.SetTrigger("IdleBroken");
+            return true;
+        }
 
+        return false;
     }
 
-    void Broken()
+    bool Broken()
     {
+        if (myPreviousState != myState)
+        {
+            myAnimator.SetTrigger("Broken");
+            return true;
+        }
 
+        return false;
     }
 }
