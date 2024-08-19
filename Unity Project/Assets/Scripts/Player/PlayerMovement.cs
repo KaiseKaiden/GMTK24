@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    bool myCanMove = true;
+
     [SerializeField] private float myForce;
     [SerializeField] private float myGravity;
 
@@ -33,19 +35,22 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Flap
-        if (Input.GetMouseButtonDown(0))
+        if (myCanMove)
         {
-            Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-            direction.z = 0.0f;
-            direction.Normalize();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                direction.z = 0.0f;
+                direction.Normalize();
 
-            myVelocity = direction * myForce * transform.localScale.x;
+                myVelocity = direction * myForce * transform.localScale.x;
 
-            myWingFlapPart.Play();
+                myWingFlapPart.Play();
 
-            AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent,transform.position);
+                AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent, transform.position);
 
-            GetComponent<PlayersRigidbody>().Flapp();
+                GetComponent<PlayersRigidbody>().Flapp();
+            }
         }
 
         // Gravity
@@ -56,23 +61,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Glide
-        if (Input.GetMouseButton(0))
+        if (myCanMove)
         {
-            if (myVelocity.y < -myMaxGlideSpeed)
+            if (Input.GetMouseButton(0))
             {
-                myVelocity.y = -myMaxGlideSpeed;
-
-                // Add Glide Speed
-                float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
-                if (directionX < 0) directionX = -1.0f;
-                if (directionX > 0) directionX = 1.0f;
-
-                myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
-                myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
-
-                foreach(TrailRenderer t in myTrails)
+                if (myVelocity.y < -myMaxGlideSpeed)
                 {
-                    t.emitting = true;
+                    myVelocity.y = -myMaxGlideSpeed;
+
+                    // Add Glide Speed
+                    float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
+                    if (directionX < 0) directionX = -1.0f;
+                    if (directionX > 0) directionX = 1.0f;
+
+                    myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
+                    myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
+
+                    foreach (TrailRenderer t in myTrails)
+                    {
+                        t.emitting = true;
+                    }
                 }
             }
         }
@@ -114,16 +122,6 @@ public class PlayerMovement : MonoBehaviour
         position.z = GameManager.Instance.GetZFromY(transform.position.y);
         transform.position = position;
 
-
-        //if (Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    transform.localScale *= 1.25f;
-        //}
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    transform.localScale *= .75f;
-        //}
-
         // Change Skybox Material
         RenderSettings.skybox.SetFloat("_TestHeight", transform.position.y);
     }
@@ -136,5 +134,10 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetVelocity()
     {
         return myVelocity;
+    }
+
+    public void DeactivateMovement()
+    {
+        myCanMove = false;
     }
 }

@@ -38,7 +38,6 @@ public class PlayerPickup : MonoBehaviour
                 {
                     if (distance < closestDistance)
                     {
-
                         closestDistance = distance;
                         myHeldPickup = pickup;
 
@@ -72,7 +71,8 @@ public class PlayerPickup : MonoBehaviour
 
                     if (myHeldPickup.gameObject.tag == "Moon")
                     {
-                        myPlayerMovement.enabled = false;
+                        myHeldPickup.GetComponent<SphereCollider>().enabled = false;
+                        myPlayerMovement.DeactivateMovement();
                         myPlayerLevel.enabled = false;
                         this.enabled = false;
                     }
