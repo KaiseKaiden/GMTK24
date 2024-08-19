@@ -6,7 +6,7 @@ public class PaperPlane : Behaviour
 {
     float myTime;
     Vector3 myStartPosition;
-    Vector3 myLastPosition;
+    //Vector3 myLastPosition;
 
     float myNoiseX;
     float myNoiseY;
