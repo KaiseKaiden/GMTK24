@@ -48,3 +48,4 @@ MonoBehaviour:
     type: 3}
   myWindSwirlObject2: {fileID: 599558239442800069, guid: 2bb74adb841ae0c4488ca6c493ba4e21,
     type: 3}
+  mySkyMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}

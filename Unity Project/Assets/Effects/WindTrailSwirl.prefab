@@ -4957,3 +4957,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2057dae2082ab2c45acfa8cfba6755eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySkyMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}
