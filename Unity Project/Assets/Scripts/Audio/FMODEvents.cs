@@ -12,6 +12,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference GetNestMaterialEvent { get; private set; }
     [field: SerializeField] public EventReference GetFoodEvent { get; private set; }
     [field: SerializeField] public EventReference SpawnEggEvent { get; private set; }
+    [field: SerializeField] public EventReference MoonCrashEvent { get; private set; }
+    [field: SerializeField] public EventReference WorldEndEvent { get; private set; }
 
 
     [field:Header("UI")]

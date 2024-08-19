@@ -19,8 +19,7 @@ public class Moon : MonoBehaviour
     {
         myCameraMovement = Camera.main.GetComponent<CameraMovement>();
 
-        myIntensity = Mathf.Lerp(myIntensity, 1.0f, Time.deltaTime * 0.6f);
-        myEffectMaterial.SetFloat("_Intensity", myIntensity);
+        myEffectMaterial.SetFloat("_Intensity", 0.0f);
     }
 
     void Update()
@@ -31,13 +30,16 @@ public class Moon : MonoBehaviour
         {
             myCameraMovement.SetShakeIntencity(1.5f);
 
-            myEffectMaterial.SetFloat("_Intensity", 1.0f);
+            myIntensity = Mathf.Lerp(myIntensity, 1.0f, Time.deltaTime * 2.2f);
+            myEffectMaterial.SetFloat("_Intensity", myIntensity);
+            
             myEffectObject.SetActive(true);
         }
 
         if (transform.position.y < 40.0f && !myHasDestroyedEarth)
         {
             Instantiate(myFadeCanvas);
+            AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.WorldEndEvent);
             myHasDestroyedEarth = true;
         }
     }

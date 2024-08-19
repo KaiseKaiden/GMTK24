@@ -142,5 +142,7 @@ public class PlayerMovement : MonoBehaviour
     public void DeactivateMovement()
     {
         myCanMove = false;
+
+        myVelocity.x = 0.0f;
     }
 }
