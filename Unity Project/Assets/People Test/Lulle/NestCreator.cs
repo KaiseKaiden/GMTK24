@@ -90,34 +90,27 @@ public class NestCreator : MonoBehaviour
         }
         maxTier++;
         maxTier = Mathf.Clamp(maxTier, 1, 25);
-        DelayedBuildObject();
+
+        var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
+        if (obj != null)
+        {
+            IncrementObject(obj);
+        }
+        else
+        {
+            DelayedBuildObject();
+        }
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
-            if (obj != null)
-            {
-                IncrementObject(obj);
-            }
-            else
-            {
-                Increment();
-            }
+            Increment();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
-            if (obj != null)
-            {
-                // IncrementObject(obj);
-            }
-            else
-            {
-                Decrement();
-            }
+            Decrement();
         }
     }
 
@@ -125,7 +118,7 @@ public class NestCreator : MonoBehaviour
     {
         Vector3 positionOffset = spawnPosition.position;
         var currentNodeCount = NestNodeParent.transform.childCount;
-        Transform nestObj = NestNodeParent.transform.GetChild(currentNodeCount);
+        Transform nestObj = NestNodeParent.transform.GetChild(currentNodeCount - 1);
         maxTier++;
 
         GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
@@ -144,7 +137,7 @@ public class NestCreator : MonoBehaviour
             var components = obj.GetComponents(typeof(UnityEngine.Component));
             foreach (var comp in components)
             {
-                if (comp is not MeshFilter && comp is not MeshRenderer)
+                if (comp is not Transform && comp is not MeshFilter && comp is not MeshRenderer)
                 {
                     Destroy(comp);
                 }
@@ -174,7 +167,14 @@ public class NestCreator : MonoBehaviour
             obj.transform.localScale = scale * woodScale;
             obCount++;
         }
-        nestObj.SetSiblingIndex(NestNodeParent.transform.childCount);
+
+        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
+
+        if (nestObj.TryGetComponent(out Nest nest))
+        {
+            nest.myEggCapacity = maxTier * 2;
+        }
+        nestObj.SetSiblingIndex(NestNodeParent.transform.childCount - 1);
     }
 
     public void BuildObject()
@@ -248,7 +248,7 @@ public class NestCreator : MonoBehaviour
         }
 
         GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-        nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
+        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
         nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
         nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
         nestBase = nestObj.GetComponent<Nest>();

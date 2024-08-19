@@ -17,6 +17,7 @@ public class Nest : MonoBehaviour
 
     private List<Vector3> myEggPoints = new();
     public GameObject myEggPrefab;
+    public GameObject myDovePrefab;
 
     public TextMeshProUGUI myEggCountText;
 
@@ -39,7 +40,7 @@ public class Nest : MonoBehaviour
         float distBetweenEggs = 0.65f;
         for (int i = 0; i < 5; i++)
         {
-            Vector3 pos = transform.position;
+            Vector3 pos = new Vector3();
             pos.y += 0.65f * i;
 
             myEggPoints.AddRange(mySpiralGenerator.GetSpiralPoints(pos, spiralParameter, distBetweenEggs, numOfEggs));
@@ -49,11 +50,12 @@ public class Nest : MonoBehaviour
             numOfEggs = (int)(numOfEggs * 0.75f);
         }
 
-        if (Camera.main.GetComponent<CameraMovement>())
-        {
-            Camera.main.GetComponent<CameraMovement>().SetNest(transform);
-        }
-
+        // if (Camera.main.GetComponent<CameraMovement>())
+        //{
+        //     Camera.main.GetComponent<CameraMovement>().SetNest(transform);
+        // }
+        var doveMom = Instantiate(myDovePrefab, transform);
+        myDoveTransform = doveMom.transform;
         myDoveTransform.position = transform.position;
     }
 
@@ -91,10 +93,9 @@ public class Nest : MonoBehaviour
 
         Vector3 nextEggPos = GetEggPosition(myEggCount);
 
-        myDoveTransform.position = nextEggPos;
-
         GameObject egg = Instantiate(myEggPrefab, transform);
-        egg.transform.position = nextEggPos;
+        egg.transform.position = nextEggPos + transform.position;
+        myDoveTransform.position = egg.transform.position;
         AudioManager.instance.PlayOneshot(FMODEvents.instance.SpawnEggEvent, transform.position);
     }
 
