@@ -1,19 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class SpiralGenerator
 {
-    public List<Vector3> GetSpiralPoints(Vector3 center, float spiralParameter, float distanceBetweenPoints, int numberOfPoints)
+    public List<Vector3> GetSpiralPoints(Vector3 center, float spiralParameter, float distanceBetweenPoints,
+                                         int numberOfPoints)
     {
         List<Vector3> points = new List<Vector3>();
 
         // Parameters
-        float b = spiralParameter;      // Spiral parameter
-        float d = distanceBetweenPoints;      // Desired distance between points
-        int nPoints = numberOfPoints;   // Number of points to generate
+        float b = spiralParameter;       // Spiral parameter
+        float d = distanceBetweenPoints; // Desired distance between points
+        int nPoints = numberOfPoints;    // Number of points to generate
 
         // Initialize the first point
         float theta = 0;
@@ -29,15 +27,14 @@ public class SpiralGenerator
             points.Add(pos);
 
             // Find the next angle by adjusting theta to keep arc length ~ d
-            theta += d / Mathf.Sqrt(r * r + b * b);  // Increment angle
-            r = b * theta;  // Update radius
+            theta += d / Mathf.Sqrt(r * r + b * b); // Increment angle
+            r = b * theta;                          // Update radius
         }
 
         return points;
     }
 
-    private void PolarToCartesian(float r, float theta,
-    out float x, out float y)
+    private void PolarToCartesian(float r, float theta, out float x, out float y)
     {
         x = (float)(r * Mathf.Cos(theta));
         y = (float)(r * Mathf.Sin(theta));

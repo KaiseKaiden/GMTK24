@@ -11,6 +11,7 @@ public class Behaviour : MonoBehaviour
     protected bool myIsBeingPicked = false;
 
     protected Vector2 myVelocity = Vector2.zero;
+    protected Vector3 myLastPosition = Vector3.zero;
 
     Rigidbody myRigidBody;
 
@@ -67,5 +68,7 @@ public class Behaviour : MonoBehaviour
 
             Move();
         }
+
+        myLastPosition = transform.position;
     }
 }
