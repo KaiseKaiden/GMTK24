@@ -257,17 +257,17 @@ public class NestCreator : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(NestCreator))]
-public class PileControllerTestEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(NestCreator))]
+//public class PileControllerTestEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
 
-        NestCreator myScript = (NestCreator)target;
-        if (GUILayout.Button("Build Object"))
-        {
-            myScript.DelayedBuildObject();
-        }
-    }
-}
+//        NestCreator myScript = (NestCreator)target;
+//        if (GUILayout.Button("Build Object"))
+//        {
+//            myScript.DelayedBuildObject();
+//        }
+//    }
+//}
