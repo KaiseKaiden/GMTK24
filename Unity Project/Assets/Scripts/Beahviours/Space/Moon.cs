@@ -9,6 +9,7 @@ public class Moon : MonoBehaviour
 
     [SerializeField] Animator myGameOverAnimator;
     [SerializeField] Material myEffectMaterial;
+    [SerializeField] GameObject myEffectObject;
     float myIntensity = 0.0f;
 
     CameraMovement myCameraMovement;
@@ -30,6 +31,7 @@ public class Moon : MonoBehaviour
             myCameraMovement.SetShakeIntencity(1.5f);
 
             myEffectMaterial.SetFloat("_Intensity", 1.0f);
+            myEffectObject.SetActive(true);
         }
 
         if (transform.position.y < 40.0f && !myHasDestroyedEarth)
