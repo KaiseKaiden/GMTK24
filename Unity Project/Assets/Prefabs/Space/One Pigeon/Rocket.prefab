@@ -61,7 +61,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8732086269119652469}
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 9214535980401772171}
-  myNestCapacity: 2
-  myLevelRequred: 2
+  myNestCapacity: 8
+  myLevelRequred: 4
 --- !u!114 &1385184051709256298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 4238645415111115598, guid: 1b1f545bfcfe7a44db6ecde497370321,
         type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4238645415111115598, guid: 1b1f545bfcfe7a44db6ecde497370321,
         type: 3}
@@ -359,6 +359,11 @@ PrefabInstance:
       propertyPath: m_Emitting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4238645415111115598, guid: 1b1f545bfcfe7a44db6ecde497370321,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5550613605780004118, guid: 1b1f545bfcfe7a44db6ecde497370321,
         type: 3}
       propertyPath: m_Name
@@ -443,6 +448,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Emitting
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238645415111115598, guid: 1b1f545bfcfe7a44db6ecde497370321,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5550613605780004118, guid: 1b1f545bfcfe7a44db6ecde497370321,
         type: 3}
