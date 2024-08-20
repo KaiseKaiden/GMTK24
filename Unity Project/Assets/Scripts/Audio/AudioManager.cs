@@ -13,21 +13,28 @@ public class AudioManager : MonoBehaviour
     private EventInstance musicEventInstance;
     private EventInstance ambienceEventInstance;
 
+    
+
     private void Awake()
     {
-        if(instance != null)
+
+        if (instance != null && instance != this)
         {
             Debug.LogError("more than one Audiomanager found");
+            CleanUp();
+            Destroy(this);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+        }
 
-        myEventInstances = new List<EventInstance>();
-
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
+        myEventInstances = new List<EventInstance>();
         InitLoopAudio();
     }
 
@@ -76,13 +83,17 @@ public class AudioManager : MonoBehaviour
         ambienceEventInstance.start();
     }
 
-    private void CleanUp()
+    public void CleanUp()
     {
-        foreach (EventInstance eventInstance in myEventInstances)
+        Debug.Log("EventInstances destroyed in CleanUp()");
+        int i = 0;
+        foreach (EventInstance eventInstance in instance.myEventInstances)
         {
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             eventInstance.release();
+            i++;
         }
+        Debug.Log("Object found to be stopped: " +  i.ToString());
     }
 
     private void OnDestroy()
