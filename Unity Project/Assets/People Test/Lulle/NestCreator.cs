@@ -23,7 +23,8 @@ public class NestCreator : MonoBehaviour
     public int StartTier = 0;
     private int startTier
     {
-        get {
+        get
+        {
             return Mathf.Clamp(StartTier, 0, 1000);
         }
     }
@@ -31,7 +32,8 @@ public class NestCreator : MonoBehaviour
     public float TierHeight = 0.1f;
     public float tierHeight
     {
-        get {
+        get
+        {
             return Mathf.Clamp(TierHeight, 0.1f, 1000.0f);
         }
     }
@@ -277,7 +279,7 @@ public class NestCreator : MonoBehaviour
         }
 
         GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
+        nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
         nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
         nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
         nestBase = nestObj.GetComponent<Nest>();
