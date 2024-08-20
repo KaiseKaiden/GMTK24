@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6256585fb4ae27641b7a36a15b30bbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myNoiseOffset: 0
   myTrails:
   - {fileID: 4294375477437690207}
   - {fileID: 1725522626810233518}
@@ -378,9 +379,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f516390e08f044409f496f7cbe32839,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5f516390e08f044409f496f7cbe32839,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fe6809c289bf924429e700dd1accfd92, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 5f516390e08f044409f496f7cbe32839,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 992c5d3b812cb094592a0747e1260482, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f516390e08f044409f496f7cbe32839,
         type: 3}
       propertyPath: m_Name
