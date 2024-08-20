@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
         return myCurrentDistance;
     }
 
+    public float GetFoodScaleFromY(float aY)
+    {
+        return 1.0f * (aY / 300.0f) * 10.0f;
+    }
+
     public void MoonCollected()
     {
         myMoonCollected = true;
