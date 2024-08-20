@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamppost (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -737,6 +742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamppost (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1357,6 +1367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamppost (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4205,6 +4220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamppost
       objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4427,6 +4447,11 @@ PrefabInstance:
     - target: {fileID: 334308534271583891, guid: db0c2066821da2d4c92b78260a912138,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768227895164267785, guid: db0c2066821da2d4c92b78260a912138,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3901349475708658668, guid: db0c2066821da2d4c92b78260a912138,
@@ -5146,6 +5171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamppost (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5833,6 +5863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamppost (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168904677665932997, guid: 11b11d425744c2549890782cc032aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

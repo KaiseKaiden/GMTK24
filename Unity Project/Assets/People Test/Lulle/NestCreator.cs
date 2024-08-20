@@ -23,8 +23,7 @@ public class NestCreator : MonoBehaviour
     public int StartTier = 0;
     private int startTier
     {
-        get
-        {
+        get {
             return Mathf.Clamp(StartTier, 0, 1000);
         }
     }
@@ -32,8 +31,7 @@ public class NestCreator : MonoBehaviour
     public float TierHeight = 0.1f;
     public float tierHeight
     {
-        get
-        {
+        get {
             return Mathf.Clamp(TierHeight, 0.1f, 1000.0f);
         }
     }
