@@ -36,9 +36,7 @@ AnimationClip:
       value: {fileID: 2100000, guid: 657a4474f86a39840ba27c9b255c0aa5, type: 2}
     - time: 0.43333334
       value: {fileID: 2100000, guid: 0f20b8b54fb7d0b47a077890268464c4, type: 2}
-    - time: 0.6666667
-      value: {fileID: 2100000, guid: 0f20b8b54fb7d0b47a077890268464c4, type: 2}
-    attribute: m_Materials.Array.data[1]
+    attribute: m_Materials.Array.data[0]
     path: 
     classID: 23
     script: {fileID: 0}
@@ -52,7 +50,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 1
+      attribute: 0
       script: {fileID: 0}
       typeID: 23
       customType: 21
@@ -68,13 +66,12 @@ AnimationClip:
     - {fileID: 2100000, guid: 0f20b8b54fb7d0b47a077890268464c4, type: 2}
     - {fileID: 2100000, guid: 657a4474f86a39840ba27c9b255c0aa5, type: 2}
     - {fileID: 2100000, guid: 0f20b8b54fb7d0b47a077890268464c4, type: 2}
-    - {fileID: 2100000, guid: 0f20b8b54fb7d0b47a077890268464c4, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.45000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

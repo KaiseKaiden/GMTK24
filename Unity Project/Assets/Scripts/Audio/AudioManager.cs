@@ -65,7 +65,6 @@ public class AudioManager : MonoBehaviour
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(aEventref);
         myEventInstances.Add(eventInstance);
-
         return eventInstance;
     }
 
@@ -73,6 +72,17 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.StudioSystem.setParameterByName(aParameterName, aParameterValue);
     }
+
+    public void SetVolume(float aParameterValue)
+    {
+        RuntimeManager.StudioSystem.setParameterByName("sound_level", aParameterValue);
+    }
+
+    public void SetMusicVolume(float aParameterValue)
+    {
+        RuntimeManager.StudioSystem.setParameterByName("music_level", aParameterValue);
+    }
+
 
     private void InitLoopAudio()
     {
