@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class WindSwirl : MonoBehaviour
@@ -10,16 +7,11 @@ public class WindSwirl : MonoBehaviour
 
     float myMaxHeight = 0f;
 
-
-
     private void Start()
     {
-        
     }
 
     void Update()
     {
-
-
     }
 }

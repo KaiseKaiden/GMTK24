@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -78,7 +80,9 @@ public class NestCreator : MonoBehaviour
 
     public void DelayedBuildObject()
     {
+#if UNITY_EDITOR
         EditorApplication.delayCall += BuildObject;
+#endif
     }
 
     public void Decrement()
@@ -90,6 +94,7 @@ public class NestCreator : MonoBehaviour
 
     public void Increment(GameObject mesh = null, float tierIncrement = 1.0f)
     {
+        print("Increment");
         if (mesh != null)
         {
             listOfPileAssets.Add(mesh);
@@ -120,10 +125,11 @@ public class NestCreator : MonoBehaviour
         }
     }
 
-    public void IncrementObject(GameObject NestNodeParent, float steps = 1.0f)
+    private void IncrementObject(GameObject NestNodeParent, float steps = 1.0f)
     {
         AudioManager.instance.PlayOneshot(FMODEvents.instance.NestGrowEvent, transform.position);
 
+        print("IncrementObject");
         Vector3 positionOffset = spawnPosition.position;
         // positionOffset.y += Mathf.Pow(maxTier, 0.8f) * 0.01f;
 
@@ -136,10 +142,10 @@ public class NestCreator : MonoBehaviour
             nest.myEggCapacity += (int)steps;
             nest.PlayParticleEffect();
         }
-
-        maxTier += (int)steps;
-        for (float tier = maxTier - (int)steps; Mathf.FloorToInt(tier) < maxTier; tier += tierHeight)
+        for (float tier = maxTier - Mathf.FloorToInt(steps); Mathf.FloorToInt(tier) < maxTier + (int)steps;
+             tier += tierHeight)
         {
+            print("Added " + tier);
             GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
             central.name = "Tier " + tier;
             central.transform.position = new Vector3(0, tier, 0) + positionOffset;
