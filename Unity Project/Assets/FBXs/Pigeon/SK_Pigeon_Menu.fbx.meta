@@ -3,7 +3,12 @@ guid: 4e7f00b670fc6e94b91ef9b817d18cf5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Pigeon
+    second: {fileID: 2100000, guid: ca165f05c9ebb7840b083e28ec358522, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -36,7 +41,7 @@ ModelImporter:
       name: Rig_Pigeon_Menu|Pigeon_Eat
       takeName: Rig_Pigeon_Menu|Pigeon_Eat
       internalID: 3518321643968814430
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
