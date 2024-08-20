@@ -94,7 +94,13 @@ public class Nest : MonoBehaviour
 
                 if (myEggCount % 10 == 0) 
                 {
-                    myEggIntervalMultiplier *= 0.95f;
+                    myEggIntervalMultiplier *= 0.875f;
+
+                    if (myEggIntervalMultiplier < 0.15f)
+                    {
+                        myEggIntervalMultiplier = 0.15f;
+                    }
+
                     Debug.Log("MyEggMultiplier: " + myEggIntervalMultiplier);
                 }
             }
