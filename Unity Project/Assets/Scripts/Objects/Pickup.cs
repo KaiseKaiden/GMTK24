@@ -65,7 +65,7 @@ public class Pickup : MonoBehaviour
 
     public void SetOutlineActive()
     {
-        if (myOutlineMaterial != null)
+        if (myOutlineMaterial != null && enabled)
             myOutlineMaterial.SetFloat("_Active", 1.0f);
     }
     public void SetOutlineInactive()
@@ -74,6 +74,10 @@ public class Pickup : MonoBehaviour
             myOutlineMaterial.SetFloat("_Active", 0.0f);
     }
 
+    public void OnDisable()
+    {
+        SetOutlineInactive();
+    }
     private void Update()
     {
         if (myIsDragging)
@@ -133,15 +137,15 @@ public class Pickup : MonoBehaviour
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
 
-            //if (Vector3.Distance(myPlayer.position, position) < 2.0f &&
-            //    myPlayer.GetComponent<PlayerLevel>().GetCurrentLevel() >= GetLevelRequired())
+            // if (Vector3.Distance(myPlayer.position, position) < 2.0f &&
+            //     myPlayer.GetComponent<PlayerLevel>().GetCurrentLevel() >= GetLevelRequired())
             //{
-            //    SetOutlineActive();
-            //}
-            //else
+            //     SetOutlineActive();
+            // }
+            // else
             //{
-            //    SetOutlineInactive();
-            //}
+            //     SetOutlineInactive();
+            // }
         }
 
         // Scale Up
@@ -221,7 +225,7 @@ public class Pickup : MonoBehaviour
     {
         const float c4 = (2.0f * Mathf.PI) / 3.0f;
 
-        return aValue == 0.0f   ? 0.0f
+        return aValue == 0.0f ? 0.0f
                : aValue == 1.0f ? 1.0f
                                 : Mathf.Pow(2.0f, -10.0f * aValue) * Mathf.Sin((aValue * 10.0f - 0.75f) * c4) + 1.0f;
     }
