@@ -132,6 +132,33 @@ MonoBehaviour:
   MinDistance: 10
   MaxDistance: 1000
   Length: 1125
+--- !u!114 &-7206311461490566061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Game_Over
+  m_EditorClassIdentifier: 
+  Path: event:/Game_Over
+  Guid:
+    Data1: -271430777
+    Data2: 1177289117
+    Data3: 106071448
+    Data4: -885641424
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7658
 --- !u!114 &-6566667485185146232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +225,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638597165351607178
+  lastModified: 638597192304163242
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -393,13 +420,14 @@ MonoBehaviour:
   - {fileID: 4624970488975099686}
   - {fileID: -3342353636193116951}
   - {fileID: -3220255969308295420}
+  - {fileID: -7206311461490566061}
   EditorParameters:
   - {fileID: -6566667485185146232}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638597165351621353
+  cacheTime: 638597192304203399
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -579,8 +607,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638597165351621353
+  lastModified: 638597192304203399
   FileSizes:
   - Name: 
-    Value: 1492
+    Value: 1532
   Exists: 1

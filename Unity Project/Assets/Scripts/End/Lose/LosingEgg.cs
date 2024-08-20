@@ -30,6 +30,6 @@ public class LosingEgg : MonoBehaviour
 
         Camera.main.GetComponent<CameraMovement>().SetTargetOtherTransform(Instantiate(myCrackedEggPrefab, collision.GetContact(0).point, Quaternion.identity).transform);
 
-        // Call GameOver State
+        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.GameOverEvent);
     }
 }
