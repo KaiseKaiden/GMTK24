@@ -144,5 +144,6 @@ public class PlayerMovement : MonoBehaviour
         myCanMove = false;
 
         myVelocity.x = 0.0f;
+        myVelocity.y = 0.0f;
     }
 }
