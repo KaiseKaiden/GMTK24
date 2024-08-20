@@ -155,8 +155,10 @@ public class NestCreator : MonoBehaviour
             var bredth = Mathf.Log(tier * obPerTier);
             for (int i = 0; i < bredth; i++)
             {
-                var v2 = Random.insideUnitCircle * tier * bredthMdf;
-                v2.y *= aspectRatio;
+                float angle = Random.Range(0, 360);
+                float x = Mathf.Cos(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                z *= aspectRatio;
                 var obj = Instantiate(GetRandomAsset(), central.transform);
 
                 var components = obj.GetComponents(typeof(UnityEngine.Component));
@@ -168,9 +170,9 @@ public class NestCreator : MonoBehaviour
                     }
                 }
 
-                obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
+                obj.transform.position = new Vector3(x, tier, z) + positionOffset;
                 obj.transform.rotation = Random.rotation;
-                obj.transform.localScale *= objectScale;
+                obj.transform.localScale *= 1 / central.transform.localScale.x;
                 obCount++;
             }
 
