@@ -24,12 +24,18 @@ public class Pickup : MonoBehaviour
 
     Behaviour myBehaviour;
 
+    Vector3 myDeciredScale;
+    float myScaleTimer = 0.0f;
+    bool myHasScaled = false;
+
     private void Start()
     {
         myPlayerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         myRigidbody = GetComponent<Rigidbody>();
         myBehaviour = GetComponent<Behaviour>();
+
+        myDeciredScale = transform.localScale;
     }
     public IEnumerator MoveTowardPoint(Vector3 point)
     {
@@ -88,6 +94,18 @@ public class Pickup : MonoBehaviour
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
+        }
+
+        // Scale Up
+        if (!myHasScaled)
+        {
+            myScaleTimer += Time.deltaTime;
+            transform.localScale = myDeciredScale * EaseOutElastic(Mathf.Clamp01(myScaleTimer));
+
+            if (myScaleTimer >= 1.0f)
+            {
+                myHasScaled = true;
+            }
         }
     }
 
@@ -149,5 +167,12 @@ public class Pickup : MonoBehaviour
     float EaseOutCirc(float aValue)
     {
         return Mathf.Sqrt(1.0f - Mathf.Pow(aValue - 1.0f, 2.0f));
+    }
+
+    float EaseOutElastic(float aValue)
+    {
+        const float c4 = (2.0f * Mathf.PI) / 3.0f;
+
+        return aValue == 0.0f ? 0.0f : aValue == 1.0f ? 1.0f : Mathf.Pow(2.0f, -10.0f * aValue) * Mathf.Sin((aValue * 10.0f - 0.75f) * c4) + 1.0f;
     }
 }

@@ -15,6 +15,9 @@ public class Behaviour : MonoBehaviour
 
     Rigidbody myRigidBody;
 
+    MeshRenderer[] myMeshRenderers;
+    float myBlinkTime;
+
     private void Awake()
     {
         myRigidBody = gameObject.GetComponent<Rigidbody>();
@@ -34,6 +37,8 @@ public class Behaviour : MonoBehaviour
         {
             myVelocity.x = -1f;
         }
+
+        myMeshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
     public virtual void Picked()
@@ -63,7 +68,25 @@ public class Behaviour : MonoBehaviour
 
             if (myTimeAlive >= myKillTime)
             {
-                Destroy(gameObject);
+                float totalBlinkTime = (myTimeAlive - myKillTime) * 4.0f;
+
+                foreach(MeshRenderer m in myMeshRenderers)
+                {
+                    if (((int)totalBlinkTime % 2) == 0)
+                    {
+                        m.enabled = false;
+                    }
+                    else
+                    {
+                        m.enabled = true;
+                    }
+
+                }
+
+                if (totalBlinkTime > 7.0f)
+                {
+                    Destroy(gameObject);
+                }
             }
 
             Move();

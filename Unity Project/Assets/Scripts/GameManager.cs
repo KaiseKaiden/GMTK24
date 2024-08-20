@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public float GetFoodScaleFromY(float aY)
     {
-        return 1.0f * (aY / 300.0f) * 10.0f;
+        return 1.0f + (aY / 300.0f) * 10.0f;
     }
 
     public void MoonCollected()
