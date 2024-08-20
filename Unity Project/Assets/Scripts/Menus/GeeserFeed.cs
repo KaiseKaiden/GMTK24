@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GeeserFeed : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] ParticleSystem myFoodParticle;
 
-    // Update is called once per frame
-    void Update()
+    public void Feed()
     {
-        
+        myFoodParticle.Play();
     }
 }
