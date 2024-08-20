@@ -63,12 +63,12 @@ public class Pickup : MonoBehaviour
         NestCreator.myNestCreator.Increment(gameObject, myNestCapacity);
     }
 
-    void SetOutlineActive()
+    public void SetOutlineActive()
     {
         if (myOutlineMaterial != null)
             myOutlineMaterial.SetFloat("_Active", 1.0f);
     }
-    void SetOutlineInactive()
+    public void SetOutlineInactive()
     {
         if (myOutlineMaterial != null)
             myOutlineMaterial.SetFloat("_Active", 0.0f);
@@ -133,15 +133,15 @@ public class Pickup : MonoBehaviour
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
 
-            if (Vector3.Distance(myPlayer.position, position) < 2.0f &&
-                myPlayer.GetComponent<PlayerLevel>().GetCurrentLevel() >= GetLevelRequired())
-            {
-                SetOutlineActive();
-            }
-            else
-            {
-                SetOutlineInactive();
-            }
+            //if (Vector3.Distance(myPlayer.position, position) < 2.0f &&
+            //    myPlayer.GetComponent<PlayerLevel>().GetCurrentLevel() >= GetLevelRequired())
+            //{
+            //    SetOutlineActive();
+            //}
+            //else
+            //{
+            //    SetOutlineInactive();
+            //}
         }
 
         // Scale Up

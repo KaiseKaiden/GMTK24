@@ -126,6 +126,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-7553519021203501436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Hover
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Hover
+  Guid:
+    Data1: -497590220
+    Data2: 1301572877
+    Data3: 189094576
+    Data4: -1462496114
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 401
 --- !u!114 &-7466970749174533720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +300,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638597517903338040
+  lastModified: 638597634553421237
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -470,6 +497,7 @@ MonoBehaviour:
   - {fileID: -3342353636193116951}
   - {fileID: -3220255969308295420}
   - {fileID: -7206311461490566061}
+  - {fileID: -7553519021203501436}
   EditorParameters:
   - {fileID: -6566667485185146232}
   - {fileID: -8728000135047082176}
@@ -477,7 +505,7 @@ MonoBehaviour:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638597517903348048
+  cacheTime: 638597634553421237
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -682,8 +710,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638597517903348048
+  lastModified: 638597634553421237
   FileSizes:
   - Name: 
-    Value: 1586
+    Value: 1622
   Exists: 1
