@@ -9,10 +9,13 @@ public class UIHandler : MonoBehaviour
     public GameObject myCreditsMenu;
     public GameObject myLeaderboardMenu;
 
+    [SerializeField] GameObject myFadePrefab;
+
     public void StartGame()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
-        SceneManager.LoadScene("MainLevel");
+
+        Instantiate(myFadePrefab);
     }
 
     public void Settings()
