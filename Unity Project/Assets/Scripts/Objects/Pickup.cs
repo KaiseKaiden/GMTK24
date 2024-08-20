@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
@@ -24,26 +26,34 @@ public class Pickup : MonoBehaviour
 
     Behaviour myBehaviour;
 
+    bool haveBeenPicked = false;
+    Transform myPlayer;
+    Material myOutlineMaterial;
     Vector3 myDeciredScale;
     float myScaleTimer = 0.0f;
     bool myHasScaled = false;
 
     private void Start()
     {
-        myPlayerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
+        myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        myPlayerMovement = myPlayer.GetComponent<PlayerMovement>();
         myRigidbody = GetComponent<Rigidbody>();
         myBehaviour = GetComponent<Behaviour>();
 
         myDeciredScale = transform.localScale;
+
+        List<Material> materials = new List<Material>();
+        var renderer = GetComponentInChildren<MeshRenderer>();
+        if (renderer != null)
+        {
+            renderer.GetMaterials(materials);
+            if (materials.Count != 0)
+                myOutlineMaterial = materials.Last();
+        }
     }
     public IEnumerator MoveTowardPoint(Vector3 point)
     {
-        myRigidbody.useGravity = false;
-        myIsDragging = false;
-        myRigidbody.isKinematic = true;
-        GetComponent<Pickup>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
         float maxTime = Time.time + 10;
         while ((point - transform.position).sqrMagnitude > 1.0f && maxTime > Time.time)
         {
@@ -52,10 +62,24 @@ public class Pickup : MonoBehaviour
         }
         NestCreator.myNestCreator.Increment(gameObject, myNestCapacity);
     }
+
+    void SetOutlineActive()
+    {
+        if (myOutlineMaterial != null)
+            myOutlineMaterial.SetFloat("_Active", 1.0f);
+    }
+    void SetOutlineInactive()
+    {
+        if (myOutlineMaterial != null)
+            myOutlineMaterial.SetFloat("_Active", 0.0f);
+    }
+
     private void Update()
     {
         if (myIsDragging)
         {
+            haveBeenPicked = true;
+            SetOutlineInactive();
             if (tag != "Moon")
             {
                 myPerlinX += Time.deltaTime;
@@ -78,22 +102,46 @@ public class Pickup : MonoBehaviour
         }
         else
         {
-            if (myRigidbody.velocity.sqrMagnitude > .1f)
+            if (haveBeenPicked)
             {
                 Ray ray = new Ray(transform.position, Vector3.forward * 100.0f);
                 var arg = Physics.Raycast(ray, out RaycastHit hit, 1000.0f, LayerMask.GetMask("Nest"));
                 if (arg)
                 {
+                    SetOutlineInactive();
 
+                    myRigidbody.useGravity = false;
+                    myIsDragging = false;
+                    myRigidbody.isKinematic = true;
+                    var components = gameObject.GetComponents(typeof(UnityEngine.Component));
+                    foreach (Component comp in components)
                     {
-                        StartCoroutine(MoveTowardPoint(hit.point));
+                        if (comp is not Transform && comp is not MeshFilter && comp is not MeshRenderer &&
+                            comp is not Pickup)
+                        {
+                            Destroy(comp);
+                        }
                     }
+
+                    enabled = false;
+                    StartCoroutine(MoveTowardPoint(hit.point));
+                    return;
                 }
             }
 
             var position = transform.position;
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = Vector3.Lerp(transform.position, position, 3.5f * Time.deltaTime);
+
+            if (Vector3.Distance(myPlayer.position, position) < 2.0f &&
+                myPlayer.GetComponent<PlayerLevel>().GetCurrentLevel() >= GetLevelRequired())
+            {
+                SetOutlineActive();
+            }
+            else
+            {
+                SetOutlineInactive();
+            }
         }
 
         // Scale Up
@@ -173,6 +221,8 @@ public class Pickup : MonoBehaviour
     {
         const float c4 = (2.0f * Mathf.PI) / 3.0f;
 
-        return aValue == 0.0f ? 0.0f : aValue == 1.0f ? 1.0f : Mathf.Pow(2.0f, -10.0f * aValue) * Mathf.Sin((aValue * 10.0f - 0.75f) * c4) + 1.0f;
+        return aValue == 0.0f   ? 0.0f
+               : aValue == 1.0f ? 1.0f
+                                : Mathf.Pow(2.0f, -10.0f * aValue) * Mathf.Sin((aValue * 10.0f - 0.75f) * c4) + 1.0f;
     }
 }
