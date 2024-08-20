@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
         instance = this;
 
         myEventInstances = new List<EventInstance>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
