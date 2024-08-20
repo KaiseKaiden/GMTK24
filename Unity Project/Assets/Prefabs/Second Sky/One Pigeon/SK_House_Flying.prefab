@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf9aa825560767488a11c507f2b2612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySwayLength: 30
+  mySwayLength: 0
 --- !u!4 &1066825464894717395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f2c97d09fb73024c9e647c31dee36f1,
