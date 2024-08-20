@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: NestCreator
   m_TagString: Nest
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56,18 +56,18 @@ MonoBehaviour:
   - {fileID: 1120513957817468194, guid: 1764d86e0d9289a48ae06539238748fb, type: 3}
   - {fileID: 1120513957817468194, guid: ff483a4aa7450d44b9ae7f84395953bd, type: 3}
   - {fileID: 1120513957817468194, guid: a699092407605c043b659ce3e966019a, type: 3}
-  maxTier: 3
+  maxTier: 4
   bredthMdf: 0.4
   obPerTier: 4.97
   aspectRatio: 1
-  StartTier: 0
-  TierHeight: 0.1
+  StartTier: 1
+  TierHeight: 1
   globalScale: 0.55
   centerScale: 0.39
   objectScale: 0.5
   woodScale: 0.8
   spawnPosition: {fileID: 8190045946773233922}
-  obCount: 354
+  obCount: 43
 --- !u!1 &8826880926685839420
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 8826880926685839420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.87, y: 2.652, z: 1}
+  m_LocalPosition: {x: 2.87, y: 2.652, z: 1.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

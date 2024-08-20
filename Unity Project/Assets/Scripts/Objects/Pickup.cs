@@ -74,14 +74,13 @@ public class Pickup : MonoBehaviour
         {
             if (myRigidbody.velocity.sqrMagnitude > .1f)
             {
-                Ray ray = new Ray(transform.position, Vector3.forward);
-                var arg = Physics.RaycastAll(ray, 1000.0f);
-                foreach (var hit in arg)
+                Ray ray = new Ray(transform.position, Vector3.forward * 100.0f);
+                var arg = Physics.Raycast(ray, out RaycastHit hit, 1000.0f, LayerMask.GetMask("Nest"));
+                if (arg)
                 {
-                    if (hit.transform.CompareTag("NestDropPoint"))
+
                     {
                         StartCoroutine(MoveTowardPoint(hit.point));
-                        break;
                     }
                 }
             }
