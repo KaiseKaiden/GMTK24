@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290ba29dac5e428499f7daa65e8eb797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySpawningInterval: 2.93
+  mySpawningInterval: 3.79
   myMinSpawningDistance: 10
   myMaxSpawningDistance: 30
   mySkyBoxMaterial: {fileID: 2100000, guid: a9439f0fad46ea64c9543b4bc3b1ce14, type: 2}

@@ -54,6 +54,54 @@ MonoBehaviour:
   MinDistance: 10
   MaxDistance: 1000
   Length: 2427
+--- !u!114 &-8728000135047082176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music.on_off
+  m_EditorClassIdentifier: 
+  Name: music.on_off
+  StudioPath: parameter:/music.on_off
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 2717611305
+    data2: 799692467
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-7791305957576173154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/music.on_off
+  m_EditorClassIdentifier: 
+  Name: music.on_off
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 2717611305
+    data2: 799692467
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-7596793295643051874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +273,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638597192304163242
+  lastModified: 638597480433366193
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -253,6 +301,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -439436418825045079}
+  - {fileID: 6135755698626063977}
   MinDistance: 1
   MaxDistance: 20
   Length: 30000
@@ -423,11 +472,12 @@ MonoBehaviour:
   - {fileID: -7206311461490566061}
   EditorParameters:
   - {fileID: -6566667485185146232}
+  - {fileID: -8728000135047082176}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638597192304203399
+  cacheTime: 638597480433366193
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -481,6 +531,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -7596793295643051874}
+  - {fileID: -7791305957576173154}
   MinDistance: 1
   MaxDistance: 20
   Length: 78930
@@ -538,6 +589,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 9407
+--- !u!114 &6135755698626063977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambiance/music.on_off
+  m_EditorClassIdentifier: 
+  Name: music.on_off
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 2717611305
+    data2: 799692467
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6572875409597909903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,8 +682,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638597192304203399
+  lastModified: 638597480433366193
   FileSizes:
   - Name: 
-    Value: 1532
+    Value: 1586
   Exists: 1
