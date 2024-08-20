@@ -16,7 +16,19 @@ public class PauseMenu : MonoBehaviour
         {
             myPauseMenu.SetActive(false);
         }
+
+        Time.timeScale = 1f;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0f;
+            myPauseMenu.SetActive(true);
+        }
+    }
+
     public void Settings()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.SettingsButtonEvent);
@@ -29,15 +41,10 @@ public class PauseMenu : MonoBehaviour
         myLeaderboardMenu.SetActive(true);
     }
 
-    public void Credits()
-    {
-        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.CreditButtonEvent);
-        myCreditsMenu.SetActive(true);
-    }
-
     public void MainMenu()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -45,15 +52,12 @@ public class PauseMenu : MonoBehaviour
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.BirdWingFlapEvent);
         myPauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void CloseMenu(string aMenuName)
     {
-        if (aMenuName == "Credits")
-        {
-            myCreditsMenu.SetActive(false);
-        }
-        else if (aMenuName == "Leaderboard")
+        if (aMenuName == "Leaderboard")
         {
             myLeaderboardMenu.SetActive(false);
         }
