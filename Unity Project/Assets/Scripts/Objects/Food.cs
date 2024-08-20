@@ -17,12 +17,12 @@ public class Food : MonoBehaviour
     Transform myPlayer;
     Material myOutlineMaterial;
 
-    void SetOutlineActive()
+    public void SetOutlineActive()
     {
         if (myOutlineMaterial != null)
             myOutlineMaterial.SetFloat("_Active", 1.0f);
     }
-    void SetOutlineInactive()
+    public void SetOutlineInactive()
     {
         if (myOutlineMaterial != null)
             myOutlineMaterial.SetFloat("_Active", 0.0f);
@@ -57,14 +57,14 @@ public class Food : MonoBehaviour
         position.z = GameManager.Instance.GetZFromY(transform.position.y);
         transform.position = position;
 
-        if (Vector3.Distance(myPlayer.position, position) < 2.0f)
-        {
-            SetOutlineActive();
-        }
-        else
-        {
-            SetOutlineInactive();
-        }
+        //if (Vector3.Distance(myPlayer.position, position) < 2.0f)
+        //{
+        //    SetOutlineActive();
+        //}
+        //else
+        //{
+        //    SetOutlineInactive();
+        //}
 
         // Scale Up
         myScaleTimer += Time.deltaTime;
