@@ -91,6 +91,12 @@ public class Nest : MonoBehaviour
                     // Create Egg & set camera target to it
                     Camera.main.GetComponent<CameraMovement>().SetTargetOtherTransform(Instantiate(myLoosingEggPrefab, transform.position, Quaternion.identity).transform);
                 }
+
+                if (myEggCount % 10 == 0) 
+                {
+                    myEggIntervalMultiplier *= 0.95f;
+                    Debug.Log("MyEggMultiplier: " + myEggIntervalMultiplier);
+                }
             }
 
             ChangeText(myEggCount.ToString() + "/" + myEggCapacity.ToString());
