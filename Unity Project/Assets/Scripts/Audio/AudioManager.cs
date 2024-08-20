@@ -75,12 +75,12 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float aParameterValue)
     {
-        RuntimeManager.StudioSystem.setParameterByName("Volume", aParameterValue);
+        RuntimeManager.StudioSystem.setParameterByName("sound_level", aParameterValue);
     }
 
     public void SetMusicVolume(float aParameterValue)
     {
-        RuntimeManager.StudioSystem.setParameterByName("Music", aParameterValue);
+        RuntimeManager.StudioSystem.setParameterByName("music_level", aParameterValue);
     }
 
 
