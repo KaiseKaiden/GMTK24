@@ -80,9 +80,9 @@ public class FoodSpawner : MonoBehaviour
     Vector3 GetRndPosOutsideCamera()
     {
         float zPos = myPlayerTransform.position.z;
-        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance, myMaxSpawningDistance);
+        float extraCameraZoomvalue = (-10.0f - Camera.main.transform.position.z);
+        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance + extraCameraZoomvalue, myMaxSpawningDistance + extraCameraZoomvalue);
         Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos) + myPlayerTransform.position;
-        Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
         return Rndpos;
     }
 }
