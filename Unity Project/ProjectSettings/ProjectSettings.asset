@@ -13,8 +13,8 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Smog
-  productName: Smog GMTK 2024
-  defaultCursor: {fileID: 0}
+  productName: NestUp!
+  defaultCursor: {fileID: 2800000, guid: ec52b6e2d17b26d4285ab408a7f3b592, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -45,6 +45,8 @@ PlayerSettings:
   - logo: {fileID: 21300000, guid: f19439f30c3f7ff4bb0a3270fb1e619b, type: 3}
     duration: 2
   - logo: {fileID: 21300000, guid: 6e64ce94fb4b720489fb1e07087b2746, type: 3}
+    duration: 2
+  - logo: {fileID: 21300000, guid: 4362e6540b0819a4eb48fa0df2e6b9ef, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -295,7 +297,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3eb267577868f8644962ee9a0a6befd3, type: 3}
+      m_Icon: {fileID: 2800000, guid: 9b186e0c2d4a6a749983641b710dd1fd, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
