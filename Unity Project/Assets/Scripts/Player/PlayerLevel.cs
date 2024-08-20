@@ -12,11 +12,16 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] Image myHungerbarUI;
     [SerializeField] RectTransform myHungerbarTransform;
 
+    [SerializeField] private TrailRenderer[] myTrails;
+    float myStartWidth;
+
     int myCurrentLevel = 1;
 
     void Start()
     {
         AddXp(0.0f);
+
+        myStartWidth = myTrails[0].widthMultiplier;
     }
 
     void Update()
@@ -40,6 +45,11 @@ public class PlayerLevel : MonoBehaviour
             myMaxXp = Mathf.Pow(myMaxXp, myXpExpo);
 
             transform.localScale += Vector3.one;
+
+            foreach(TrailRenderer t in myTrails)
+            {
+                t.widthMultiplier = myStartWidth * transform.localScale.x * 0.5f;
+            }
         }
 
         myHungerbarUI.fillAmount = 1.0f - (myXp / myMaxXp);
