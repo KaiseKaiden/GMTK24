@@ -61,7 +61,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7610885559186658152}
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 5309966623850299078}
-  myNestCapacity: 2
-  myLevelRequred: 2
+  myNestCapacity: 5
+  myLevelRequred: 3
 --- !u!114 &979262913476469169
 MonoBehaviour:
   m_ObjectHideFlags: 0

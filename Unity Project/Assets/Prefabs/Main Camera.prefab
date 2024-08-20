@@ -252,6 +252,13 @@ MonoBehaviour:
       Data3: -409951558
       Data4: -2080575661
     Path: event:/Earth_Explode
+  <GameOverEvent>k__BackingField:
+    Guid:
+      Data1: -271430777
+      Data2: 1177289117
+      Data3: 106071448
+      Data4: -885641424
+    Path: event:/Game_Over
   <CreditButtonEvent>k__BackingField:
     Guid:
       Data1: 805168088

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7999972808749511510}
-  - component: {fileID: 1425646098953303255}
   m_Layer: 0
   m_Name: Second_Sky_1P_2
   m_TagString: Untagged
@@ -33,18 +32,6 @@ Transform:
   - {fileID: 9025847340063999385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1425646098953303255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132330280571024359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8ead01559c71241a5e21f0b5581637, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8847595421583155826
 PrefabInstance:
   m_ObjectHideFlags: 0
