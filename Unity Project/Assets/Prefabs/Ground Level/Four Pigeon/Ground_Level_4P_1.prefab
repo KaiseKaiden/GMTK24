@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 3399339815122592593}
-  myNestCapacity: 4
-  myLevelRequred: 4
+  myNestCapacity: 6
+  myLevelRequred: 3
 --- !u!1 &8116763631271347039
 GameObject:
   m_ObjectHideFlags: 0

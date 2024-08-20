@@ -26,7 +26,7 @@ public class Moon : MonoBehaviour
     {
         transform.eulerAngles += new Vector3(0.0f, mySpinnSpeed, 0.0f) * Time.deltaTime;
 
-        if (transform.position.y < 100.0f)
+        if (transform.position.y < 200.0f)
         {
             myCameraMovement.SetShakeIntencity(1.5f);
 

@@ -4961,8 +4961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 6627392779957902833}
   myNestCapacity: 10
-  myLevelRequred: 5
-  myPickupDistance: 2
+  myLevelRequred: 3
 --- !u!1001 &2796790664231965430
 PrefabInstance:
   m_ObjectHideFlags: 0
