@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Nest : MonoBehaviour
 {
+    [SerializeField] GameObject myLoosingEggPrefab;
+
 
     public ParticleSystem UpgradeEffect;
     [SerializeField]
@@ -68,27 +70,28 @@ public class Nest : MonoBehaviour
 
     private void Update()
     {
-        myEggTimer += Time.deltaTime;
-
-        if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
+        if (!GameManager.Instance.GetIsGameOver() && !GameManager.Instance.GetIsMoonCollected())
         {
-            SpawnEgg();
+            myEggTimer += Time.deltaTime;
 
-            myEggCount++;
-            myEggTimer = 0f;
-
-            if (myEggCount > myEggCapacity)
+            if (myEggTimer >= myEggInterval * myEggIntervalMultiplier)
             {
-                Debug.Log("You Lost");
+                SpawnEgg();
+
+                myEggCount++;
+                myEggTimer = 0f;
+
+                if (myEggCount > myEggCapacity)
+                {
+                    GameManager.Instance.GameOver();
+                    
+                    // Create Egg & set camera target to it
+                    Camera.main.GetComponent<CameraMovement>().SetTargetOtherTransform(Instantiate(myLoosingEggPrefab, transform.position, Quaternion.identity).transform);
+                }
             }
-        }
 
-        if (IsObjectOutsideCameraView())
-        {
-            Debug.Log("GAME OVER");
+            ChangeText(myEggCount.ToString() + "/" + myEggCapacity.ToString());
         }
-
-        ChangeText(myEggCount.ToString() + "/" + myEggCapacity.ToString());
     }
 
     private void SpawnEgg()
@@ -104,15 +107,6 @@ public class Nest : MonoBehaviour
         egg.transform.position = nextEggPos + transform.position;
         myDoveTransform.position = egg.transform.position;
         AudioManager.instance.PlayOneshot(FMODEvents.instance.SpawnEggEvent, transform.position);
-    }
-
-    private bool IsObjectOutsideCameraView()
-    {
-        Camera mainCamera = Camera.main;
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
-        Renderer renderer = GetComponent<Renderer>();
-
-        return !GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 
     public Vector3 GetEggPosition(int anEggCount)

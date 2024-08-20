@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     bool myMoonCollected;
     float myCurrentDistance;
 
+    bool myIsGameOver = false;
+
     void Start()
     {
         GameManager.Instance = this;
@@ -41,5 +43,20 @@ public class GameManager : MonoBehaviour
     public void MoonCollected()
     {
         myMoonCollected = true;
+    }
+
+    public void GameOver()
+    {
+        myIsGameOver = true;
+    }
+
+    public bool GetIsGameOver()
+    {
+        return myIsGameOver;
+    }
+
+    public bool GetIsMoonCollected()
+    {
+        return myMoonCollected;
     }
 }

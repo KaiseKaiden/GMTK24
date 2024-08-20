@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2316954029775191825}
   - component: {fileID: 3586460833547904128}
   m_Layer: 5
-  m_Name: End Canvas
+  m_Name: Fade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -202,7 +202,7 @@ Animator:
   m_GameObject: {fileID: 2639250645216886632}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e2d824a8079ab5c479e0a745c9e72c95, type: 2}
+  m_Controller: {fileID: 9100000, guid: bb4321033f010274ba1c56760b522162, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

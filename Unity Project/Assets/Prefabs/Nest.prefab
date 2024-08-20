@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4739118d0b7048d428d02bf3ada279b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLoosingEggPrefab: {fileID: 6352316703345982890, guid: bf5d8e64ac5d7b74e83199c4774db9ac,
+    type: 3}
   UpgradeEffect: {fileID: 56035645025690647, guid: 0be2301a4330a8d4b9dde7fe4117a0f4,
     type: 3}
   myEggCapacity: 2

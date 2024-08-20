@@ -34,99 +34,99 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Flap
-        if (myCanMove)
+        if (!GameManager.Instance.GetIsGameOver())
         {
-            if (Input.GetMouseButtonDown(0))
+            // Flap
+            if (myCanMove)
             {
-                Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                direction.z = 0.0f;
-                direction.Normalize();
-
-                myVelocity = direction * myForce * transform.localScale.x;
-
-                myWingFlapPart.Play();
-
-                AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent, transform.position);
-
-                GetComponent<PlayersRigidbody>().Flapp();
-            }
-        }
-
-        // Gravity
-        myVelocity.y -= myGravity * Time.deltaTime;
-        if (myVelocity.y < -myMaxFallSpeed)
-        {
-            myVelocity.y = -myMaxFallSpeed;
-        }
-
-        // Glide
-        if (myCanMove)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                if (myVelocity.y < -myMaxGlideSpeed)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    myVelocity.y = -myMaxGlideSpeed;
+                    Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                    direction.z = 0.0f;
+                    direction.Normalize();
 
-                    // Add Glide Speed
-                    float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
-                    if (directionX < 0) directionX = -1.0f;
-                    if (directionX > 0) directionX = 1.0f;
+                    myVelocity = direction * myForce * transform.localScale.x;
 
-                    myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
-                    myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
+                    myWingFlapPart.Play();
 
-                    foreach (TrailRenderer t in myTrails)
+                    AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent, transform.position);
+
+                    GetComponent<PlayersRigidbody>().Flapp();
+                }
+            }
+
+            // Gravity
+            myVelocity.y -= myGravity * Time.deltaTime;
+            if (myVelocity.y < -myMaxFallSpeed)
+            {
+                myVelocity.y = -myMaxFallSpeed;
+            }
+
+            // Glide
+            if (myCanMove)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    if (myVelocity.y < -myMaxGlideSpeed)
                     {
-                        t.emitting = true;
+                        myVelocity.y = -myMaxGlideSpeed;
+
+                        // Add Glide Speed
+                        float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
+                        if (directionX < 0) directionX = -1.0f;
+                        if (directionX > 0) directionX = 1.0f;
+
+                        myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
+                        myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
+
+                        foreach (TrailRenderer t in myTrails)
+                        {
+                            t.emitting = true;
+                        }
                     }
                 }
             }
-        }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            foreach (TrailRenderer t in myTrails)
+            if (Input.GetMouseButtonUp(0))
             {
-                t.emitting = false;
+                foreach (TrailRenderer t in myTrails)
+                {
+                    t.emitting = false;
+                }
             }
-        }
 
-        if (myController.isGrounded)
-        {
-            if (myVelocity.y < 0.0f)
+            if (myController.isGrounded)
             {
-                myVelocity = Vector3.Lerp(myVelocity, Vector3.zero, 5.0f * Time.deltaTime);
+                if (myVelocity.y < 0.0f)
+                {
+                    myVelocity = Vector3.Lerp(myVelocity, Vector3.zero, 5.0f * Time.deltaTime);
+                    myVelocity.y = -0.5f;
+                }
+
+                myLookDirection = new Vector3(0.0f, 0.0f, -1.0f);
+            }
+            else
+            {
+                myLookDirection = myVelocity.normalized;
+            }
+
+            myController.Move(myVelocity * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
+            var position = transform.position;
+
+            float widthLimit = GameManager.Instance.GetXLimitFromY(position.y);
+            position.x = Mathf.Clamp(position.x, -widthLimit, widthLimit);
+
+            position.y = Mathf.Clamp(position.y, 0.0f, myYPositionLimit);
+
+            if (position.y >= myYPositionLimit)
+            {
                 myVelocity.y = -0.5f;
             }
 
-            myLookDirection = new Vector3(0.0f, 0.0f, -1.0f);
+            position.z = GameManager.Instance.GetZFromY(transform.position.y);
+            transform.position = position;
         }
-        else
-        {
-            myLookDirection = myVelocity.normalized;
-        }
-
-        myController.Move(myVelocity * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
-        var position = transform.position;
-
-        float widthLimit = GameManager.Instance.GetXLimitFromY(position.y);
-        position.x = Mathf.Clamp(position.x, -widthLimit, widthLimit);
-
-        position.y = Mathf.Clamp(position.y, 0.0f, myYPositionLimit);
-
-        if (position.y >= myYPositionLimit)
-        {
-            myVelocity.y = -0.5f;
-        }
-
-        position.z = GameManager.Instance.GetZFromY(transform.position.y);
-        transform.position = position;
-
-        // Change Skybox Material
-        RenderSettings.skybox.SetFloat("_TestHeight", transform.position.y);
     }
 
     public Transform GetRightLeg()

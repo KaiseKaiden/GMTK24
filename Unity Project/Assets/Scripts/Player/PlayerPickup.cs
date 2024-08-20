@@ -21,96 +21,99 @@ public class PlayerPickup : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (!GameManager.Instance.GetIsGameOver() || !GameManager.Instance.GetIsMoonCollected())
         {
-            float closestDistance = Mathf.Infinity;
-            Food food = null;
-            bool isFood = false;
-            bool foundSomething = false;
-
-            Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius * transform.localScale.x, myPickupLayer);
-            foreach (Collider c in colliders)
+            if (Input.GetMouseButtonDown(1))
             {
-                float distance = (c.ClosestPoint(transform.position) - transform.position).magnitude;//(c.transform.position - transform.position).magnitude;
-                Pickup pickup = c.GetComponent<Pickup>();
+                float closestDistance = Mathf.Infinity;
+                Food food = null;
+                bool isFood = false;
+                bool foundSomething = false;
 
-                if (pickup != null && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                Collider[] colliders = Physics.OverlapSphere(transform.position, myPickupRadius * transform.localScale.x, myPickupLayer);
+                foreach (Collider c in colliders)
                 {
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        myHeldPickup = pickup;
+                    float distance = (c.ClosestPoint(transform.position) - transform.position).magnitude;//(c.transform.position - transform.position).magnitude;
+                    Pickup pickup = c.GetComponent<Pickup>();
 
-                        isFood = false;
-                        foundSomething = true;
+                    if (pickup != null && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                    {
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            myHeldPickup = pickup;
+
+                            isFood = false;
+                            foundSomething = true;
+                        }
+                    }
+                    else
+                    {
+                        if (distance < closestDistance && c.tag == "Food")
+                        {
+                            closestDistance = distance;
+                            food = c.GetComponent<Food>();
+
+                            isFood = true;
+                            foundSomething = true;
+                        }
+                    }
+
+                    // if (distance < closestDistance)
+                    //{
+                    //     if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
+                    //     {
+                    //         closestDistance = distance;
+                    //         myHeldPickup = pickup;
+
+                    //        isFood = false;
+                    //    }
+                    //    else
+                    //    {
+                    //        food = c.GetComponent<Food>();
+
+                    //        isFood = true;
+                    //    }
+
+                    //    foundSomething = true;
+                    //}
+                }
+
+                if (foundSomething)
+                {
+                    if (isFood)
+                    {
+                        food.Eat();
+                    }
+                    else
+                    {
+                        myHeldPickup.Pick();
+
+                        myHeldPickup.transform.SetParent(myPlayerMovement.GetRightLeg());
+
+                        if (myHeldPickup.gameObject.tag == "Moon")
+                        {
+                            myHeldPickup.GetComponent<SphereCollider>().enabled = false;
+                            myPlayerMovement.DeactivateMovement();
+                            GameManager.Instance.MoonCollected();
+                            myPlayerLevel.enabled = false;
+                            this.enabled = false;
+
+                            AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.MoonCrashEvent);
+                        }
                     }
                 }
-                else
-                {
-                    if (distance < closestDistance && c.tag == "Food")
-                    {
-                        closestDistance = distance;
-                        food = c.GetComponent<Food>();
-
-                        isFood = true;
-                        foundSomething = true;
-                    }
-                }
-
-                // if (distance < closestDistance)
-                //{
-                //     if (c.tag == "Pickup" && myPlayerLevel.GetCurrentLevel() >= pickup.GetLevelRequired())
-                //     {
-                //         closestDistance = distance;
-                //         myHeldPickup = pickup;
-
-                //        isFood = false;
-                //    }
-                //    else
-                //    {
-                //        food = c.GetComponent<Food>();
-
-                //        isFood = true;
-                //    }
-
-                //    foundSomething = true;
-                //}
             }
 
-            if (foundSomething)
+            if (Input.GetMouseButtonUp(1))
             {
-                if (isFood)
+                if (myHeldPickup != null)
                 {
-                    food.Eat();
+                    myHeldPickup.Drop();
+
+                    myHeldPickup.transform.SetParent(null);
+                    myHeldPickup = null;
                 }
-                else
-                {
-                    myHeldPickup.Pick();
-
-                    myHeldPickup.transform.SetParent(myPlayerMovement.GetRightLeg());
-
-                    if (myHeldPickup.gameObject.tag == "Moon")
-                    {
-                        myHeldPickup.GetComponent<SphereCollider>().enabled = false;
-                        myPlayerMovement.DeactivateMovement();
-                        GameManager.Instance.MoonCollected();
-                        myPlayerLevel.enabled = false;
-                        this.enabled = false;
-
-                        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.MoonCrashEvent);
-                    }
-                }
-            }
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            if (myHeldPickup != null)
-            {
-                myHeldPickup.Drop();
-
-                myHeldPickup.transform.SetParent(null);
-                myHeldPickup = null;
             }
         }
     }
