@@ -104,6 +104,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 3254162192767642467, guid: 6f2c97d09fb73024c9e647c31dee36f1,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254162192767642467, guid: 6f2c97d09fb73024c9e647c31dee36f1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac44083b99361834e8a95f35ffb81840, type: 2}
+    - target: {fileID: 3254162192767642467, guid: 6f2c97d09fb73024c9e647c31dee36f1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 992c5d3b812cb094592a0747e1260482, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

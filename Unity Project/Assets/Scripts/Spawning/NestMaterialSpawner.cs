@@ -7,7 +7,7 @@ public class NestMaterialSpawner : MonoBehaviour
     float mySky2Level = 0f;
     float mySpaceLevel = 0f;
 
-    [SerializeField] float mySpawningInterval = 3f;
+    [SerializeField] float mySpawningInterval = 1f;
     [SerializeField] float myMinSpawningDistance = 10f;
     [SerializeField] float myMaxSpawningDistance = 30f;
 
@@ -184,10 +184,17 @@ public class NestMaterialSpawner : MonoBehaviour
 
     Vector3 GetRndPosOutsideCamera()
     {
-        float zPos = myPlayerTransform.position.z;
-        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance, myMaxSpawningDistance);
-        Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos) + myPlayerTransform.position;
-        Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
-        return Rndpos;
+        //float zPos = myPlayerTransform.position.z;
+        //Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance, myMaxSpawningDistance);
+        //Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos) + myPlayerTransform.position;
+        //Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
+        //return Rndpos;
+
+        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Random.Range(0.0f, Screen.height), myPlayerTransform.position.z));
+        float width = GameManager.Instance.GetXLimitFromY(myPlayerTransform.position.y);
+        screenPosition.x = Random.Range(-width, width);
+        screenPosition.z = GameManager.Instance.GetZFromY(screenPosition.y);
+
+        return screenPosition;
     }
 }
