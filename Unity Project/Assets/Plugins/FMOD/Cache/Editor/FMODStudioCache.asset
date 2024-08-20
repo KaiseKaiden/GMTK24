@@ -300,7 +300,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638597634553421237
+  lastModified: 638597699793935673
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -329,6 +329,7 @@ MonoBehaviour:
   Parameters:
   - {fileID: -439436418825045079}
   - {fileID: 6135755698626063977}
+  - {fileID: 2597836511323226731}
   MinDistance: 1
   MaxDistance: 20
   Length: 30000
@@ -386,6 +387,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 920
+--- !u!114 &-1850321057263624993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/sound_level
+  m_EditorClassIdentifier: 
+  Name: sound_level
+  StudioPath: parameter:/sound_level
+  Min: 0
+  Max: 100
+  Default: 100
+  ID:
+    data1: 24170702
+    data2: 3539379408
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-830009185184637764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,11 +526,13 @@ MonoBehaviour:
   EditorParameters:
   - {fileID: -6566667485185146232}
   - {fileID: -8728000135047082176}
+  - {fileID: -1850321057263624993}
+  - {fileID: 6889970058002034013}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638597634553421237
+  cacheTime: 638597699793995657
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -560,6 +587,7 @@ MonoBehaviour:
   Parameters:
   - {fileID: -7596793295643051874}
   - {fileID: -7791305957576173154}
+  - {fileID: 8436063154380750658}
   MinDistance: 1
   MaxDistance: 20
   Length: 78930
@@ -590,6 +618,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 667
+--- !u!114 &2597836511323226731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambiance/sound_level
+  m_EditorClassIdentifier: 
+  Name: sound_level
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 100
+  ID:
+    data1: 24170702
+    data2: 3539379408
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &4624970488975099686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +720,54 @@ MonoBehaviour:
   MinDistance: 10
   MaxDistance: 1000
   Length: 10040
+--- !u!114 &6889970058002034013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_level
+  m_EditorClassIdentifier: 
+  Name: music_level
+  StudioPath: parameter:/music_level
+  Min: 0
+  Max: 100
+  Default: 100
+  ID:
+    data1: 886103857
+    data2: 1448074350
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &8436063154380750658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/music_level
+  m_EditorClassIdentifier: 
+  Name: music_level
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 100
+  ID:
+    data1: 886103857
+    data2: 1448074350
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &8625211199582853454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,8 +810,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638597634553421237
+  lastModified: 638597699793995657
   FileSizes:
   - Name: 
-    Value: 1622
+    Value: 1750
   Exists: 1
