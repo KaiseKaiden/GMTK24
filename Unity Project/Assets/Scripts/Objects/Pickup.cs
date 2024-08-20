@@ -78,6 +78,7 @@ public class Pickup : MonoBehaviour
     {
         SetOutlineInactive();
     }
+
     private void Update()
     {
         if (myIsDragging)
@@ -213,6 +214,11 @@ public class Pickup : MonoBehaviour
 
     public int GetLevelRequired()
     {
+        if (!myHasScaled)
+        {
+            return 10000;
+        }
+
         return myLevelRequred;
     }
 
