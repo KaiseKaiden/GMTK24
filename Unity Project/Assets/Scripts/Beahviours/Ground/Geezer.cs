@@ -16,6 +16,20 @@ public class Geezer : Behaviour
         myMoveSpeed = 0.35f;
     }
 
+    public override void Picked()
+    {
+        base.Picked();
+
+        GetComponent<Animator>().SetBool("Picked", true);
+    }
+
+    public override void Dropped()
+    {
+        base.Dropped();
+
+        GetComponent<Animator>().SetBool("Picked", false);
+    }
+
     public override void Move()
     {
         base.Move();
