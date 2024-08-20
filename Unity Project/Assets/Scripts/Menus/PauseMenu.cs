@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject myPauseMenu;
-    public GameObject myCreditsMenu;
     public GameObject mySettingsMenu;
     public GameObject myLeaderboardMenu;
 
