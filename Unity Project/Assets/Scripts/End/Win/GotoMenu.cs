@@ -25,6 +25,7 @@ public class GotoMenu : MonoBehaviour
 
     public void Clear()
     {
+        AudioManager.instance.SetWorldParameter("music.on_off", 1.0f);
         Destroy(myRootObject);
     }
 }

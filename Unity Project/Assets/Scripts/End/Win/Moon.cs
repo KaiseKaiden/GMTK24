@@ -33,7 +33,7 @@ public class Moon : MonoBehaviour
             myIntensity = Mathf.Lerp(myIntensity, 1.0f, Time.deltaTime * 2.2f);
             myEffectMaterial.SetFloat("_Intensity", myIntensity);
 
-            //AudioManager.instance.SetWorldParameter("music.on_off", 1.0f);
+            AudioManager.instance.SetWorldParameter("music.on_off", 0.0f);
 
             myEffectObject.SetActive(true);
         }

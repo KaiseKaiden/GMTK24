@@ -49,6 +49,7 @@ public class Food : MonoBehaviour
 
             // Create Balloon
             GameObject balloon = Instantiate(myFoodBalloonPrefab, transform.position, Quaternion.identity);
+            balloon.transform.localScale = transform.localScale;
             balloon.transform.SetParent(transform);
         }
         else
