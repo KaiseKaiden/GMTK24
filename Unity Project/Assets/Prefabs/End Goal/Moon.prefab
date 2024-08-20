@@ -64,7 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5195644675224864303}
+  - {fileID: 7189375532561826255}
   - {fileID: 1782317804932583776}
   - {fileID: 5990061466837983967}
   m_Father: {fileID: 0}
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySpinnSpeed: 2.5
-  myGameOverAnimator: {fileID: 0}
   myEffectMaterial: {fileID: 2100000, guid: 8765f9a86057dcc4597ea1a2afbdad50, type: 2}
   myEffectObject: {fileID: 5900599659768222356}
+  myFadeCanvas: {fileID: 0}
 --- !u!1001 &4073001845709623431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4073001845709623431}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5733111121574945220
+--- !u!1001 &7228122962581710372
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -244,7 +244,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3316b9c1f4abed64fba3c626ab1b01a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3316b9c1f4abed64fba3c626ab1b01a3,
         type: 3}
@@ -301,9 +301,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3316b9c1f4abed64fba3c626ab1b01a3, type: 3}
---- !u!4 &5195644675224864303 stripped
+--- !u!4 &7189375532561826255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3316b9c1f4abed64fba3c626ab1b01a3,
     type: 3}
-  m_PrefabInstance: {fileID: 5733111121574945220}
+  m_PrefabInstance: {fileID: 7228122962581710372}
   m_PrefabAsset: {fileID: 0}

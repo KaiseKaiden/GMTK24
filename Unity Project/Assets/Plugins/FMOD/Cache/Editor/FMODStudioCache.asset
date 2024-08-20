@@ -198,7 +198,7 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638596983872832368
+  lastModified: 638597165351607178
   FileSizes: []
   Exists: 1
 --- !u!114 &-3670768681294218461
@@ -256,6 +256,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11574
+--- !u!114 &-3220255969308295420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Egg_Crack
+  m_EditorClassIdentifier: 
+  Path: event:/Egg_Crack
+  Guid:
+    Data1: 1232987899
+    Data2: 1337581638
+    Data3: 667615368
+    Data4: 306985165
+  Banks:
+  - {fileID: -4272793046980997562}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 920
 --- !u!114 &-830009185184637764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,13 +392,14 @@ MonoBehaviour:
   - {fileID: -8899759006836784078}
   - {fileID: 4624970488975099686}
   - {fileID: -3342353636193116951}
+  - {fileID: -3220255969308295420}
   EditorParameters:
   - {fileID: -6566667485185146232}
   MasterBanks:
   - {fileID: -4272793046980997562}
   StringsBanks:
   - {fileID: 8754526099722757888}
-  cacheTime: 638596983872832368
+  cacheTime: 638597165351621353
   cacheVersion: 131619
 --- !u!114 &223333109847498145
 MonoBehaviour:
@@ -427,7 +455,7 @@ MonoBehaviour:
   - {fileID: -7596793295643051874}
   MinDistance: 1
   MaxDistance: 20
-  Length: 78921
+  Length: 78930
 --- !u!114 &1165668572083640186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,8 +579,8 @@ MonoBehaviour:
   Path: Assets/Audio Banks/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638596966067756106
+  lastModified: 638597165351621353
   FileSizes:
   - Name: 
-    Value: 1444
+    Value: 1492
   Exists: 1
