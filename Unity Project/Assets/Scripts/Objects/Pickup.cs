@@ -39,12 +39,12 @@ public class Pickup : MonoBehaviour
         GetComponent<Pickup>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
         float maxTime = Time.time + 10;
-        while ((point - transform.position).magnitude > .5f && maxTime > Time.time)
+        while ((point - transform.position).sqrMagnitude > 1.0f && maxTime > Time.time)
         {
-            transform.Translate(Time.deltaTime * (point - transform.position));
+            transform.Translate(Time.deltaTime * (point - transform.position).normalized * 10.0f);
             yield return null;
         }
-        NestCreator.myNestCreator.Increment(gameObject);
+        NestCreator.myNestCreator.Increment(gameObject, myNestCapacity);
     }
     private void Update()
     {
@@ -57,7 +57,8 @@ public class Pickup : MonoBehaviour
 
                 transform.eulerAngles = new Vector3(Mathf.PerlinNoise(myPerlinX, 0.0f) * 50.0f,
                                                     Mathf.PerlinNoise(0.0f, myPerlinY) * 50.0f, 0.0f);
-                transform.eulerAngles = transform.eulerAngles + new Vector3(-myPlayerMovement.GetVelocity().x, 0.0f, 0.0f);
+                transform.eulerAngles =
+                    transform.eulerAngles + new Vector3(-myPlayerMovement.GetVelocity().x, 0.0f, 0.0f);
             }
 
             Vector3 diffrence = (myPlayerMovement.GetRightLeg().position - myPickupPoint.position);

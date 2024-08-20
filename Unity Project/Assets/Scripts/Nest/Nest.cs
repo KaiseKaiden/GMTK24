@@ -63,6 +63,9 @@ public class Nest : MonoBehaviour
         //{
         //     Camera.main.GetComponent<CameraMovement>().SetNest(transform);
         // }
+
+        UpgradeEffect = Instantiate(UpgradeEffect, transform);
+
         var doveMom = Instantiate(myDovePrefab, transform);
         myDoveTransform = doveMom.transform;
         myDoveTransform.position = transform.position;
@@ -102,6 +105,10 @@ public class Nest : MonoBehaviour
         }
 
         Vector3 nextEggPos = GetEggPosition(myEggCount);
+
+        nextEggPos.x *= transform.localScale.x;
+        nextEggPos.y *= transform.localScale.y;
+        nextEggPos.z *= transform.localScale.z;
 
         GameObject egg = Instantiate(myEggPrefab, transform);
         egg.transform.position = nextEggPos + transform.position;

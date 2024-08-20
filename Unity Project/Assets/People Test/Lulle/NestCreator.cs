@@ -82,7 +82,7 @@ public class NestCreator : MonoBehaviour
         DelayedBuildObject();
     }
 
-    public void Increment(GameObject mesh = null)
+    public void Increment(GameObject mesh = null, float tierIncrement = 1.0f)
     {
         if (mesh != null)
         {
@@ -94,7 +94,7 @@ public class NestCreator : MonoBehaviour
         var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
         if (obj != null)
         {
-            IncrementObject(obj);
+            IncrementObject(obj, tierIncrement);
         }
         else
         {
@@ -114,14 +114,24 @@ public class NestCreator : MonoBehaviour
         }
     }
 
-    public void IncrementObject(GameObject NestNodeParent)
+    public void IncrementObject(GameObject NestNodeParent, float steps = 1.0f)
     {
         AudioManager.instance.PlayOneshot(FMODEvents.instance.NestGrowEvent, transform.position);
 
         Vector3 positionOffset = spawnPosition.position;
+        // positionOffset.y += Mathf.Pow(maxTier, 0.8f) * 0.01f;
+
         var currentNodeCount = NestNodeParent.transform.childCount;
         Transform nestObj = NestNodeParent.transform.GetChild(currentNodeCount - 1);
-        maxTier++;
+
+        Nest nest;
+        if (nestObj.TryGetComponent(out nest))
+        {
+            nest.myEggCapacity += (int)steps;
+            nest.PlayParticleEffect();
+        }
+
+        maxTier += (int)steps;
 
         GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
         central.name = "Tier " + maxTier;
@@ -172,12 +182,13 @@ public class NestCreator : MonoBehaviour
 
         nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
 
-        if (nestObj.TryGetComponent(out Nest nest))
+        if (nest != null)
         {
-            nest.myEggCapacity = maxTier * 2;
+            nest.myEggCapacity += (int)steps;
             nest.PlayParticleEffect();
         }
         nestObj.SetSiblingIndex(NestNodeParent.transform.childCount - 1);
+        nestObj.localScale = Vector3.one + Vector3.one * maxTier * centerScale * globalScale * 0.2f;
     }
 
     public void BuildObject()
