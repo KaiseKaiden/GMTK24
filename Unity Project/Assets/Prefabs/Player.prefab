@@ -864,6 +864,9 @@ MonoBehaviour:
   myXpExpo: 1.1
   myHungerbarUI: {fileID: 0}
   myHungerbarTransform: {fileID: 0}
+  myTrails:
+  - {fileID: 5870443942632218930}
+  - {fileID: 2366282715431698761}
 --- !u!143 &4290324040061091801
 CharacterController:
   m_ObjectHideFlags: 0
