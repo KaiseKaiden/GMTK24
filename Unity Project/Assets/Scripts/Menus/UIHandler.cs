@@ -23,7 +23,6 @@ public class UIHandler : MonoBehaviour
         {
 
         }
-        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.MusicEvent);
     }
 
     private void Update()

@@ -11,6 +11,7 @@ public class LosingEgg : MonoBehaviour
     private void Start()
     {
         GetComponent<Rigidbody>().AddTorque(new Vector3(0.0f, 0.0f, -5.0f));
+        AudioManager.instance.SetWorldParameter("music.on_off", 0.0f);
     }
 
     private void Update()
