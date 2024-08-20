@@ -99,3 +99,66 @@ MonoBehaviour:
       Data3: 1588456324
       Data4: 1037045613
     Path: event:/Player/Bird_GetFood
+  <SpawnEggEvent>k__BackingField:
+    Guid:
+      Data1: -334716583
+      Data2: 1174660174
+      Data3: -1203241318
+      Data4: 234111018
+    Path: event:/Egg_Spawn
+  <MoonCrashEvent>k__BackingField:
+    Guid:
+      Data1: -1642482733
+      Data2: 1089544795
+      Data3: 870965907
+      Data4: 1147751007
+    Path: event:/Moon_Fall
+  <WorldEndEvent>k__BackingField:
+    Guid:
+      Data1: 426231426
+      Data2: 1235356347
+      Data3: -409951558
+      Data4: -2080575661
+    Path: event:/Earth_Explode
+  <GameOverEvent>k__BackingField:
+    Guid:
+      Data1: -271430777
+      Data2: 1177289117
+      Data3: 106071448
+      Data4: -885641424
+    Path: event:/Game_Over
+  <CreditButtonEvent>k__BackingField:
+    Guid:
+      Data1: 805168088
+      Data2: 1149253434
+      Data3: -314713672
+      Data4: -1092053628
+    Path: event:/UI/Creddits
+  <LeaderBoardButtonEvent>k__BackingField:
+    Guid:
+      Data1: -777939680
+      Data2: 1163138290
+      Data3: 2085563021
+      Data4: 1381490206
+    Path: event:/UI/Leaderbord
+  <QuitButtonEvent>k__BackingField:
+    Guid:
+      Data1: -2107028656
+      Data2: 1311554263
+      Data3: 2066998403
+      Data4: -855234737
+    Path: event:/UI/Quit
+  <SettingsButtonEvent>k__BackingField:
+    Guid:
+      Data1: 1099770899
+      Data2: 1139794019
+      Data3: -571976002
+      Data4: -244823424
+    Path: event:/UI/Settings
+  <StartMainButtonEvent>k__BackingField:
+    Guid:
+      Data1: 686222773
+      Data2: 1313561035
+      Data3: -2104091731
+      Data4: -989875610
+    Path: event:/UI/Start-Main
