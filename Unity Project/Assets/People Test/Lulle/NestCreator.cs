@@ -49,7 +49,13 @@ public class NestCreator : MonoBehaviour
 
     private GameObject GetRandomAsset()
     {
-        return listOfPileAssets[Random.Range(0, listOfPileAssets.Count)];
+        var index = Random.Range(0, listOfPileAssets.Count);
+        if (listOfPileAssets[index] != null)
+        {
+            return listOfPileAssets[index];
+        }
+        listOfPileAssets.RemoveAt(index);
+        return GetRandomAsset();
     }
     private GameObject GetRandomStickAsset()
     {
@@ -132,56 +138,56 @@ public class NestCreator : MonoBehaviour
         }
 
         maxTier += (int)steps;
-
-        GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
-        central.name = "Tier " + maxTier;
-        central.transform.position = new Vector3(0, maxTier, 0) + positionOffset;
-        central.transform.localScale *= maxTier * centerScale * globalScale;
-        central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-
-        var bredth = Mathf.Log(maxTier * obPerTier);
-        for (int i = 0; i < bredth; i++)
+        for (float tier = maxTier - (int)steps; Mathf.FloorToInt(tier) < maxTier; tier += tierHeight)
         {
-            var v2 = Random.insideUnitCircle * maxTier * bredthMdf;
-            v2.y *= aspectRatio;
-            var obj = Instantiate(GetRandomAsset(), central.transform);
+            GameObject central = Instantiate(centerMesh, NestNodeParent.transform);
+            central.name = "Tier " + tier;
+            central.transform.position = new Vector3(0, tier, 0) + positionOffset;
+            central.transform.localScale *= tier * centerScale * globalScale;
+            central.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
-            var components = obj.GetComponents(typeof(UnityEngine.Component));
-            foreach (var comp in components)
+            var bredth = Mathf.Log(tier * obPerTier);
+            for (int i = 0; i < bredth; i++)
             {
-                if (comp is not Transform && comp is not MeshFilter && comp is not MeshRenderer)
+                var v2 = Random.insideUnitCircle * tier * bredthMdf;
+                v2.y *= aspectRatio;
+                var obj = Instantiate(GetRandomAsset(), central.transform);
+
+                var components = obj.GetComponents(typeof(UnityEngine.Component));
+                foreach (var comp in components)
                 {
-                    Destroy(comp);
+                    if (comp is not Transform && comp is not MeshFilter && comp is not MeshRenderer)
+                    {
+                        Destroy(comp);
+                    }
                 }
+
+                obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
+                obj.transform.rotation = Random.rotation;
+                obj.transform.localScale *= objectScale;
+                obCount++;
             }
 
-            obj.transform.position = new Vector3(v2.x, maxTier, v2.y) + positionOffset;
-            obj.transform.rotation = Random.rotation;
-            obj.transform.localScale *= objectScale;
-            obCount++;
+            for (int i = 0; i < bredth * 5; i++)
+            {
+                float angle = Random.Range(0, 360);
+                float x = Mathf.Cos(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                z *= aspectRatio;
+
+                var obj = Instantiate(GetRandomStickAsset(), central.transform);
+                obj.transform.SetPositionAndRotation(
+                    new Vector3(x, Random.Range(tier - 1.0f, tier), z) + positionOffset,
+                    Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
+
+                var scale = obj.transform.localScale;
+                scale.x *= Random.Range(1.0f, 10.0f);
+                scale.y *= Random.Range(1.0f, 10.0f);
+                obj.transform.localScale = scale * woodScale;
+                obCount++;
+            }
         }
-
-        for (int i = 0; i < bredth * 5; i++)
-        {
-            float angle = Random.Range(0, 360);
-            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * maxTier * bredthMdf;
-            float z = Mathf.Sin(angle * Mathf.Deg2Rad) * maxTier * bredthMdf;
-            z *= aspectRatio;
-
-            var obj = Instantiate(GetRandomStickAsset(), central.transform);
-            obj.transform.SetPositionAndRotation(
-                new Vector3(x, Random.Range(maxTier - 1.0f, maxTier), z) + positionOffset,
-                Quaternion.Euler(Random.Range(-15.0f, 15.0f), -1 * angle, Random.Range(-15.0f, 15.0f)));
-
-            var scale = obj.transform.localScale;
-            scale.x *= Random.Range(1.0f, 10.0f);
-            scale.y *= Random.Range(1.0f, 10.0f);
-            obj.transform.localScale = scale * woodScale;
-            obCount++;
-        }
-
-        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
-
+        nestObj.transform.position = Vector3.up * (maxTier - tierHeight) + positionOffset;
         if (nest != null)
         {
             nest.myEggCapacity += (int)steps;
@@ -210,7 +216,7 @@ public class NestCreator : MonoBehaviour
         parentController = new GameObject("NestBase");
         parentController.tag = "EditorNestDestructionTag";
         parentController.transform.position = positionOffset;
-        for (float tier = startTier; tier < maxTier; tier += tierHeight)
+        for (float tier = startTier; Mathf.FloorToInt(tier) < maxTier; tier += tierHeight)
         {
             GameObject central = Instantiate(centerMesh, parentController.transform);
             central.name = "Tier " + tier;
@@ -262,7 +268,7 @@ public class NestCreator : MonoBehaviour
         }
 
         GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
+        nestObj.transform.position = Vector3.up * (maxTier - tierHeight) + positionOffset;
         nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
         nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
         nestBase = nestObj.GetComponent<Nest>();
