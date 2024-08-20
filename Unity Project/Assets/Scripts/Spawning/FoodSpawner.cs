@@ -41,12 +41,12 @@ public class FoodSpawner : MonoBehaviour
 
         if (mySpawningTimer >= mySpawningInterval)
         {
-            SpawnFood(myPlayerTransform.localScale.x);
+            SpawnFood();
             mySpawningTimer = 0;
         }
     }
 
-    void SpawnFood(float someNewScale)
+    void SpawnFood()
     {
         Vector3 worldRndPos = GetRndPosOutsideCamera();
         int random = Random.Range(0, 3);
@@ -55,28 +55,34 @@ public class FoodSpawner : MonoBehaviour
         {
             int randomObj = Random.Range(0, mySmallPrefabs.Count);
             GameObject newObject = Instantiate(mySmallPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
+
+            float newScale = GameManager.Instance.GetFoodScaleFromY(worldRndPos.y);
+            newObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }
         else if (random == 1) //Normal
         {
             int randomObj = Random.Range(0, myMediumPrefabs.Count);
             GameObject newObject = Instantiate(myMediumPrefabs[randomObj], worldRndPos, Quaternion.identity);
-            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
+
+            float newScale = GameManager.Instance.GetFoodScaleFromY(worldRndPos.y);
+            newObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }
-        else if (random == 2) //Big
+        else
         {
             int randomObj = Random.Range(0, myLargePrefabs.Count);
             GameObject newObject = Instantiate(myLargePrefabs[randomObj], worldRndPos, Quaternion.identity);
-            newObject.transform.localScale = new Vector3(someNewScale, someNewScale, someNewScale);
+
+            float newScale = GameManager.Instance.GetFoodScaleFromY(worldRndPos.y);
+            newObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }
     }
 
     Vector3 GetRndPosOutsideCamera()
     {
         float zPos = myPlayerTransform.position.z;
-        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance, myMaxSpawningDistance);
+        float extraCameraZoomvalue = (-10.0f - Camera.main.transform.position.z);
+        Vector2 CirclePos = Random.insideUnitCircle.normalized * Random.Range(myMinSpawningDistance + extraCameraZoomvalue, myMaxSpawningDistance + extraCameraZoomvalue);
         Vector3 Rndpos = new Vector3(CirclePos.x, CirclePos.y, zPos) + myPlayerTransform.position;
-        Vector3 worldRndPos = Camera.main.ViewportToWorldPoint(Rndpos);
         return Rndpos;
     }
 }
