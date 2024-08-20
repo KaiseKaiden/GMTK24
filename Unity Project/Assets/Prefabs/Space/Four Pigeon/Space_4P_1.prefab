@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 532, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8964988772737131135}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 6069041191232015710}
-  myNestCapacity: 4
-  myLevelRequred: 4
+  myNestCapacity: 15
+  myLevelRequred: 6
 --- !u!114 &84863819369717757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7853e265c1d11024399f532ae20c7ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myFloatingOffset: 2
+  myFloatingOffset: 3
   myRotationSpeed: 30
   myMeshTransform: {fileID: 8964988772737131135}
 --- !u!1 &8811332865806734123

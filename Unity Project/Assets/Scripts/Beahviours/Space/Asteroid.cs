@@ -24,6 +24,8 @@ public class Asteroid : Behaviour
         myMoveDir.y = Random.Range(-10.0f, 10.0f);
 
         myMoveDir.Normalize();
+
+        mySwooshTrail.emitting = true;
     }
 
     public override void Move()
