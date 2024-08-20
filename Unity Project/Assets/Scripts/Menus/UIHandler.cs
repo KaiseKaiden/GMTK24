@@ -5,76 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class UIHandler : MonoBehaviour
 {
-    GameObject myPauseMenu;
-    GameObject mySettingsMenu;
+    public GameObject mySettingsMenu;
+    public GameObject myCreditsMenu;
+    public GameObject myLeaderboardMenu;
 
-    private void Start()
-    {
-        if (transform.Find("PauseMenu")) 
-        {
-            myPauseMenu = transform.Find("PauseMenu").gameObject;     
-        }
-        if (transform.Find("SettingsMenu"))
-        {
-            mySettingsMenu = transform.Find("SettingsMenu").gameObject;
-        }
-
-        if (true)
-        {
-
-        }
-    }
-
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name == "MainLevel")
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Time.timeScale = 0;
-
-                if (!myPauseMenu.activeSelf) 
-                {
-                    myPauseMenu.SetActive(true);
-                }
-                else
-                {
-                    if (!mySettingsMenu.activeSelf)
-                    {
-                        Continue();
-                    }
-                    else
-                    {
-                        SettingsPauseMenuToggle();
-                    }
-                }
-            }
-        }
-    }
-
+    [SerializeField] GameObject myFadePrefab;
 
     public void StartGame()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
-        SceneManager.LoadScene("MainLevel");
+
+        Instantiate(myFadePrefab);
     }
 
     public void Settings()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.SettingsButtonEvent);
-        SceneManager.LoadScene("Settings");
-    }
-
-    public void SettingsPauseMenuToggle()
-    {
-        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.SettingsButtonEvent);
-        mySettingsMenu.SetActive(!mySettingsMenu.activeSelf);
+        mySettingsMenu.SetActive(true);
     }
 
     public void Leaderboard()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.LeaderBoardButtonEvent);
-        SceneManager.LoadScene("Leaderboard");
+        myLeaderboardMenu.SetActive(true);
     }
 
     public void QuitGame()
@@ -83,22 +36,29 @@ public class UIHandler : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+    public void CloseMenu(string aMenuName)
     {
-        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
-        SceneManager.LoadScene("MainMenu");
+        if (aMenuName == "Credits")
+        {
+            myCreditsMenu.SetActive(false);
+        }
+        else if (aMenuName == "Leaderboard")
+        {
+            myLeaderboardMenu.SetActive(false);
+        }
+        else if (aMenuName == "Settings")
+        {
+            mySettingsMenu.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Invalid Menu Name");
+        }
     }
 
     public void Credits()
     {
         AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.CreditButtonEvent);
-        SceneManager.LoadScene("Credits");
-    }
-
-    public void Continue()
-    {
-        AudioManager.instance.PlayOneshotNoLocation(FMODEvents.instance.StartMainButtonEvent);
-        myPauseMenu.SetActive(false);
-        Time.timeScale = 1;
+        myCreditsMenu.SetActive(true);
     }
 }

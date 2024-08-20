@@ -6,6 +6,9 @@ public class GeezerSpawner : MonoBehaviour
 {
     public GameObject myGeezerObject;
 
+    float myWaitTimer = 0f;
+    float myTimeBetweenGeezers = 15f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +19,11 @@ public class GeezerSpawner : MonoBehaviour
     void Update()
     {
         if (FindObjectOfType<Geezer>() == null)
+        {
+            myWaitTimer += Time.deltaTime;
+        }
+
+        if (myWaitTimer >= myTimeBetweenGeezers)
         {
             Vector3 pos = Camera.main.transform.position;
 
@@ -48,7 +56,8 @@ public class GeezerSpawner : MonoBehaviour
 
             geezer.transform.localScale = Vector3.one * 2;
             geezer.transform.rotation = Quaternion.Euler(0, rotation, 0);
-            
-        }
+
+            myWaitTimer = 0f;
+        }   
     }
 }

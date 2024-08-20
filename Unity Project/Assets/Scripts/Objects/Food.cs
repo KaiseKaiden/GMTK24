@@ -1,22 +1,50 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] float myFillAmount = 1.0f;
-    [SerializeField] GameObject myBreadCrumbPart;
-    [SerializeField] GameObject myFoodBalloonPrefab;
+    [SerializeField]
+    float myFillAmount = 1.0f;
+    [SerializeField]
+    GameObject myBreadCrumbPart;
+    [SerializeField]
+    GameObject myFoodBalloonPrefab;
 
     PlayerLevel myPlayerLevel;
-
     Rigidbody myRigidbody;
+
+    Transform myPlayer;
+    Material myOutlineMaterial;
+
+    public void SetOutlineActive()
+    {
+        if (myOutlineMaterial != null)
+            myOutlineMaterial.SetFloat("_Active", 1.0f);
+    }
+    public void SetOutlineInactive()
+    {
+        if (myOutlineMaterial != null)
+            myOutlineMaterial.SetFloat("_Active", 0.0f);
+    }
 
     Vector3 myDeciredScale;
     float myScaleTimer = 0.0f;
 
     private void Start()
     {
-        myPlayerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLevel>();
+        myPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        myPlayerLevel = myPlayer.GetComponent<PlayerLevel>();
         myRigidbody = GetComponent<Rigidbody>();
+
+        List<Material> materials = new List<Material>();
+        var renderer = GetComponentInChildren<MeshRenderer>();
+        if (renderer != null)
+        {
+            renderer.GetMaterials(materials);
+            if (materials.Count != 0)
+                myOutlineMaterial = materials.Last();
+        }
 
         SetWorldState();
 
@@ -28,6 +56,15 @@ public class Food : MonoBehaviour
         var position = transform.position;
         position.z = GameManager.Instance.GetZFromY(transform.position.y);
         transform.position = position;
+
+        //if (Vector3.Distance(myPlayer.position, position) < 2.0f)
+        //{
+        //    SetOutlineActive();
+        //}
+        //else
+        //{
+        //    SetOutlineInactive();
+        //}
 
         // Scale Up
         myScaleTimer += Time.deltaTime;
@@ -66,7 +103,8 @@ public class Food : MonoBehaviour
         {
             // Space
             myRigidbody.useGravity = false;
-            myRigidbody.AddTorque(new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f)));
+            myRigidbody.AddTorque(
+                new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f)));
         }
     }
 

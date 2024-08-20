@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline3
+  m_Name: M_OutlineFood
   m_Shader: {fileID: -6465566751694194690, guid: 8a17c99b68728c448be43722d9217eda,
     type: 3}
   m_Parent: {fileID: 0}
@@ -51,11 +51,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Active: 1
+    - _Active: 0
     - _Fade_Distance: 1000
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0.0001
+    - _Thickness: 0.0066
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/MainMenu.unity
     guid: 7bd50c07dda65b846874ad55f5866d4a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game/Settings.unity
     guid: ee2dacf6b9f5b1f4bbc44f0de73e5619
   - enabled: 0
     path: Assets/Scenes/Game/MainGame.unity
     guid: 1fa63536e7d4e91409b2e2a2056de1a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game/Leaderboard.unity
     guid: 5df05003732be1147ab10d27b0e8a2f4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game/Credits.unity
     guid: 6aca6be0167ef454bad1b4709a4a1491
   - enabled: 1

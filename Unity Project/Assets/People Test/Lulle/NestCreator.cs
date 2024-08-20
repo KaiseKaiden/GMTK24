@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -22,16 +23,18 @@ public class NestCreator : MonoBehaviour
     public int StartTier = 0;
     private int startTier
     {
-        get {
-            return Mathf.Clamp(StartTier, 0, 10);
+        get
+        {
+            return Mathf.Clamp(StartTier, 0, 1000);
         }
     }
 
     public float TierHeight = 0.1f;
     public float tierHeight
     {
-        get {
-            return Mathf.Clamp(TierHeight, 0.1f, 10.0f);
+        get
+        {
+            return Mathf.Clamp(TierHeight, 0.1f, 1000.0f);
         }
     }
 
@@ -88,7 +91,7 @@ public class NestCreator : MonoBehaviour
     public void Decrement()
     {
         maxTier--;
-        maxTier = Mathf.Clamp(maxTier, 1, 100);
+        maxTier = Mathf.Clamp(maxTier, 1, 1000);
         DelayedBuildObject();
     }
 
@@ -99,8 +102,9 @@ public class NestCreator : MonoBehaviour
         {
             listOfPileAssets.Add(mesh);
         }
-        maxTier++;
-        maxTier = Mathf.Clamp(maxTier, 1, 100);
+        tierIncrement = Mathf.Abs(tierIncrement);
+        maxTier += Mathf.FloorToInt(tierIncrement);
+        maxTier = Mathf.Clamp(maxTier, 1, 1000);
 
         var obj = GameObject.FindGameObjectWithTag("EditorNestDestructionTag");
         if (obj != null)
@@ -115,20 +119,19 @@ public class NestCreator : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Increment();
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Decrement();
-        }
+        // if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //     Increment();
+        // }
+        // if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //     Decrement();
+        // }
     }
 
     private void IncrementObject(GameObject NestNodeParent, float steps = 1.0f)
     {
         AudioManager.instance.PlayOneshot(FMODEvents.instance.NestGrowEvent, transform.position);
-
         print("IncrementObject");
         Vector3 positionOffset = spawnPosition.position;
         // positionOffset.y += Mathf.Pow(maxTier, 0.8f) * 0.01f;
@@ -155,8 +158,10 @@ public class NestCreator : MonoBehaviour
             var bredth = Mathf.Log(tier * obPerTier);
             for (int i = 0; i < bredth; i++)
             {
-                var v2 = Random.insideUnitCircle * tier * bredthMdf;
-                v2.y *= aspectRatio;
+                float angle = Random.Range(0, 360);
+                float x = Mathf.Cos(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                float z = Mathf.Sin(angle * Mathf.Deg2Rad) * tier * bredthMdf;
+                z *= aspectRatio;
                 var obj = Instantiate(GetRandomAsset(), central.transform);
 
                 var components = obj.GetComponents(typeof(UnityEngine.Component));
@@ -168,9 +173,9 @@ public class NestCreator : MonoBehaviour
                     }
                 }
 
-                obj.transform.position = new Vector3(v2.x, tier, v2.y) + positionOffset;
+                obj.transform.position = new Vector3(x, tier, z) + positionOffset;
                 obj.transform.rotation = Random.rotation;
-                obj.transform.localScale *= objectScale;
+                obj.transform.localScale *= 1 / central.transform.localScale.x;
                 obCount++;
             }
 
@@ -193,7 +198,7 @@ public class NestCreator : MonoBehaviour
                 obCount++;
             }
         }
-        nestObj.transform.position = Vector3.up * (maxTier - tierHeight) + positionOffset;
+        nestObj.transform.position = Vector3.up * (maxTier) + positionOffset;
         if (nest != null)
         {
             nest.myEggCapacity += (int)steps;
@@ -274,7 +279,7 @@ public class NestCreator : MonoBehaviour
         }
 
         GameObject nestObj = Instantiate(nestPrefab, parentController.transform);
-        nestObj.transform.position = Vector3.up * (maxTier - tierHeight) + positionOffset;
+        nestObj.transform.position = Vector3.up * (maxTier - 1) + positionOffset;
         nestObj.GetComponent<Nest>().myEggCapacity = maxTier * 2;
         nestObj.GetComponent<Nest>().SetCurrentEggCount(eggCount);
         nestBase = nestObj.GetComponent<Nest>();
