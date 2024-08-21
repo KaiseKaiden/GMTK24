@@ -6,8 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     bool myCanMove = true;
 
+    [SerializeField] LayerMask myWhatIsMoon;
+
     [SerializeField] private float myForce;
     [SerializeField] private float myGravity;
+    float myWingTrailTime = 3.0f;
 
     [SerializeField] private float myMaxFallSpeed;
     [SerializeField] private float myMaxGlideSpeed;
@@ -52,7 +55,26 @@ public class PlayerMovement : MonoBehaviour
                     AudioManager.instance.PlayOneshot(FMODEvents.instance.BirdWingFlapEvent, transform.position);
 
                     GetComponent<PlayersRigidbody>().Flapp();
+
+                    foreach (TrailRenderer t in myTrails)
+                    {
+                        t.emitting = true;
+                    }
+                    myWingTrailTime = 0.0f;
                 }
+            }
+
+            // Wind Trail
+            if (myWingTrailTime > 0.2f)
+            {
+                foreach (TrailRenderer t in myTrails)
+                {
+                    t.emitting = false;
+                }
+            }
+            else
+            {
+                myWingTrailTime += Time.deltaTime;
             }
 
             // Gravity
@@ -63,38 +85,39 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Glide
-            if (myCanMove)
-            {
-                if (Input.GetMouseButton(0))
-                {
-                    if (myVelocity.y < -myMaxGlideSpeed)
-                    {
-                        myVelocity.y = -myMaxGlideSpeed;
+            //if (myCanMove)
+            //{
+            //    if (Input.GetMouseButton(0))
+            //    {
+            //        if (myVelocity.y < -myMaxGlideSpeed)
+            //        {
+            //            myVelocity.y = -myMaxGlideSpeed;
 
-                        // Add Glide Speed
-                        float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
-                        if (directionX < 0) directionX = -1.0f;
-                        if (directionX > 0) directionX = 1.0f;
+            //            // Add Glide Speed
+            //            float directionX = Input.mousePosition.x - Camera.main.WorldToScreenPoint(transform.position).x;
+            //            if (directionX < 0) directionX = -1.0f;
+            //            if (directionX > 0) directionX = 1.0f;
 
-                        myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
-                        myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
+            //            myVelocity.x += directionX * myForce * transform.localScale.x * 2.0f * Time.deltaTime;
+            //            myVelocity.x = Mathf.Clamp(myVelocity.x, -myForce * transform.localScale.x, myForce * transform.localScale.x);
 
-                        foreach (TrailRenderer t in myTrails)
-                        {
-                            t.emitting = true;
-                        }
-                    }
-                }
-            }
+            //            foreach (TrailRenderer t in myTrails)
+            //            {
+            //                t.emitting = true;
+            //            }
+            //        }
+            //    }
+            //}
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                foreach (TrailRenderer t in myTrails)
-                {
-                    t.emitting = false;
-                }
-            }
+            //if (Input.GetMouseButtonUp(0))
+            //{
+            //    foreach (TrailRenderer t in myTrails)
+            //    {
+            //        t.emitting = false;
+            //    }
+            //}
 
+            // Slow Down When Grounded
             if (myController.isGrounded)
             {
                 if (myVelocity.y < 0.0f)
@@ -110,16 +133,21 @@ public class PlayerMovement : MonoBehaviour
                 myLookDirection = myVelocity.normalized;
             }
 
+
+
             myController.Move(myVelocity * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(myLookDirection), myRotationSmooting * Time.deltaTime);
             var position = transform.position;
 
+            // Restrict Player Position
             float widthLimit = GameManager.Instance.GetXLimitFromY(position.y);
             position.x = Mathf.Clamp(position.x, -widthLimit, widthLimit);
 
             position.y = Mathf.Clamp(position.y, 0.0f, myYPositionLimit);
 
-            if (position.y >= myYPositionLimit)
+            // Stop Head Bopping Into Objects
+            RaycastHit hit;
+            if (position.y >= myYPositionLimit || (myVelocity.y > 0.0f && Physics.SphereCast(transform.position, transform.localScale.x * 0.5f, Vector3.up, out hit, 1.0f, myWhatIsMoon)))
             {
                 myVelocity.y = -0.5f;
             }

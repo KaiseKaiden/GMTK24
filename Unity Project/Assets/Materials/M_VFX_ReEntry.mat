@@ -71,7 +71,7 @@ Material:
     - _AnimationSpeed1: 3.33
     - _AnimationSpeedT2: 0.71
     - _GradientPower: 0.37
-    - _Intensity: 0.9999663
+    - _Intensity: 0
     - _PowerAlpha: 1.92
     - _PowerGradient: 0.156
     - _PowerT1: 2.07

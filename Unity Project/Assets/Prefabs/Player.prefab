@@ -835,6 +835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97363803f8d3ce3419d7ff1caec5d3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myWhatIsMoon:
+    serializedVersion: 2
+    m_Bits: 256
   myForce: 5
   myGravity: 8
   myMaxFallSpeed: 45
@@ -887,7 +890,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
