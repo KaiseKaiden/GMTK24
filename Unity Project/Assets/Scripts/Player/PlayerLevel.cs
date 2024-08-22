@@ -19,6 +19,8 @@ public class PlayerLevel : MonoBehaviour
     private TrailRenderer[] myTrails;
     float myStartWidth;
 
+    [SerializeField] ParticleSystem myLevelupParticle;
+
     int myCurrentLevel = 1;
 
     Vector3 myStartScale;
@@ -65,6 +67,8 @@ public class PlayerLevel : MonoBehaviour
             {
                 t.widthMultiplier = myStartWidth * transform.localScale.x * 0.5f;
             }
+
+            myLevelupParticle.Play();
         }
 
         myHungerbarUI.fillAmount = 1.0f - (myXp / myMaxXp);
