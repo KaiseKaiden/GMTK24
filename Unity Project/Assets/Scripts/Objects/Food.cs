@@ -76,7 +76,7 @@ public class Food : MonoBehaviour
         myPlayerLevel.AddXp(myFillAmount * transform.localScale.x);
         Destroy(gameObject);
 
-        Instantiate(myBreadCrumbPart, transform.position, Quaternion.identity);
+        Instantiate(myBreadCrumbPart, transform.position, Quaternion.identity).transform.localScale = transform.localScale;
         AudioManager.instance.PlayOneshot(FMODEvents.instance.GetFoodEvent, transform.position);
     }
 
