@@ -4907,7 +4907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541413037088734183}
   m_Layer: 0
-  m_Name: Burst_Breadcrumbs_Menu
+  m_Name: Burst_Breadcrumbs_Menu_Backup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
