@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] ParticleSystem myWingFlapPart;
 
+    float myActiveTime = 0.0f;
+
+    float myPrevMaxSpeedMultiplier;
+    float myPrevMaxYVelocity;
+
     private void Start()
     {
         myLookDirection = transform.forward;
@@ -61,28 +66,60 @@ public class PlayerMovement : MonoBehaviour
                         t.emitting = true;
                     }
                     myWingTrailTime = 0.0f;
+
+                    myPrevMaxSpeedMultiplier = 1.0f;
                 }
             }
 
-            // Wind Trail
-            if (myWingTrailTime > 0.2f)
+            if (Input.GetMouseButton(0) && !myController.isGrounded)
             {
-                foreach (TrailRenderer t in myTrails)
+                // Gravity
+                myVelocity.y -= myGravity * Time.deltaTime;
+
+                Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+                direction.z = 0.0f;
+                direction.Normalize();
+
+                float grav = myVelocity.y;
+                myVelocity = direction * myForce * transform.localScale.x;
+                myVelocity.y = grav;
+
+                // Glide Gravity
+                float gravityMultiplier = Mathf.Clamp(Vector2.Dot(Vector3.down, direction), 0.05f, 1.0f);
+                float glideMaxFallSpeed = myMaxFallSpeed * gravityMultiplier;
+
+                if (myPrevMaxSpeedMultiplier < gravityMultiplier && myVelocity.y > myPrevMaxYVelocity)
                 {
-                    t.emitting = false;
+                    myVelocity = direction * -myVelocity.y;
                 }
+                myPrevMaxYVelocity = myVelocity.y;
+
+                if (myVelocity.y < -glideMaxFallSpeed)
+                {
+                    myVelocity.y = -glideMaxFallSpeed;
+                }
+                myPrevMaxSpeedMultiplier = gravityMultiplier;
             }
             else
             {
-                myWingTrailTime += Time.deltaTime;
+                // Gravity
+                myVelocity.y -= myGravity * Time.deltaTime;
+                if (myVelocity.y < -myMaxFallSpeed)
+                {
+                    myVelocity.y = -myMaxFallSpeed;
+                }
+
+                // Wind Trail
+                if (myWingTrailTime > 0.2f)
+                {
+                    foreach (TrailRenderer t in myTrails)
+                    {
+                        t.emitting = false;
+                    }
+                }
             }
 
-            // Gravity
-            myVelocity.y -= myGravity * Time.deltaTime;
-            if (myVelocity.y < -myMaxFallSpeed)
-            {
-                myVelocity.y = -myMaxFallSpeed;
-            }
+            myWingTrailTime += Time.deltaTime;
 
             // Glide
             //if (myCanMove)
@@ -126,11 +163,14 @@ public class PlayerMovement : MonoBehaviour
                     myVelocity.y = -0.5f;
                 }
 
-                myLookDirection = new Vector3(0.0f, 0.0f, -1.0f);
+                //myLookDirection = new Vector3(0.0f, 0.0f, -1.0f);
             }
             else
             {
-                myLookDirection = myVelocity.normalized;
+                if (myActiveTime > 0.2f)
+                {
+                    myLookDirection = myVelocity.normalized;
+                }
             }
 
 
@@ -155,6 +195,8 @@ public class PlayerMovement : MonoBehaviour
             position.z = GameManager.Instance.GetZFromY(transform.position.y);
             transform.position = position;
         }
+
+        myActiveTime += Time.deltaTime;
     }
 
     public Transform GetRightLeg()
