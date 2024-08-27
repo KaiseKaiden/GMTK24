@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPickupPoint: {fileID: 6069041191232015710}
   myNestCapacity: 15
-  myLevelRequred: 6
+  myLevelRequred: 5
 --- !u!114 &84863819369717757
 MonoBehaviour:
   m_ObjectHideFlags: 0

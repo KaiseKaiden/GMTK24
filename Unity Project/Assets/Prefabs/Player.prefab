@@ -254,7 +254,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -8.367355e-11, y: 0.001963629, z: 2.5465855e-11}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
@@ -1072,7 +1072,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -0.0015734036, y: 2.7755576e-17, z: 6.831515e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
@@ -1203,7 +1203,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 7.558921e-17, y: -1.4901161e-10, z: -0.0015197472}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
@@ -1504,7 +1504,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
@@ -1833,7 +1833,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0.0015734036, y: -2.7755576e-17, z: -6.710571e-11}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
@@ -2028,7 +2028,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 3.759613e-11, z: 4.440892e-18}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
@@ -2159,7 +2159,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 7.558921e-17, y: -1.4901161e-10, z: -0.0015197472}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
@@ -2366,7 +2366,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -3.4760894e-10, y: 0.0017085172, z: -0.0006608086}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
@@ -2552,7 +2552,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 8.367355e-11, y: 0.001963629, z: 2.5465855e-11}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
@@ -2684,7 +2684,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -8.028519e-18, y: 0.0018478569, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
@@ -2795,7 +2795,7 @@ CharacterJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -2.9579614e-10, y: 0.0004491022, z: -0.001775952}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}

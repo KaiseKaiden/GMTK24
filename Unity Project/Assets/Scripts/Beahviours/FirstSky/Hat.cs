@@ -10,6 +10,9 @@ public class Hat : Behaviour
     float myTime;
 
     [SerializeField] float myNoiseOffset;
+    [SerializeField] float myRotationSpeed = 60.0f;
+    [SerializeField] float myNoiseSpeed = 1.0f;
+
     [SerializeField] TrailRenderer[] myTrails;
 
     Rigidbody myRigidbody;
@@ -23,10 +26,10 @@ public class Hat : Behaviour
     public override void Move()
     {
         myTime += Time.deltaTime;
-        myRotation += Time.deltaTime * 60.0f;
+        myRotation += myRotationSpeed * Time.deltaTime;
 
-        myNoiseX += Time.deltaTime;
-        myNoiseY += Time.deltaTime;
+        myNoiseX += myNoiseSpeed * Time.deltaTime;
+        myNoiseY += myNoiseSpeed * Time.deltaTime;
 
         Vector3 position = transform.position;
         position.z = GameManager.Instance.GetZFromY(position.y);
